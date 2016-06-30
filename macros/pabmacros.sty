@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pabmacros}[2010/01/07 Useful maths macros]
+
+% Packages needed for command defintions
+\RequirePackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{xargs}
+\RequirePackage{ifthen}
+\RequirePackage{tikz}
+
+\DeclareOption{sets}{\input{pabsets}}
+\DeclareOption{commands}{\input{pabcommands}}
+\DeclareOption{algcommands}{\input{pabalgcommands}}
+\DeclareOption{analysiscommands}{\input{pabanalysiscommands}}
+\DeclareOption{theorem}{\input{pabtheorem}}
+\DeclareOption{all}{\input{paball}}
+\DeclareOption{allbutthm}{\input{paballbutthm}}
+
+\ProcessOptions\relax

@@ -1,0 +1,20 @@
+% Misc Abbreviations
+\newcommand{\prm}[1]{\ensuremath{#1^{\prime}}}
+\newcommand{\dprm}[1]{\ensuremath{#1^{\prime\prime}}}
+\newcommand{\clsr}[1]{\ensuremath{{#1}^{-}}}
+\DeclareMathOperator{\supp}{Supp}
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand{\set}[1]{\ensuremath{\{{#1}\}}}
+\newcommand{\setcomph}[2][1]{\ensuremath{\{{#2}:{#1}\}}}
+\newcommand{\opm}{
+\tikz{
+\pgfsetbaselinepointlater{\pgfpointanchor{X}{base}}
+\pgfcircle{\pgfpointorigin}{0.15cm}
+\pgfusepath{stroke}
+\node (X) {$\pm$};
+}}
+
+% Notes to myself
+\newcommand{\mynote}[1]{
+\fbox{\parbox{\linewidth}{\textbf{NOTE:} #1}}
+}

@@ -1,0 +1,615 @@
+% Created 2016-06-29 Wed 20:00
+\documentclass[11pt]{amsart}
+                        \usepackage[all]{pabmacros}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage[nointegrals]{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage{amsmath}
+\usepackage[bibstyle=alphabetic,citestyle=alphabetic,backend=bibtex]{biblatex}
+\bibliography{refs}
+\AtEveryBibitem{\clearfield{doi}}
+\AtEveryBibitem{\clearfield{url}}
+\AtEveryBibitem{\clearfield{issn}}
+\renewcommand*{\bibfont}{\footnotesize}
+\DeclareMathOperator{\tangspeed}{v}
+\DeclareMathOperator{\norfactor}{\lambda}
+\DeclareMathOperator{\ineq_rel}{\simeq}
+\DeclareMathOperator{\chordarcprofile}{\mathcal{Z}}
+\newcommand\holder{H\"older}
+\DeclareMathOperator{\network}{\mathcal{N}}
+\DeclareMathOperator{\corneranglespeed}{{\Delta v}}
+\usepackage{snapshot}
+\address{Department of Mathematics, University of California San Diego}
+\email{pbryan@ucsd.edu}
+\keywords{Curvature flows, Distance comparison, Networks, curves}
+\subjclass[2010]{53C44, 35K55, 58J35}
+\date{}
+\author{Paul Bryan}
+
+\author{Mariel S\'aez}
+\address{Facultad de Matematicas, Pontificia Universidad Cat\'olica de Chile, Avenida Vicu\'na Mackenna 4860, Macul, 6904441 Santiago, Chile}
+\email{mariel@mat.puc.cl}
+
+\title{A distance comparison theorem for curve shortening of planar networks}
+\hypersetup{
+ pdfauthor={Paul Bryan},
+ pdftitle={A distance comparison theorem for curve shortening of planar networks},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 24.5.1 (Org mode 8.3.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:orgheadline1}
+\section{Notation and Definitions}
+\label{sec:orgheadline5}
+
+\subsection{Networks}
+\label{sec:orgheadline2}
+
+We consider networks with a single loop, \(\network = (\gamma, L)\) with \(L = \{L_i\}_{i=0}^{k-1}\). For us this means we have a piecewise smooth embedding for the loop:
+\[
+\gamma : \sphere^1 \to \RR^2.
+\]
+Let \(\{a_i\}_{i=0}^{k-1} \subset \sphere^1\) be such that \(\gamma\) is smooth on \(\sphere^1 \setdiff \{a_i\}\). We call \(\{a_i\}\) the nodes. We also have free ends \(L_i : [0, 1) \to \RR^2\) which are pairwise disjoint, smooth embeddings satisfying \(L_i(0) = \gamma(a_i)\), each curve \(L_i(0, 1)\) is disjoint from \(\gamma(\sphere^1)\), and either,
+\begin{enumerate}
+\item \(\lim_{x\to 1} |L_i(x)| = \infty\), or
+\item \(\lim_{x\to 1} L_i(x) \in \bdry{\Omega}\) where \(\Omega \subset \RR^2\) is a compact, convex set with non-empty interior properly containing the loop, \(\gamma(\sphere^1) \subset \interior{\Omega}\).
+\end{enumerate}
+In either case, \(L_i(0,1)\) is contained in the region exterior to \(\gamma(\sphere^1)\).
+
+Fixing an orientation on \(\sphere^1\) and parametrising the loop \(\gamma\) over \([0, 2\pi]\) we assume that,
+\[
+0 = a_0 < a_1 < \cdots < a_{k-1} < a_k = 2\pi
+\]
+and we always consider \(i\) modulo \(k\). Let us also write \(I_i = [a_{i-1}, a_i]\) and \(\gamma_i = \gamma|_{I_i}\) for the smooth connected arcs, which by assumption are smooth up to the boundary and satisfy \(\gamma_i(a_i) = \gamma_{i+1}(a_i)\) (\(i\) modulo \(k\)).
+
+We also impose the \emph{triple condition} at the nodes: let
+\[
+\tang^{\pm} (a_i) = \lim_{x\to a_i^{\pm}} \frac{\gamma'(x)}{\|\gamma'(x)\|}, \quad \tang_i = \frac{L_i'(0)}{\|L_i'(0)\|}
+\]
+denote respectively the tangents to the loop on either side of the node \(a_i\) and the tangent to the free curve \(L_i\) at \(a_i\). Then
+\begin{equation}
+\label{eq:triplecondition}
+\ip{\tang^+}{-\tang^-} = \ip{\tang^{\pm}}{\tang_i} = - \frac{1}{2}.
+\end{equation}
+In other words, the tangents make equal angles \(2\pi/3\) at the nodes. See figure \ref{fg:network}.
+
+Let us write \(\tang\) for the oriented, unit tangent and \(\nor\) for the unit, outer normal to \(\gamma\) on the smooth part \(\gamma^{\ast} = \gamma(\sphere^1\setdiff\{a_i\})\). Let us also write \(\tang_i\), \(\nor_i\) for the oriented unit, tangent and oriented, outer normal respectively to the connected smooth arcs \(\gamma_i\), and
+\[
+\nor_i^{\pm}(a_i) = \lim_{x\to a_i^{\pm}} \nor
+\]
+for the normals either side of the node \(a_i\). From the triple condition \eqref{eq:triplecondition} and the fact that each \(L_i\) is outward pointing, we have the relations
+\begin{equation}
+\label{eq:triplerelations}
+\ip{-\tang^+}{\nor^-} = \ip{\tang^-}{\nor^+} = \ip{\nor_i^{\pm}}{\tang_i} = \frac{\sqrt{3}}{2}.
+\end{equation}
+Analogously we also write \(\curvecurv\) for the curvature of \(\gamma^{\ast}\), \(\gamma_i\) for the curvature of the connected arcs \(\gamma_i\) and \(\curvecurv^{\pm}\) for the curvature of the loop on either side of the node. If needed, we will write \(\curvecurv_{L_i}\) for the curvature of the free curves \(L_i\). Our convention for the Frenet-Serret equations is that the curvature vector of a convex curve is inward pointing so that,
+\begin{equation}
+\label{eq:frenetserret}
+\partial_s \tang = -\curvecurv \nor, \quad \partial_s \nor = \curvecurv \tang
+\end{equation}
+with \(s\) denoting the arc-length parameter.
+
+\subsection{Curve Shortening of Networks}
+\label{sec:orgheadline3}
+
+\begin{defn}
+A smooth, one-parameter family \(\network_t = (\gamma_t = ((\gamma_i)_t), L_t = (L_i)_t)_{i=1}^k\) of embedded networks with one loop satisfying the triple condition \eqref{eq:triplecondition} evolves by \emph{curve shortening} if for each \(i\),
+\begin{equation}
+\label{eq:csf}
+\left(\pd[\gamma_i]{t}\right)^{\perp} = -\curvecurv, \quad \text{and} \quad \left(\pd[L_i]{t}\right)^{\perp} = -\curvecurv.
+\end{equation}
+Here, for a vector field \(X\) along a curve, \(X^{\perp} = \ip{X}{\nor}\) denotes the outer normal component of \(X\) on the smooth part \(\network^{\ast} = (\gamma^{\ast}, L)\).
+\end{defn}
+
+In general, in order that for each \(t\), \(\network_t\) is an embedded network with one loop satisfying the triple condition \eqref{eq:triplecondition}, and evolving by the curve shortening flow \eqref{eq:csf}, there must be a non-zero tangential component of the speed. In other words,
+\begin{equation}
+\label{eq:csf_with_tang}
+\pd[\gamma_i]{t} = -\curvecurv_i \nor_i + \tangspeed_i \tang_i, \quad \pd[L_i]{t} = -\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}
+\end{equation}
+where \(\tangspeed_i, \tangspeed_{L_i}\) are any smooth functions satisfying
+\begin{equation}
+\label{eq:speedcompatability}
+-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+ = -\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^- = -\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}.
+\end{equation}
+
+Using the triple conditions \eqref{eq:triplecondition} \eqref{eq:triplerelations}, the first equality allows us to write \(v_i^{\pm}\) in terms of the curvatures \(\curvecurv_i^{\pm}\):
+\begin{align*}
+\tangspeed_i^+ &= \ip{-\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^-}{\tang_i^+} = \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{2} \tangspeed_i^- \\
+\tangspeed_i^- &= \ip{-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+}{\tang_i^-} = - \frac{\sqrt{3}}{2} \curvecurv_i^+ + \frac{1}{2} \tangspeed_i^+.
+\end{align*}
+Thus we have
+\begin{equation}
+\label{eq:tangspeedcurvture}
+\tangspeed_i^+ = \frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+, \quad \tangspeed_i^- = -\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^-.
+\end{equation}
+
+Finally, let us define the corner tangential speed difference,
+\[
+\corneranglespeed_i = \tangspeed_i^+ - \tangspeed_i^- = \frac{1}{\sqrt{3}} \left(\curvecurv_i^- + \curvecurv_i^+\right).
+\]
+
+\subsection{Basic Evolution Equations}
+\label{sec:orgheadline4}
+
+Let us assume that the loop \(\gamma_t\) is parametrised by \((u, t) \in [0, 2\pi] \times [0, T)\). Throughout we denote by \(s\) the arc length parameter so that
+\[
+\partial_s = \frac{1}{\|\gamma_t'|} \partial_u, \quad ds = \|\gamma_t'\| du
+\]
+where primes denote differentiation with respect to \(u\).
+
+The evolution of geometric quantities under the Curve Shortening Flow is the same for networks as in the smooth case. This is immediate for any pointwise quantities, and we record the required equations in a lemma for later convenience.
+
+\begin{lemma}
+\label{lem:basic_evolution}
+\begin{enumerate}
+\item \([\partial_s, \partial_t] = -(\partial_s \tangspeed - \curvecurv^2) \partial_s\)
+\item \(\pd[ds]{t} = (\partial_s \tangspeed - \curvecurv^2) ds\)
+\item \(\pd[\tang]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \nor\)
+\item \(\pd[\nor]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \tang\)
+\item \(\pd[\curvecurv]{t} = \partial_s^2 \curvecurv + \curvecurv^3 + \tangspeed \partial_s \curvecurv\).
+\end{enumerate}
+\end{lemma}
+
+The \emph{extrinsic distance},
+\[
+d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|
+\]
+and the \emph{oriented}, \emph{intrinsic distance} or \emph{arc length},
+\[
+\ell_t(p, q) = \int_{\gamma_t} ds_t = \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t
+\]
+where \(p \in I_i = [a_{i-1}, a_i]\), \(q \in I_j = [a_{j-1}, a_j]\) with \(j\geq i\).
+
+Note that by oriented, we mean the length along \(\gamma\) from \(p\) to \(q\) in the chosen orientation of \(\gamma\). Thus either \(\ell(p,q)\) equals the intrinsic distance between \(p\) and \(q\), or \(L\) minus the intrinsic length, where \(L\) denotes the total length of \(\gamma\).
+
+Let us also define
+\[
+w(p, q) = \frac{\gamma(q) - \gamma(p)}{d(p,q)},
+\]
+the unit vector pointing from \(p\) to \(q\).
+
+Later we will only require the evolution of the extrinsic and intrinsic distances at smooth points.
+
+\begin{lemma}
+\label{lem:distance_evolution}
+
+Let \((p,q) \in \gamma_t^{\ast}\) be smooth points. Then,
+\begin{align*}
+\partial_t d_t(p, q) &= -\curvecurv_q \ip{\nor_q}{w} + \curvecurv_p \ip{\nor_p}{w} + \tangspeed_q \ip{\tang_q}{w} - \tangspeed_p \ip{\tang_p}{w}, \\
+\partial_t \ell_t(p, q) &= - \int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) - \sum_{m=i}^{j-1} \corneranglespeed_m \\
+\intertext{and}
+\partial_t L &= - \int_{\gamma} \curvecurv^2 ds + \sum_{m=i}^{k} \corneranglespeed_m.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+From the evolution equation \eqref{eq:csf_with_tang} we obtain,
+
+and the evolution of \(d = \left(\ip{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}\) follows by the chain rule.
+
+Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
+\begin{align*}
+\partial_t \ell(p,q) &= \partial_t \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \partial_t \int_{a_{m-1}}^{a_m} ds_t + \partial_t  \int_{a_{j-1}}^q ds_t \\
+&= \int_p^{a_i} \partial_s \tangspeed - \curvecurv^2 ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} \partial_s \tangspeed - \curvecurv^2 ds_t + \int_{a_{j-1}}^q \partial_s \tangspeed - \curvecurv^2 ds_t \\
+&= \int_p^q \curvecurv^2 ds + \tangspeed_i^- - \tangspeed(p) + \sum_{m=i+1}^{j-1} \tangspeed_m^- - \tangspeed_{m-1}^+ + \tangspeed(q) - \tangspeed_{j-1}^+ \\
+&= \int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) + \sum_{m=i}^{j-1} \tangspeed_m^- - \tangspeed_m^+.
+\end{align*}
+The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\), while the evolution of \(L\) follows by taking \(p=a_0\), \(q=a_k\).
+\end{proof}
+
+
+\section{Short time existence and uniqueness}
+\label{sec:orgheadline6}
+Clean up \cite{MR1240580} and make it more geometric.
+\section{The chord/arc profile}
+\label{sec:orgheadline10}
+
+In this section we introduce the chord/arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. Of course, the presence of nodes for networks is felt here.
+
+\subsection{Definition and basic properties}
+\label{sec:orgheadline7}
+
+\begin{defn}
+Let \(\gamma\) be a rectifiable, Jordan curve in the plane with total length \(L\) parametrised by \(\gamma: \sphere^1 \to \RR^2\). For \(x\in (0, 2\pi)\), the chord/arc-profile of \(\gamma\) is defined as
+\[
+\chordarcprofile (x) = \frac{2\pi}{L} \inf\left\{d(p, q): (p,q) \in \sphere^1\times\sphere^1, \ell(p,q) = \frac{L}{2\pi} x\right\}
+\]
+where \(d(p,q) = \abs{X(p) - X(q)}\) is the \emph{extrinsic} distance in \(\RR^2\) between \(p\) and \(q\) and \(\ell(p,q) = \int_p^q ds\) is the arclength or \emph{intrinsic} distance from \(p\) to \(q\). Note that for \(x \in (\pi, 2\pi)\), to say that \(\ell(p,q) = \frac{L}{2\pi} x \in (L/2,L)\) is to say that one of the two arcs joining \(p\) to \(q\) has length \(\ell(p,q)\). Of course the shorter arc has length \(L-\ell(p,q) = \frac{L}{2\pi}(2\pi - x) \in (0, L/2)\), and so with our definition, \(\chordarcprofile\) is symmetric about \(\pi\).
+\end{defn}
+
+\begin{remark}
+By compactness of \(\sphere^1\times \sphere^1\) (which parametrises the set of connected arcs of \(\gamma\)) and by continuity of \(\ell\), \(d\), for any \(x\) the infimum is attained so that there exists \((p_0,q_0) \in \sphere^1 \times \sphere^1\) with \(\ell(p_0, q_0) = \frac{L}{2\pi}x\) and such that \(\chordarcprofile(x) = \frac{2\pi}{L} d(p_0, q_0)\). Also, since \(\ell(p,p) = 0\), for any \(x\in(0,2\pi)\) we have \(p_0 \ne q_0\) and so \(d\) is smooth at \((p_0, q_0)\).
+\end{remark}
+
+The next proposition gives the asymptotic behaviour of the chord/arc-profile of networks \(\network\), near the end point \(x=0\), and so by symmetry also at the end point \(x=2\pi\).
+
+\begin{prop}
+Let \(\network\) be a network, with piecewise closed curve \(\gamma\). Then as \(x\to 0\) the chord/arc-profile of \(\gamma\) satisfies
+\[
+\lim_{x\to 0} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^3} = \frac{1}{16} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
+\]
+\end{prop}
+
+\begin{proof}
+By taking $x$ small, we consider either points $(p,q) \in \overline{\gamma_i}$ or points $p \in \gamma_i, q \in \gamma_{i+1}$. In the former case, because the curve is straight to first order, $d = \ell + \bigo(\ell^2)$. In the latter case, to first order, the curve is two straight lines meeting at an angle of $2\pi/3$ and so $d = \tfrac{\sqrt{3}}{2} \ell + \bigo(\ell^2)$. Thus for sufficiently small $x$, the infimum in the definition of $\chordarcprofile$ is attained in the latter case with $p,q$ lying on either side of a node.
+
+In that case, parametrising by arc-length $s$, near each node $a_i$ we compute,
+\[
+d(a_i - s, a_i + s) = \sqrt{3} s + \frac{1}{4} (\curvecurv^+(a_i) + \curvecurv^-(a_i))s^3 + \bigo(s^5),
+\]
+and the result follows since $\ell(a_i-s, a_i+s) = 2s$.
+\end{proof}
+
+\subsection{Variations}
+\label{sec:orgheadline8}
+
+The main techniques we employ in this paper to understand the chord/arc-profile are variational and we begin with the first and second variations of the geometric quantities \(d\) and \(\ell\).
+
+It will prove useful to make various definitions that will feature throughout this paper. First let
+\[
+w(p, q) = \frac{X(q) - X(p)}{d(p,q)}
+\]
+be the unit vector pointing from \(X(p)\) to \(X(q)\) and \(\theta(p,q)\) the angle between \(\tang_{p}\) and \(w\) so that \(\ip{w}{\tang_p} = \cos\theta\). 
+
+Define the following "indicator" functions,
+\begin{align*}
+\xi(p, q) &= \begin{cases}
+1,& \tang_{p} \ne \tang_{q} \\
+0,& \tang_{p} = \tang_{q}
+\end{cases} \\
+\intertext{and}
+\delta(p, q) &= \begin{cases}
+1,& \ip{w}{\nor_{p}} > 0 \\
+0,& \ip{w}{\nor_{p}} < 0.
+\end{cases}
+\end{align*}
+Also define the matrices
+\begin{align*}
+K(p,q) &= (-1)^{\delta}\begin{pmatrix}
+\curvecurv_{p} & 0 \\
+0 & (-1)^{\xi +1} \curvecurv_{q}
+\end{pmatrix} \\
+M_{\pm} &= \begin{pmatrix}
+1 & \pm 1 \\
+\pm 1 & 1 
+\end{pmatrix}
+\end{align*}
+and
+\[
+M(p,q) = \begin{cases}
+M_+,& \xi(p,q) = 1 \\
+M_-,& \xi(p,q) = 0.
+\end{cases}
+\]
+We think of \(K\), \(M_+\) and \(M_-\) as linear operators acting on \(T(\sphere^1\times\sphere^1)\) written with respect to the basis \(\{\tang_p, \tang_q\}\). Observe that \(M_+\) and \(M_-\) are simultaneously diagonalised by the eigenvectors 
+\begin{equation}
+\label{eq:eigenvectors}
+v_1 = \tang_{p} + \tang_{q}, \quad v_2 = \tang_{p} - \tang_{q}
+\end{equation}
+with corresponding eigenvalues
+\begin{equation}
+\label{eq:eigenvalues}
+\begin{split}
+\lambda^+_1 &= \lambda^-_2 = 2 \\
+\lambda^+_2 &= \lambda^-_1 = 0.
+\end{split}
+\end{equation} 
+
+Now we may express the first and second variations of distance in this notation. The derivation is quite standard these days, but we give the full details here to be complete, and to illustrate the effect of the nodes, which is only felt by the extrinsic distance.
+
+\begin{lemma}
+The variation formulae are
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+Next, let us note that optimal points are never nodes.
+
+\begin{lemma}
+Let \((p_0,q_0) \in \sphere^1 \times \sphere^1\) optimal; that is \(Z(\tfrac{2\pi}{L}\ell(p_0,q_0)) = \tfrac{L}{2\pi} d(p_0, q_0)\). Then \(p_0,q_0 \notin \{a_i\}\).
+\end{lemma}
+
+\begin{proof}
+There are precisely two length preserving variations, and one increases \(d\).
+\end{proof}
+
+Using the lemma, we may now obtain the second variation formula at optimal points.
+
+\begin{prop}[Spatial Second Variation at Optimal Points]
+\label{prop:spatial_var}
+Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile(\ell(p_0,q_0)) = d(p_0, q_0)$), then 
+\[
+D^2d_{(p_0,q_0)} =  \sqrt{1-\cos^2\theta}K + \frac{1-\cos^2 \theta}{d} M.
+\]
+\end{prop}
+
+\begin{proof}
+Let us begin by deriving variational formulae for $d$ and $\ell$ without constraint. Let $\omega_p$ and $\omega_q$ denote the $1$-forms dual to the unit tangent vectors $\tang_p$ and $\tang_q$ at $p$ and $q$ respectively. Parametrise $\gamma$ by arc-length, so that $\pd{p} \ell = - 1$ and $\pd{q} \ell = 1$ which gives 
+\begin{equation}
+\label{eq:l_first_var}
+D\ell = -\omega_p + \omega_q.
+\end{equation}
+
+Next, differentiating $d$ and using $\pd{p}X = \tang_p$, $\pd{q}X = \tang_q$, the unit tangents at $p$ and $q$ respectively, gives
+\[
+\pd{p} d (p, q) = \frac{1}{d} \ip{\pd{p}(X(q) - X(p))}{X(q) - X(p)} = -\ip{w}{\tang_p}
+\]
+and similarly for $\pd{q} d$ (but with the sign changed) so that
+\begin{equation}
+\label{eq:d_first_var}
+Dd = -\ip{w}{\tang_p} \omega_p + \ip{w}{\tang_q} \omega_q.
+\end{equation}
+
+For the second variation, we first differentiate $w$:
+\[
+\begin{split}
+\pd{p} w &= \pd{p} \frac{1}{d} (X(q) - X(p)) \\
+&= \frac{1}{d^2} \ip{w}{\tang_p} (X(q) - X(p)) - \frac{1}{d} \tang_p \\
+&= -\frac{1}{d}\left(\tang_p - \ip{w}{\tang_p} w\right).
+\end{split}
+\]
+and similarly for $\pd{q} w$ (again with the sign changed).  Putting this together with the Frenet-Serret formula $\pd{p} T_p = -\curvecurv_p \nor_p$ (the $-$ coming from our choice of outer unit normal and the convention that convex curves have positive curvature) then gives
+\[
+d_{pp} = \ip{\frac{1}{d}\left(\tang_p - \ip{w}{\tang_p} w\right)}{\tang_p} + \ip{w}{\curvecurv_p \nor_p} = \frac{1}{d}\left(1 - \ip{w}{\tang_p}^2\right) + \ip{w}{\curvecurv_p \nor_p}.
+\]
+Similar computations give $d_{qq}$ and $d_{pq}$ leading to
+\begin{equation}
+\label{eq:d_second_var}
+\begin{split}
+D^2d &= \left(\ip{w}{\curvecurv_p \nor_p} + \frac{1}{d}(1 - \ip{w}{\tang_p}^2) \right) \omega_p \tensor \omega_p \\
+&+ \left(-\ip{w}{\curvecurv_q \nor_q} + \frac{1}{d}(1 - \ip{w}{\tang_q}^2) \right) \omega_q \tensor \omega_q \\
+&- \left(\frac{1}{d}\left(\ip{\tang_p}{\tang_q} - \ip{w}{\tang_p}\ip{w}{\tang_q}\right) \right) \left(\omega_p \tensor \omega_q + \omega_q \tensor \omega_p\right).
+\end{split}
+\end{equation}
+
+Now, consider the curve $\alpha: u \mapsto (p_0,q_0) + uv_1 = (p_0,q_0) + (u, u) \in \sphere^1\times \sphere^1$ which satisfies,
+\[
+\pd{u} \ell(\alpha(u)) = 0 
+\]
+by equation \eqref{eq:l_first_var}. Thus $\ell$ is constant, equal to $\ell(p_0, q_0)$ along the curve $\alpha$. 
+
+Since $(p_0, q_0)$ minimises $d$ amongst all $(p,q)$ with $\ell(p, q) = \ell(p_0, q_0)$, we have that $u=0$ is a local minima of the function $u\mapsto d(\alpha(u))$. Then from the first variation of $d$ \eqref{eq:d_first_var},
+\[
+0 = \left.\pd{u}\right|_{u=0} d(\alpha(u)) = -\ip{w}{\tang_p} + \ip{w}{\tang_q}
+\]
+so that
+\[
+\cos\theta = \ip{\tang_p}{w} = \ip{\tang_q}{w}.
+\]
+Thus either $\tang_{p_0} = \tang_{q_0}$, or $\tang_{p_0} \ne \tang_{q_0}$ and $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$. These cases are recorded by the indicator function $\xi$. 
+
+\emph{Case 1}: $\tang_{p_0} \ne \tang_{q_0}$ ($\xi = 0$).
+
+Assuming that $\tang_{p_0} \ne \tang_{q_0}$, we have $\ip{w}{\nor_{p_0}} = - \ip{w}{\nor_{q_0}}$. We can also deduce that $\ip{w}{\nor_{p_0}} = \pm \sqrt{1-\cos^2\theta}$ with the sign depending on whether $w$ points into or out of $\gamma_{t_0}$ at $p_0$ which we can then write as
+\[
+\ip{w}{\nor_{p_0}} = -\ip{w}{\nor_{q_0}} = (-1)^\delta \sqrt{1-\cos^2\theta}.
+\]
+Since $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$, applying the double angle formula, we also have 
+\[
+\ip{\tang_{p_0}}{\tang_{q_0}} = 2\cos^2\theta - 1.
+\]
+Substituting these expressions into the second variation of $d$ \eqref{eq:d_second_var} gives
+\begin{align*}
+D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\curvecurv_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \tensor \omega_{p_0} \\
+&+ \left((-1)^{\delta} \sqrt{1-\cos^2\theta} \curvecurv_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \tensor \omega_{q_0} \\
+&+ \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \tensor \omega_{q_0} + \omega_{q_0} \tensor \omega_{p_0} \right)
+\end{align*}
+which gives the desired expression for $\xi=0$ when expressed in matrix form.
+
+\emph{Case 2}: $\tang_{p_0} = \tang_{q_0}$ ($\xi = 1$).
+
+In this case, we have 
+\[
+\ip{w}{\nor_{p_0}} = \ip{w}{\nor_{q_0}} = (-1)^\delta \sqrt{1-\cos^2\theta}
+\]
+and $\ip{\tang_{p_0}}{\tang_{q_0}} = 1$. Substituting these expressions into the second variation of $d$ \eqref{eq:d_second_var} gives
+\begin{align*}
+D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\curvecurv_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \tensor \omega_{p_0} \\
+&+ \left(-(-1)^{\delta} \sqrt{1-\cos^2\theta} \curvecurv_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \tensor \omega_{q_0} \\
+&- \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \tensor \omega_{q_0} + \omega_{q_0} \tensor \omega_{p_0} \right)
+\end{align*}
+which gives the desired expression for $\xi=1$ when expressed in matrix form.
+
+\end{proof}
+
+The next lemma gives a useful first application of the first variation formula for \(d\) that allows us to exploit concavity properties of the chord/arc-profile. 
+
+\begin{lemma}
+\label{lem:concave_barrier}
+If there exists a strictly concave, positive function $\phi: (0, 2\pi) \to \RR$ that is symmetric about $\pi$ and supporting $\chordarcprofile$ at $x_0=\ell(p_0,q_0)$ (so that $\phi(x) \leq \chordarcprofile(x)$ and $\phi(x_0)=\chordarcprofile(x_0)$), then $\tang_{p_0} \ne \tang_{q_0}$. In particular, this is true if $\gamma$ is strictly convex.
+\end{lemma}
+
+\begin{proof}
+Suppose there is a $\phi$ as in the statement of the lemma. We proceed as described in \cite{MR2794630}. To obtain a contradiction, let us suppose that $\tang_{p_0} = \tang_{q_0} \ne w$. Then the normal makes an acute angle with the chord $\overline{p_0 q_0}$ at one endpoint, and an obtuse angle at the other. Therefore points on the chord near one endpoint are inside the region enclosed by $\gamma$, while points near the other endpoint are outside, implying that there is at least one other point where the curve $\gamma$ meets the chord. We may assume that an intersection occurs at $s$ with $p_0 < s < q_0$. Then we have
+\begin{align*}
+d(p_0, q_0) &= d(p_0, s) + d(s, q_0) \\
+\ell(p_0, q_0) &= \min\{\ell(p_0, s) + \ell(s, q_0),  2\pi -\ell(p_0,s ) - \ell(s, q_0)\}.
+\end{align*}
+Since $\phi$ is strictly concave, $\phi(x + y) = \phi(x + y) + \phi(0) \leq \phi(x) + \phi(y)$ whenever $x, y > 0$ and $x + y < 2\pi$. Noting also that $\phi(x) = \phi(2\pi - x)$, we have
+\[
+\begin{split}
+0 = \chordarcprofile(\ell(p_0, q_0)) - \phi(\ell(p_0, q_0)) &=  d(p_0, q_0) - \phi(\ell(p_0, q_0)) \\
+&= d(p_0, s) + d(s, q_0) - \phi(\ell(p_0, s) + \ell(s,  q_0)) \\
+&> d(p_0, s) - \phi(\ell(p_0, s)) + d(s, q_0) - \phi(\ell(s, q_0)) \\
+&\geq \chordarcprofile(\ell(p_0, s)) - \phi(\ell(p_0, s)) + \chordarcprofile(\ell(s, q_0)) - \phi(\ell(s, q_0)) \geq 0.
+\end{split}
+\]
+Thus we have a contradiction. 
+
+If $\gamma$ is strictly convex, of course $\tang_p \ne \tang_q$ for any $p\ne q$, but we can also note that $\phi=\chordarcprofile$ is itself strictly concave by Proposition \ref{prop:barrier} below and then apply the lemma.
+\end{proof}
+
+\subsection{Differential inequalities}
+\label{sec:orgheadline9}
+
+Next, from these variational formulae, we obtain a (weak) differential inequality for \(\chordarcprofile\).
+
+\begin{prop}
+\label{prop:barrier}
+The chord/arc-profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
+\begin{align*}
+Z'_- &\leq \cos\theta \leq Z'_+, \\
+Z'' &\leq \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\curvecurv_{p_0} + (-1)^{\xi+1}\curvecurv_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+\end{align*}
+In particular, if $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
+\end{prop}
+
+Recall that the support inequality means for every \(x_0 \in [0,2\pi]\) there exists a smooth function \(Z\) defined in a neighbourhood of \(x_0\) such that \(Z(x) \geq \chordarcprofile\), \(Z(x_0) = \chordarcprofile(x_0)\) and
+\begin{align*}
+Z' &= \cos \theta, \\
+Z'' &= \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\curvecurv_{p_0} + (-1)^{\xi+1}\curvecurv_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+\end{align*}
+
+\begin{proof}
+For any $x_0$, again let $(p_0,q_0)$ be such that $\ell(p_0,q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0,q_0)$. Consider the curve
+\[
+\alpha(u) = (p_0, q_0) + uv_2 = (p_0, q_0) + u(1,-1).
+\]
+This satisfies
+\[
+\pd{u} \ell(\alpha(u)) = -2
+\]
+so that $\ell\circ\alpha$ has a smooth local inverse near $u=0$. Thus we can define the smooth function
+\[
+Z(x) = d(\alpha((\ell\circ\alpha)^{-1} (x)))
+\]
+which satisfies
+\begin{align*}
+Z(x_0) &= d(p_0, q_0) = \chordarcprofile(x_0) \\
+\intertext{and}
+Z(x) &= d(\alpha((\ell\circ\alpha)^{-1} (x))) \geq \chordarcprofile ((\ell\circ\alpha)^{-1} (x)) = \chordarcprofile(x).
+\end{align*}
+
+Observe that $\alpha' = v_2$ and
+\[
+\pd{x} (\ell\circ\alpha)^{-1} = -\frac{1}{2}.
+\]
+Therefore, using also the first variation of $d$ \eqref{eq:d_first_var}, we have
+\[
+Z'(x_0) = Dd \cdot \left(-\frac{1}{2}v_2\right) = -\frac{1}{2} \cos\theta (-\omega_{p_0} + \omega_{q_0}) \cdot (\tang_{p_0} - \tang_{q_0}) = \cos\theta
+\]
+proving the first equation.
+
+For the second equation, we have
+\[
+Z''(x_0) = D^2 d \cdot \left(-\frac{1}{2} v_2\right)
+\]
+thinking of $D^2 d$ as a quadratic form. Now apply Proposition \ref{prop:spatial_var} to obtain
+\[
+Z''(x_0) = \sqrt{1-\cos^2\theta} K\cdot \left(-\frac{1}{2} v_2\right) + \frac{1-\cos^2\theta}{d} M \cdot \left(-\frac{1}{2} v_2\right).
+\]
+For the first term we have
+\begin{align*}
+\sqrt{1-\cos^2\theta} K \cdot \left(-\frac{1}{2} v_2\right) &= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} 
+\begin{pmatrix}
+1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+\curvecurv_{p_0} & 0 \\
+0 & (-1)^{\xi + 1} \curvecurv_{q_0}
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+-1
+\end{pmatrix} \\
+&= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} (\curvecurv_{p_0} + (-1)^{\xi + 1} \curvecurv_{q_0})
+\end{align*}
+which is the first term in the second equation of the proposition.
+
+For the second term, we treat the two cases $\xi=1$ and $\xi=0$ separately. In the first case, we just observe that $v_2$ is a null eigenvector of $M=M_+$ so that the second term vanishes when $\xi=1$. 
+
+For case two, we have $M=M_-$ and we can't apply the same trick to kill the second term, since this would require we use the null eigenvector $v_1$ of $M_-$ in the definition of the curve $\alpha$. But recall that from the proof of Proposition \ref{prop:spatial_var}, $v_1$ is annihilated by $d\ell$ and so we can't invert $\ell\circ\alpha$ in this situation. Instead, we make do again with using $v_2$, which has length $\sqrt{2}$ and is an eigenvector of $M_-$ with eigenvalue $2$ so that $M_- (v_2) = 4$ which leads to the required second term when $\xi=0$.
+
+Finally, if $\gamma$ is convex, then $\curvecurv \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$. Moreover, since the closure of the region bounded by $\curvecurv$ is a convex body, and since $X(p_0), X(q_0)$ lie in the closure of this region, for any $u \in [0,1]$, we must have that $X(p_0) + u(X(q_0) - X(p_0))$ also lies in this region so that $(X(q_0) - X(p_0))$ (and hence $w = \tfrac{1}{d(p_0,q_0)} (X(q_0) - X(p_0))$) points inward ensuring that $\delta = 1$. Therefore, at every point $x_0$, the function $Z$ satisfies
+\[
+Z'' \leq - \frac{\sqrt{1-\cos^2 \theta}}{4} (\curvecurv_{p_0} + \curvecurv_{q_0}) \leq 0
+\]
+and $\chordarcprofile$ is everywhere supported above by a concave function, hence is itself concave \cite{MR1674097}.
+\end{proof}
+
+\begin{remark}
+Compare the above with similar results obtained in \cite{MR1674097}, pertaining to isoperimetric regions of convex bodies in Euclidean space and in \cite{MR875084}, pertaining to isoperimetric regions in compact surfaces. As described in \cite{pbthesis}, both arguments lead to the concavity of $\isoprofile^2(x) + K_0 x^2$ where $\isoprofile$ is the isoperimetric profile, and $K_0$ is a lower bound on boundary mean curvature or ambient Gauss curvature respectively. In particular, if the curvature is non-negative, then not only is the isoperimetric profile concave, but it's square also. Here, the analogous result is not true for the chord/arc-profile in the strongest possible sense as seen by the simple counter-example of the unit circle, whose chord/arc-profile is 
+\[
+\chordarcprofile_{\sphere^1} (x) = 2 \sin \left(\frac{x}{2}\right).
+\]
+This is a strictly concave function whose square is not concave. This seems related to the fact that the local behaviour of the chord/arc-profile is determined by $\curvecurv^2$ as opposed to the isoperimetric profile of a surface or convex body in the plane, which is locally determined by the Gauss curvature or boundary mean curvature as appropriate. The difference is that for the chord/arc-profile the sign of the curvature is irrelevant.
+\end{remark}
+
+To end this section, we derive a viscosity equation for the chord/arc-profile of \(\gamma\). In the next section, we couple this with time variations to obtain a viscosity equation for the chord/arc-profile of a simple closed curve evolving by \ref{eq:normalised_flow} which forms the basis of the comparison theorem \ref{thm:comparison}. 
+
+\begin{theorem}
+\label{thm:spatial_viscosity}
+Let $(p_0,q_0)$ be points such that $d(p_0, q_0) = \chordarcprofile(\ell(p_0, q_0))$. The chord/arc-profile $\chordarcprofile$ of a smooth, simple, closed curve satisfies the following inequality in the viscosity-sense:
+\[
+-\frac{Z''}{\sqrt{1-(Z')^2}} + (1-\xi(p_0,q_0)) \frac{\sqrt{1 - (Z')^2}}{Z} \geq \frac{(-1)^{\delta(p_0,q_0)+1}}{4} \left[\curvecurv_{p_0} + (-1)^{1-\xi(p_0,q_0)} \curvecurv_{q_0}\right].
+\]
+\end{theorem}
+
+This means that for any \(x_0 \in (0,2\pi)\), if \(Z\) is a smooth lower supporting function at \(x_0\), i.e. \(Z\) is defined in a neighbourhood of \(x_0\) such that \(Z(x_0) = \chordarcprofile (x_0)\) and \(Z(x) \leq \chordarcprofile (x)\), then \(Z\) satisfies the inequality in the usual sense.
+
+\begin{proof}
+Fix $x_0 \in (0,2\pi)$. Let $Z(x)$ be a smooth function defined in neighbourhood of $x_0$ and such that $Z(x_0) = \chordarcprofile(x_0)$ and $Z(x) \leq \chordarcprofile(x)$. Choose $(p_0,q_0)$ with $p_0\ne q_0$ so that $\ell(p_0, q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0, q_0)$.  Then we have $d(p, q) \geq \chordarcprofile(\ell(p, q)) \geq Z(\ell(p, q))$ for all $(p,q)$ in an open neighbourhood of $(p_0,q_0)$ small enough so that $Z$ is defined for all $x=\ell(p,q)$. Moreover, we have equality at $(p_0, q_0)$ so that the smooth function $\Phi(p, q) = d(p,q) - Z(\ell(p, q))$ satisfies
+\[
+D \Phi = 0, \quad D^2\Phi \geq 0
+\]
+at $(p_0, q_0)$.
+
+From the vanishing at $(p_0,q_0)$ of $D\Phi$ applied to $\tang_{p_0}$ and $\tang_{q_0}$ in turn, and from the first variation of $d$ \eqref{eq:d_first_var}, we obtain
+\begin{equation}
+\label{eq:vanishing_first_var}
+Z' = \ip{w}{\tang_{p_0}} = \ip{w}{\tang_{q_0}} = \cos\theta.
+\end{equation}
+
+Using Proposition \ref{prop:spatial_var} then gives the inequality
+\begin{equation}
+\label{eq:matrix_inequality}
+\begin{split}
+0 &\leq D^2\Phi_{(p_0,q_0)} = D^2 d_{(p_0,q_0)} - Z'' D\ell\tensor D\ell \\
+&= \sqrt{1 - (Z')^2(x_0)} K(p_0,q_0) + \frac{1-(Z')^2(x_0)}{Z(x_0)} M (p_0,q_0) - Z''(x_0) M_-.
+\end{split}
+\end{equation}
+
+Again, we consider the two cases, $\xi=1$ and $\xi=0$.
+
+\emph{Case 1} $\xi=1$:
+
+In this case $M=M_+$ and we apply the inequality \eqref{eq:matrix_inequality} to $v_2 = \tang_{p_0} - \tang_{q_0}$, the null eigenvector of $M_+$, to obtain
+\[
+0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\curvecurv_{p_0} + \curvecurv_{q_0}) - 4Z''
+\]
+which is the required inequality when $\xi=1$.
+
+\emph{Case 2} $\xi=0$:
+
+In this case $M=M_-$, but applying inequality \eqref{eq:matrix_inequality} to $v_1 = \tang_{p_0} + \tang_{q_0}$, the null eigenvector of $M_-$, effectively cancels out all the $Z$ terms which is of no use to us. So instead we use the eigenvector $v_1$ once more to obtain
+\[
+0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\curvecurv_{p_0} - \curvecurv_{q_0}) + 4\frac{1-(Z')^2(x_0)}{Z(x_0)} -4Z''
+\]
+which is the required inequality when $\xi=0$.
+\end{proof}
+
+\section{Comparison functions}
+\label{sec:orgheadline11}
+\section{Convergence}
+\label{sec:orgheadline12}
+\end{document}

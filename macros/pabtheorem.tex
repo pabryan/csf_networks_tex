@@ -1,0 +1,41 @@
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{conj}{Conjecture}
+\renewcommand{\theconj}{\Alph{conj}}
+
+% Environment to reuse a theorem number
+\newtheorem{prmthm}{Theorem}
+\newenvironment{prmtheorem}[2][\empty]
+{\renewcommand{\theprmthm}{\ref{#2}\textsuperscript{$\prime$}}
+\ifthenelse{\equal{#1}{\empty}}
+{\begin{prmthm}}
+{\begin{prmthm}[{#1}]}}
+{\end{prmthm}}
+
+% Definitions, examples etc.
+\theoremstyle{definition}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{eg}[theorem]{Example}
+\newtheorem{egs}[theorem]{Examples}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{notation}[theorem]{Notation}
+
+% Questions (i.e. problems in text books)
+\newtheorem{qn}{\empty}[section]
+\renewcommand{\theqn}{\arabic{section}.\arabic{qn}}
+\newtheorem{subqn}{\empty}[qn]
+\renewcommand{\thesubqn}{(\alph{subqn})}
+
+% Solutions (i.e. to problems in text books)
+\newtheorem{soln}{\empty}
+\renewcommand{\thesoln}{Solution}
+\newtheorem{subsoln}{\empty}[soln]
+\renewcommand{\thesubsoln}{(\alph{subsoln})}
+
+% Remarks, notation etc.
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notn}[theorem]{Notation}

@@ -1,0 +1,43 @@
+% Derivatives
+\newcommand{\deriv}[3]{\ensuremath{\frac{#1 #2}{#1 #3}}}
+\newcommand{\inderiv}[3]{\ensuremath{#1 #2/#1 #3}}
+\newcommand{\nderiv}[4]{\ensuremath{\frac{#1^{#2} #3}{#1 {#4}^{#2}}}}
+\newcommand{\innderiv}[4]{\ensuremath{#1^{#2} #3/#1 {#4}^{#2}}}
+\newcommand{\mderiv}[4]{\ensuremath{\frac{{#1}^2 #2}{#1 #3 #1 #4}}}
+\newcommand{\inmderiv}[4]{\ensuremath{{#1}^2 #2/#1 #3 #1 #4}}
+
+\newcommandx{\pd}[2][1]{\deriv{\partial}{#1}{#2}}
+\newcommandx{\dd}[2][1]{\deriv{d}{#1}{#2}}
+\newcommandx{\inpd}[2][1]{\inderiv{\partial}{#1}{#2}}
+\newcommandx{\indd}[2][1]{\inderiv{d}{#1}{#2}}
+
+\newcommandx{\pdm}[3][1]{\mderiv{\partial}{#1}{#2}{#3}}
+\newcommandx{\inpdm}[3][1]{\inmderiv{\partial}{#1}{#2}{#3}}
+
+\newcommandx{\npd}[3][1]{\nderiv{\partial}{#3}{#1}{#2}}
+\newcommandx{\innpd}[3][1]{\innderiv{\partial}{#3}{#1}{#2}}
+\newcommandx{\pdd}[2][1]{\nderiv{\partial}{2}{#1}{#2}}
+\newcommandx{\inpdd}[2][1]{\innderiv{\partial}{2}{#1}{#2}}
+
+\newcommandx{\ndd}[3][1]{\nderiv{d}{#3}{#1}{#2}}
+\newcommandx{\inndd}[3][1]{\innderiv{d}{#3}{#1}{#2}}
+\newcommandx{\ddd}[2][1]{\nderiv{d}{2}{#1}{#2}}
+\newcommandx{\inddd}[2][1]{\innderiv{d}{2}{#1}{#2}}
+
+
+% Coordinate derivatives
+\newcommandx{\px}[2][1]{\pd[{#1}]{x^{#2}}}
+\newcommandx{\inpx}[2][1]{\inpd[#1]{x^{#2}}}
+\newcommandx{\dx}[2][1]{\dd[#1]{x^{#2}}}
+\newcommandx{\indx}[2][1]{\dd[#1]{x^{#2}}}
+\newcommandx{\pxx}[2][1]{\pdd[#1]{x^{#2}}}
+\newcommandx{\inpxx}[2][1]{\inpdd[#1]{x^{#2}}}
+\newcommandx{\pxm}[3][1]{\pdm[#1]{x^{#2}}{x^{#3}}}
+\newcommandx{\inpxm}[3][1]{\inpdm[#1]{x^{#2}}{x^{#3}}}
+
+% Differentials
+\newcommand{\diff}{\ensuremath {\text{D}}}
+\newcommand{\ddiff}{\ensuremath {\text{D}^2}}
+
+% Asymptotics
+\DeclareMathOperator{\bigo}{\mathcal{O}}
