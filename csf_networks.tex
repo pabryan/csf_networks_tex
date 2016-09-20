@@ -82,16 +82,16 @@ and we always consider \(i\) modulo \(k\). Let us also write \(I_i = [a_{i-1}, a
 
 We also impose the \emph{triple condition} at the nodes: let
 \[
-\tang^{\pm} (a_i) = \lim_{x\to a_i^{\pm}} \frac{\gamma'(x)}{\|\gamma'(x)\|}, \quad \tang_i = \frac{L_i'(0)}{\|L_i'(0)\|}
+\tang^{\pm} (a_i) = \lim_{x\to a_i^{\pm}} \frac{\gamma'(x)}{\|\gamma'(x)\|}, \quad \tang_{L_i}(0) = \frac{L_i'(0)}{\|L_i'(0)\|}
 \]
 denote respectively the tangents to the loop on either side of the node \(a_i\) and the tangent to the free curve \(L_i\) at \(a_i\). Then
 \begin{equation}
 \label{eq:triplecondition}
-\ip{\tang^+}{-\tang^-} = \ip{\tang^{\pm}}{\tang_i} = - \frac{1}{2}.
+\ip{\tang^+(a_i)}{-\tang^-(a_i)} = \ip{\tang^{\pm}(a_i)}{\tang_{L_i}(0)} = - \frac{1}{2}.
 \end{equation}
 In other words, the tangents make equal angles \(2\pi/3\) at the nodes. See figure \ref{fg:network}.
 
-Let us write \(\tang\) for the oriented, unit tangent and \(\nor\) for the unit, outer normal to \(\gamma\) on the smooth part \(\gamma^{\ast} = \gamma(\sphere^1\setdiff\{a_i\})\). Let us also write \(\tang_i\), \(\nor_i\) for the oriented unit, tangent and oriented, outer normal respectively to the connected smooth arcs \(\gamma_i\), and
+Let us write \(\tang\) for the oriented, unit tangent and \(\nor\) for the unit, outer normal to \(\gamma\) on the smooth part \(\gamma^{\ast} = \gamma(\sphere^1\setdiff\{a_i\})\). Let us also write \(\tang_i\), \(\nor_i\) for the oriented unit, tangent and outer normal respectively to the connected smooth arcs \(\gamma_i\). At a node, write
 \[
 \nor_i^{\pm}(a_i) = \lim_{x\to a_i^{\pm}} \nor
 \]
@@ -100,7 +100,7 @@ for the normals either side of the node \(a_i\). From the triple condition \eqre
 \label{eq:triplerelations}
 \ip{-\tang^+}{\nor^-} = \ip{\tang^-}{\nor^+} = \ip{\nor_i^{\pm}}{\tang_i} = \frac{\sqrt{3}}{2}.
 \end{equation}
-Analogously we also write \(\curvecurv\) for the curvature of \(\gamma^{\ast}\), \(\gamma_i\) for the curvature of the connected arcs \(\gamma_i\) and \(\curvecurv^{\pm}\) for the curvature of the loop on either side of the node. If needed, we will write \(\curvecurv_{L_i}\) for the curvature of the free curves \(L_i\). Our convention for the Frenet-Serret equations is that the curvature vector of a convex curve is inward pointing so that,
+Analogously we also write \(\curvecurv\) for the curvature of \(\gamma^{\ast}\), \(\curvecurv_i\) for the curvature of the connected arcs \(\gamma_i\) and \(\curvecurv^{\pm}_i\) for the curvature of the loop on either side of the node \(a_i\). If needed, we will write \(\curvecurv_{L_i}\) for the curvature of the free curves \(L_i\). Our convention for the Frenet-Serret equations is that the curvature vector of a convex curve is inward pointing so that,
 \begin{equation}
 \label{eq:frenetserret}
 \partial_s \tang = -\curvecurv \nor, \quad \partial_s \nor = \curvecurv \tang
@@ -111,7 +111,7 @@ with \(s\) denoting the arc-length parameter.
 \label{sec:orgheadline3}
 
 \begin{defn}
-A smooth, one-parameter family \(\network_t = (\gamma_t = ((\gamma_i)_t), L_t = (L_i)_t)_{i=1}^k\) of embedded networks with one loop satisfying the triple condition \eqref{eq:triplecondition} evolves by \emph{curve shortening} if for each \(i\),
+A smooth, one-parameter family \(\network_t = (\gamma_t, L_t)\), \(\gamma_t = (\gamma_i)_t\), \(L_t = (L_i)_t\), \(i=1,\cdots,k\) of embedded networks with one loop satisfying the triple condition \eqref{eq:triplecondition} evolves by \emph{curve shortening} if for each \(i\),
 \begin{equation}
 \label{eq:csf}
 \left(\pd[\gamma_i]{t}\right)^{\perp} = -\curvecurv, \quad \text{and} \quad \left(\pd[L_i]{t}\right)^{\perp} = -\curvecurv.
@@ -127,8 +127,9 @@ In general, in order that for each \(t\), \(\network_t\) is an embedded network 
 where \(\tangspeed_i, \tangspeed_{L_i}\) are any smooth functions satisfying
 \begin{equation}
 \label{eq:speedcompatability}
--\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+ = -\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^- = -\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}.
+-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+ = -\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^- = -\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}
 \end{equation}
+at each node \(a_i\).
 
 Using the triple conditions \eqref{eq:triplecondition} \eqref{eq:triplerelations}, the first equality allows us to write \(v_i^{\pm}\) in terms of the curvatures \(\curvecurv_i^{\pm}\):
 \begin{align*}
@@ -168,17 +169,28 @@ The evolution of geometric quantities under the Curve Shortening Flow is the sam
 \end{enumerate}
 \end{lemma}
 
-The \emph{extrinsic distance},
+Let us now state the definitions we use for intrinsic and extrinsic distances. Note in particular, the intrinsic distance we use is oriented which is for convenience and makes for slightly cleaner exposition later.
+
+\begin{defn}
+Let \((p,q) \in \gamma \times \gamma\). The \emph{extrinsic distance} is defined to be,
 \[
-d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|
+d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|.
 \]
-and the \emph{oriented}, \emph{intrinsic distance} or \emph{arc length},
+The \emph{oriented intrinsic distance} or \emph{oriented arc length} is defined to be,
 \[
 \ell_t(p, q) = \int_{\gamma_t} ds_t = \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t
 \]
-where \(p \in I_i = [a_{i-1}, a_i]\), \(q \in I_j = [a_{j-1}, a_j]\) with \(j\geq i\).
+where \(p \in I_i = [a_{i-1}, a_i]\), \(q \in I_j = [a_{j-1}, a_j]\) and \(i,j\) are taken modulo \(k\).
+\end{defn}
 
-Note that by oriented, we mean the length along \(\gamma\) from \(p\) to \(q\) in the chosen orientation of \(\gamma\). Thus either \(\ell(p,q)\) equals the intrinsic distance between \(p\) and \(q\), or \(L\) minus the intrinsic length, where \(L\) denotes the total length of \(\gamma\).
+Note that by oriented, we mean the length along \(\gamma\) from \(p\) to \(q\) in the chosen orientation of \(\gamma\). With this definition \(\ell\) is not symmetric but satisfies
+\[
+\ell(q, p) = 2\pi L - \ell(p, q).
+\]
+The usual intrinsic distance between \(p\) and \(q\), denoted here by \(\tilde{\ell}(p, q)\), satisfies
+\[
+\tilde{\ell}(p, q) = \min\{\ell(p, q), \ell(q, p)\} = \min\{\ell(p, q), 2\pi L - \ell(p, q)\}.
+\]
 
 Let us also define
 \[
@@ -202,15 +214,20 @@ Let \((p,q) \in \gamma_t^{\ast}\) be smooth points. Then,
 
 \begin{proof}
 From the evolution equation \eqref{eq:csf_with_tang} we obtain,
-
-and the evolution of \(d = \left(\ip{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}\) follows by the chain rule.
+\[
+\begin{split}
+\partial_t \ip{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)} &= 2 \ip{-\curvecurv(q) \nor(q) + \tangspeed(q) \tang(q)}{\gamma(q) - \gamma(p)} \\
+&\quad  - 2 \ip{-\curvecurv(p) \nor(p) + \tangspeed(p) \tang(p)}{\gamma(q) - \gamma(p)}.
+\end{split}
+\]
+The evolution of \(d = \left(\ip{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}\) follows by the chain rule and the definition of \(w\).
 
 Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 \begin{align*}
 \partial_t \ell(p,q) &= \partial_t \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \partial_t \int_{a_{m-1}}^{a_m} ds_t + \partial_t  \int_{a_{j-1}}^q ds_t \\
 &= \int_p^{a_i} \partial_s \tangspeed - \curvecurv^2 ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} \partial_s \tangspeed - \curvecurv^2 ds_t + \int_{a_{j-1}}^q \partial_s \tangspeed - \curvecurv^2 ds_t \\
-&= \int_p^q \curvecurv^2 ds + \tangspeed_i^- - \tangspeed(p) + \sum_{m=i+1}^{j-1} \tangspeed_m^- - \tangspeed_{m-1}^+ + \tangspeed(q) - \tangspeed_{j-1}^+ \\
-&= \int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) + \sum_{m=i}^{j-1} \tangspeed_m^- - \tangspeed_m^+.
+&= -\int_p^q \curvecurv^2 ds + \tangspeed_i^- - \tangspeed(p) + \sum_{m=i+1}^{j-1} \tangspeed_m^- - \tangspeed_{m-1}^+ + \tangspeed(q) - \tangspeed_{j-1}^+ \\
+&= -\int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) + \sum_{m=i}^{j-1} \tangspeed_m^- - \tangspeed_m^+.
 \end{align*}
 The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\), while the evolution of \(L\) follows by taking \(p=a_0\), \(q=a_k\).
 \end{proof}
