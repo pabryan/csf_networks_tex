@@ -164,7 +164,7 @@ The evolution of geometric quantities under the Curve Shortening Flow is the sam
 \item \([\partial_s, \partial_t] = -(\partial_s \tangspeed - \curvecurv^2) \partial_s\)
 \item \(\pd[ds]{t} = (\partial_s \tangspeed - \curvecurv^2) ds\)
 \item \(\pd[\tang]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \nor\)
-\item \(\pd[\nor]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \tang\)
+\item \(\pd[\nor]{t} = (\partial_s \curvecurv + \tangspeed\curvecurv) \tang\)
 \item \(\pd[\curvecurv]{t} = \partial_s^2 \curvecurv + \curvecurv^3 + \tangspeed \partial_s \curvecurv\).
 \end{enumerate}
 \end{lemma}
@@ -232,6 +232,58 @@ Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\), while the evolution of \(L\) follows by taking \(p=a_0\), \(q=a_k\).
 \end{proof}
 
+It's worth remarking that the evolution of the extrinsic distance does not feel the presence of the nodes, while the intrinsic length, being forced to traverse the nodes does. Next we compute the evolution of enclosed area, which by Stokes' theorem may be computed as an integral along \(\gamma\) and hence also feels the presence of the nodes.
+
+\begin{lemma}
+The enclosed area evolves by,
+\[
+\partial_t \area = ...
+\]
+\end{lemma}
+
+\begin{proof}
+We use the formula,
+\[
+\area = \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\nor} ds
+\]
+to compute,
+\[
+\begin{split}
+\partial_t \area &= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\partial_t \gamma}{\nor} ds \\
+&\quad + \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_t \nor} ds + \ip{\gamma}{\nor} \partial_t ds
+\end{split}
+\]
+The first term is,
+\[
+\frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\partial_t \gamma}{\nor} ds = \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{-\curvecurv \nor + \tangspeed \tang}{\nor} ds = -\frac{1}{2} \int_{\gamma} \curvecurv.
+\]
+Using Lemma \ref{lem:basic_evolution}, the second term is,
+\[
+\begin{split}
+\frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_t \nor} ds &= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{(\partial_s \curvecurv + \tangspeed \curvecurv)\tang } ds \\
+&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{(\partial_s (\curvecurv \tang) + \curvecurv^2 \nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds \\
+&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \partial_s \left(\ip{\gamma}{(\curvecurv \tang)}\right) - \ip{\tang}{\curvecurv\tang} + \curvecurv^2 \ip{\gamma}{\nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds \\
+&= -\frac{1}{2} \int_{\gamma} \curvecurv ds + \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\tang_i^+} - v_{i-1} \ip{\gamma}{\tang_i^-} \\
+&\quad + \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \curvecurv^2 \ip{\gamma}{\nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds
+\end{split}
+\]
+Again using Lemma \ref{lem:basic_evolution}, the third term is,
+\[
+\begin{split}
+\frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\nor} \partial_t ds &= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\nor} (\partial_s \tangspeed - \curvecurv^2) ds \\
+&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_s (\tangspeed\nor)} - \tangspeed \curvecurv \ip{\gamma}{\tang} - \curvecurv^2 \ip{\gamma}{\nor} ds \\
+&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \partial_s\left(\ip{\gamma}{\tangspeed\nor}\right) - \ip{\tang}{\tangspeed \nor} - \tangspeed \curvecurv \ip{\gamma}{\tang} - \curvecurv^2 \ip{\gamma}{\nor} ds \\
+&= \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\nor_i^+} - v_{i-1} \ip{\gamma}{\nor_i^-} \\
+&\quad - \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \curvecurv^2 \ip{\gamma}{\nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds
+\end{split}
+\]
+
+Adding the second and third terms gives,
+\begin{multline*}
+\frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_t \nor} ds + \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\nor} \partial_t ds = - \frac{1}{2}\int_{\gamma} \curvecurv \\
++ \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\tang_i^+} - v_{i-1} \ip{\gamma}{\tang_i^-} + \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\nor_i^+} - v_{i-1} \ip{\gamma}{\nor_i^-}.
+\end{multline*}
+\end{proof}
 
 \section{Short time existence and uniqueness}
 \label{sec:orgheadline6}
