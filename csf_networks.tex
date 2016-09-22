@@ -179,6 +179,7 @@ The following evolution equations hold:
 Let us now state the definitions we use for intrinsic and extrinsic distances. Note in particular, the intrinsic distance we use is oriented which is for convenience and makes for slightly cleaner exposition later.
 
 \begin{defn}
+\label{defn:dist}
 Let \((p,q) \in \gamma \times \gamma\). The \emph{extrinsic distance} is defined to be,
 \[
 d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|.
@@ -319,24 +320,26 @@ From this equation we may also conclude that if \(\gamma\) is a convex network (
 \section{Short time existence and uniqueness}
 \label{sec:orgheadline6}
 Clean up \cite{MR1240580} and make it more geometric.
-\section{The chord/arc profile}
+\section{The chord-arc profile}
 \label{sec:orgheadline10}
 
-In this section we introduce the chord/arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. Of course, the presence of nodes for networks is felt here.
+In this section we introduce the chord-arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. Of course, the presence of nodes for networks is felt here.
 
 \subsection{Definition and basic properties}
 \label{sec:orgheadline7}
 
+By using the oriented intrinsic distance, we are able to give a single, clean definition of the chord-arc profile for \(x \in (0, 2\pi)\) rather than just for \(x \in (0, \pi)\) as is the case for the usual, un-oriented intrinsic distance. In brief, the chord-arc profile gives the least length of a chord joining to points for each pair of points of a fixed, oriented arc-length (intrinsic distance) apart.
+
 \begin{defn}
-Let \(\gamma\) be a rectifiable, Jordan curve in the plane with total length \(L\) parametrised by \(\gamma: \sphere^1 \to \RR^2\). For \(x\in (0, 2\pi)\), the chord/arc-profile of \(\gamma\) is defined as
+Let \(\gamma\) be a rectifiable, Jordan curve in the plane with total length \(L\) and parametrised by \(\gamma: \sphere^1 \to \RR^2\). For \(x\in (0, 2\pi)\), the \emph{chord-arc profile} of \(\gamma\) is defined as
 \[
 \chordarcprofile (x) = \frac{2\pi}{L} \inf\left\{d(p, q): (p,q) \in \sphere^1\times\sphere^1, \ell(p,q) = \frac{L}{2\pi} x\right\}
 \]
-where \(d(p,q) = \abs{X(p) - X(q)}\) is the \emph{extrinsic} distance in \(\RR^2\) between \(p\) and \(q\) and \(\ell(p,q) = \int_p^q ds\) is the arclength or \emph{intrinsic} distance from \(p\) to \(q\). Note that for \(x \in (\pi, 2\pi)\), to say that \(\ell(p,q) = \frac{L}{2\pi} x \in (L/2,L)\) is to say that one of the two arcs joining \(p\) to \(q\) has length \(\ell(p,q)\). Of course the shorter arc has length \(L-\ell(p,q) = \frac{L}{2\pi}(2\pi - x) \in (0, L/2)\), and so with our definition, \(\chordarcprofile\) is symmetric about \(\pi\).
+where \(d, \ell\) are the extrinsic and oriented intrinsic distances from Definition \ref{defn:dist} respectively.
 \end{defn}
 
 \begin{remark}
-By compactness of \(\sphere^1\times \sphere^1\) (which parametrises the set of connected arcs of \(\gamma\)) and by continuity of \(\ell\), \(d\), for any \(x\) the infimum is attained so that there exists \((p_0,q_0) \in \sphere^1 \times \sphere^1\) with \(\ell(p_0, q_0) = \frac{L}{2\pi}x\) and such that \(\chordarcprofile(x) = \frac{2\pi}{L} d(p_0, q_0)\). Also, since \(\ell(p,p) = 0\), for any \(x\in(0,2\pi)\) we have \(p_0 \ne q_0\) and so \(d\) is smooth at \((p_0, q_0)\).
+By compactness of \(\sphere^1\times \sphere^1\) (which parametrises the set of connected arcs of \(\gamma\)) and by continuity of \(\ell\) and \(d\), for any \(x\) the infimum is attained so that there exists \((p_0,q_0) \in \sphere^1 \times \sphere^1\) with \(\ell(p_0, q_0) = \frac{L}{2\pi}x\) and such that \(\chordarcprofile(x) = \frac{2\pi}{L} d(p_0, q_0)\). Also, since \(\ell(p,p) = 0\), for any \(x\in(0,2\pi)\) we have \(p_0 \ne q_0\) and so \(d\) is smooth at \((p_0, q_0)\). Note also that since \(\ell(q_0, p_0) = L - \ell(p_0, q_0)\), we have \(\ell(p_0, q_0) = \tfrac{L}{2\pi}x\) if and only if \(\ell(q_0, p_0) = \frac{L}{2\pi}(2\pi - x)\) and hence \(\chordarcprofile\) is symmetric about \(x = \pi\).
 \end{remark}
 
 The next proposition gives the asymptotic behaviour of the chord/arc-profile of networks \(\network\), near the end point \(x=0\), and so by symmetry also at the end point \(x=2\pi\).
@@ -344,19 +347,67 @@ The next proposition gives the asymptotic behaviour of the chord/arc-profile of 
 \begin{prop}
 Let \(\network\) be a network, with piecewise closed curve \(\gamma\). Then as \(x\to 0\) the chord/arc-profile of \(\gamma\) satisfies
 \[
-\lim_{x\to 0} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^3} = \frac{1}{16} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
+\lim_{x\to 0} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^2} = - \frac{L}{32\pi} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
 \]
 \end{prop}
 
 \begin{proof}
 By taking $x$ small, we consider either points $(p,q) \in \overline{\gamma_i}$ or points $p \in \gamma_i, q \in \gamma_{i+1}$. In the former case, because the curve is straight to first order, $d = \ell + \bigo(\ell^2)$. In the latter case, to first order, the curve is two straight lines meeting at an angle of $2\pi/3$ and so $d = \tfrac{\sqrt{3}}{2} \ell + \bigo(\ell^2)$. Thus for sufficiently small $x$, the infimum in the definition of $\chordarcprofile$ is attained in the latter case with $p,q$ lying on either side of a node.
 
-In that case, parametrising by arc-length $s$, near each node $a_i$ we compute,
+Recall that we partition \([0, L]\) into \(0 = a_0 < a_1 < \cdots < a_{k-1} < a_k = L\), writing \(I_i = [a_{i-1}, a_i]\) and \(\gamma_i = \gamma_{I_i}\). In that case, parametrising by arc-length $s$, near each node $a_i$ we have
 \[
-d(a_i - s, a_i + s) = \sqrt{3} s + \frac{1}{4} (\curvecurv^+(a_i) + \curvecurv^-(a_i))s^3 + \bigo(s^5),
+d^2(a_i - s, a_i + s) = \ip{\gamma_{i+1}(a_i + s) - \gamma_{i-1}(a_i - s)}{\gamma_{i+1}(a_i + s) - \gamma_{i-1}(a_i - s)}.
 \]
-and the result follows since $\ell(a_i-s, a_i+s) = 2s$.
+Then differentiating (and suppressing the arguments \(a_i + s, a_i - s\) for clarity), we have
+\begin{align*}
+\frac{d}{ds} d^2 &= 2 \ip{\tang_{i+1} + \tang_{i-1}}{\gamma_{i+1} - \gamma_i} \\
+\frac{d^2}{ds^2} d^2 &= 2 \ip{-\curvecurv_{i+1} \nor_{i+1} + \curvecurv_{i-1} \nor_{i-1}}{\gamma_{i+1} - \gamma_i} \\
+&\quad + 2 \ip{\tang_{i+1} + \tang_{i-1}}{\tang_{i+1} + \tang_{i-1}} \\
+\frac{d^3}{ds^3} d^2 &= 2 \ip{\partial_s(-\curvecurv_{i+1} \nor_{i+1}  + \curvecurv_{i-1} \nor_{i-1} )}{\gamma_{i+1}  - \gamma_i} \\
+&\quad + 2 \ip{-\curvecurv_{i+1} \nor_{i+1}  + \curvecurv_{i-1} \nor_{i-1} }{\tang_{i+1} + \tang_{i-1}} \\
+&\quad + 4 \ip{-\curvecurv_{i+1} \nor_{i+1}  + \curvecurv_{i-1} \nor_{i-1} }{\tang_{i+1} + \tang_{i-1}}
+\end{align*}
+At \(s = 0\) we then have,
+\begin{align*}
+\left. d^2 \right|_{s=0} &= 0 \\
+\left.\frac{d}{ds} d^2\right|_{s=0} &= 0 \\
+\frac{1}{2} \left.\frac{d^2}{ds^2} d^2 \right|_{s=0} &= \abs{\tang_i^+ + \tang_i^-}^2 = \abs{\tang_i^+} + \abs{\tang_i^-} + 2\ip{\tang_i^+}{\tang_i-} = 3 \\
+\frac{1}{6} \left.\frac{d^3}{ds^3} d^2 \right|_{s=0} &= -\curvecurv_i^+ \ip{\nor_i^+}{\tang_i^-} + \curvecurv_i^- \ip{\nor_i^-}{\tang_i^+} = -\frac{\sqrt{3}}{2} (\curvecurv_i^+ + \curvecurv_i^-) \\
+\end{align*}
+
+Thus, expanding \(d^2(a_i - s, a_i + s)\) in a Taylor-series about \(s = 0\) and taking the square root, we obtain
+\[
+d(a_i - s, a_i + s) = \sqrt{3} s - \frac{1}{4} (\curvecurv^+_i + \curvecurv^-_i) s^2 + R s^3
+\]
+with \(R\) bounded independently of \(a_i\) and depending only on bounds for \(\max_i \{\partial^{m}_s \curvecurv_i^{\pm}, 0 \leq m \leq 2\}\). The equation is true for each \(i\) and so certainly holds for \(i\) such that \((\curvecurv^+_i + \curvecurv^-_i)\) is maximised. Denote such an \(i\) by \(i_{\max}\). Thus,
+\[
+\lim_{s\to 0} \frac{\tfrac{2\pi}{L} d(a_{i_{\max}} - s, a_{i_{\max}} + s) - \sqrt{3} s}{s^2} = - \frac{1}{4} (\curvecurv^+_{i_{\max}} + \curvecurv^-_{i_{\max}})
+\]
+
+If we knew that for small \(x\), the infimum defining \(\chordarcprofile\) was realized symmetrically so that \(\chordarcprofile(x) = \tfrac{2\pi}{L} d(a_i - s, a_i + s)\), then we'd be done. We cannot guarantee this will be happen, but we only need it to first order. That is, choose \(s_1, s_2 > 0\) such that \(\chordarcprofile(x) = \tfrac{2\pi}{L} d(a_i - s_1, a_i + s_2)\) with \(x = \tfrac{2\pi}{L} \ell(a_i - s_1, a_i + s_2) = \tfrac{2\pi}{L} (s_1 + s_2)\). Let \(\epsilon = s_2 - s_1 \in (-\tfrac{2\pi}{L} x, \tfrac{2\pi}{L}x)\). Noting that \((a_i - s_1, a_i + s_2)\) is smooth point, expanding to first order in \(\epsilon\) near \(\epsilon = 0\) we have,
+\[
+\begin{split}
+\abs{\frac{2\pi}{L} d(a_i - s_1, a_i + s_1) - \chordarcprofile(x)} &= \abs{d(a_i - s_1, a_i + s_1) - d(a_i - s_1, a_i + s_1 + \epsilon)} \\
+&\leq C\abs{\epsilon} \leq C x.
+\end{split}
+\]
+
+Then
+\[
+\begin{split}
+\lim_{x\to 0} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^2} &= \lim_{s_1\to 0} \frac{\tfrac{2\pi}{L} d(a_{i_{\max}} - s_1, a_{i_{\max}} + s_1) - \tfrac{\sqrt{3}}{2} \tfrac{2\pi}{L} 2s_1}{\tfrac{4\pi^2}{L^2} 4 s_1^2} \\
+&= - \frac{L}{32\pi} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}.
+\end{split}
+\]
 \end{proof}
+
+\begin{remark}
+For comparison, note that in the smooth case we have,
+\[
+\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = - \frac{L^2}{96 \pi^2} \sup_{\gamma} \curvecurv^2.
+\]
+There is a \emph{qualitative} change in behaviour. Firstly, the first order coefficient is \(1\), reflecting that a smooth curve is equal to it's tangent line to first order, whereas near a node, a network is equal to a cone of opening angle \(2\pi/3\) to first order.  Secondly, the next order term is cubic in the smooth case, and quadratic in the network case. In both cases however, we do see a concentration around maximum curvature, where in the network case, a node has infinite curvature concentrated at a point, like a dirac measure.
+\end{remark}
 
 \subsection{Variations}
 \label{sec:orgheadline8}
