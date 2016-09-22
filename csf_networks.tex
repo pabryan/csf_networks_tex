@@ -131,7 +131,7 @@ where \(\tangspeed_i, \tangspeed_{L_i}\) are any smooth functions satisfying
 \end{equation}
 at each node \(a_i\).
 
-Using the triple conditions \eqref{eq:triplecondition} \eqref{eq:triplerelations}, the first equality allows us to write \(v_i^{\pm}\) in terms of the curvatures \(\curvecurv_i^{\pm}\):
+Using the triple conditions \eqref{eq:triplecondition} \eqref{eq:triplerelations}, the first equality allows us to write \(v_i^{\pm}\) in terms of the curvatures \(\curvecurv_i^{\pm}\) and vice-versa:
 \begin{align*}
 \tangspeed_i^+ &= \ip{-\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^-}{\tang_i^+} = \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{2} \tangspeed_i^- \\
 \tangspeed_i^- &= \ip{-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+}{\tang_i^-} = - \frac{\sqrt{3}}{2} \curvecurv_i^+ + \frac{1}{2} \tangspeed_i^+.
@@ -139,13 +139,19 @@ Using the triple conditions \eqref{eq:triplecondition} \eqref{eq:triplerelations
 Thus we have
 \begin{equation}
 \label{eq:tangspeedcurvture}
-\tangspeed_i^+ = \frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+, \quad \tangspeed_i^- = -\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^-.
+\tangspeed_i^+ = \frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+, \quad \tangspeed_i^- = -\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^-
+\end{equation}
+and
+\begin{equation}
+\label{eq:curvturetangentialspeed}
+\curvecurv_i^+ = -\frac{2}{\sqrt{3}} \tangspeed_i^- + \frac{1}{\sqrt{3}} \tangspeed_i^+, \quad \curvecurv_i^- = \frac{2}{\sqrt{3}} \tangspeed_i^+ - \frac{1}{\sqrt{3}} \tangspeed_i^-.
 \end{equation}
 
 Finally, let us define the corner tangential speed difference,
-\[
+\begin{equation}
+\label{eq:cornerspeed}
 \corneranglespeed_i = \tangspeed_i^+ - \tangspeed_i^- = \frac{1}{\sqrt{3}} \left(\curvecurv_i^- + \curvecurv_i^+\right).
-\]
+\end{equation}
 
 \subsection{Basic Evolution Equations}
 \label{sec:orgheadline4}
@@ -160,6 +166,7 @@ The evolution of geometric quantities under the Curve Shortening Flow is the sam
 
 \begin{lemma}
 \label{lem:basic_evolution}
+The following evolution equations hold:
 \begin{enumerate}
 \item \([\partial_s, \partial_t] = -(\partial_s \tangspeed - \curvecurv^2) \partial_s\)
 \item \(\pd[ds]{t} = (\partial_s \tangspeed - \curvecurv^2) ds\)
@@ -232,12 +239,17 @@ Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\), while the evolution of \(L\) follows by taking \(p=a_0\), \(q=a_k\).
 \end{proof}
 
-It's worth remarking that the evolution of the extrinsic distance does not feel the presence of the nodes, while the intrinsic length, being forced to traverse the nodes does. Next we compute the evolution of enclosed area, which by Stokes' theorem may be computed as an integral along \(\gamma\) and hence also feels the presence of the nodes.
+\begin{remark}
+Unlike the smooth case, it is a-priori possible that length actually increases under the network flow. See also the remark below following Lemma \ref{lem:dtA}.
+\end{remark}
+
+It's also worth remarking that the evolution of the extrinsic distance does not feel the presence of the nodes, while the intrinsic length, being forced to traverse the nodes does. Next we compute the evolution of enclosed area, which by Stokes' theorem may be computed as an integral along \(\gamma\) and hence also feels the presence of the nodes.
 
 \begin{lemma}
+\label{lem:dtA}
 The enclosed area evolves by,
 \[
-\partial_t \area = ...
+\partial_t \area = - \left(2 - \tfrac{k}{3}\right)\pi + \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
 \]
 \end{lemma}
 
@@ -253,37 +265,56 @@ to compute,
 &\quad + \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_t \nor} ds + \ip{\gamma}{\nor} \partial_t ds
 \end{split}
 \]
+
 The first term is,
 \[
 \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\partial_t \gamma}{\nor} ds = \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{-\curvecurv \nor + \tangspeed \tang}{\nor} ds = -\frac{1}{2} \int_{\gamma} \curvecurv.
 \]
-Using Lemma \ref{lem:basic_evolution}, the second term is,
-\[
-\begin{split}
-\frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_t \nor} ds &= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{(\partial_s \curvecurv + \tangspeed \curvecurv)\tang } ds \\
-&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{(\partial_s (\curvecurv \tang) + \curvecurv^2 \nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds \\
-&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \partial_s \left(\ip{\gamma}{(\curvecurv \tang)}\right) - \ip{\tang}{\curvecurv\tang} + \curvecurv^2 \ip{\gamma}{\nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds \\
-&= -\frac{1}{2} \int_{\gamma} \curvecurv ds + \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\tang_i^+} - v_{i-1} \ip{\gamma}{\tang_i^-} \\
-&\quad + \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \curvecurv^2 \ip{\gamma}{\nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds
-\end{split}
-\]
-Again using Lemma \ref{lem:basic_evolution}, the third term is,
-\[
-\begin{split}
-\frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\nor} \partial_t ds &= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\nor} (\partial_s \tangspeed - \curvecurv^2) ds \\
-&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_s (\tangspeed\nor)} - \tangspeed \curvecurv \ip{\gamma}{\tang} - \curvecurv^2 \ip{\gamma}{\nor} ds \\
-&= \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \partial_s\left(\ip{\gamma}{\tangspeed\nor}\right) - \ip{\tang}{\tangspeed \nor} - \tangspeed \curvecurv \ip{\gamma}{\tang} - \curvecurv^2 \ip{\gamma}{\nor} ds \\
-&= \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\nor_i^+} - v_{i-1} \ip{\gamma}{\nor_i^-} \\
-&\quad - \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \curvecurv^2 \ip{\gamma}{\nor} + \tangspeed \curvecurv \ip{\gamma}{\tang } ds
-\end{split}
-\]
 
-Adding the second and third terms gives,
-\begin{multline*}
-\frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\partial_t \nor} ds + \frac{1}{2} \sum_{i=1}^k \int_{a_{i-1}}^{a_i} \ip{\gamma}{\nor} \partial_t ds = - \frac{1}{2}\int_{\gamma} \curvecurv \\
-+ \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\tang_i^+} - v_{i-1} \ip{\gamma}{\tang_i^-} + \frac{1}{2} \sum_{i=1}^k v_i \ip{\gamma}{\nor_i^+} - v_{i-1} \ip{\gamma}{\nor_i^-}.
-\end{multline*}
+Using the evolution equations in Lemma \ref{lem:basic_evolution} and the Frenet-Serret equations \eqref{eq:frenetserret}, the integrand in the second term is,
+\[
+\begin{split}
+\ip{\gamma}{\partial_t \nor} ds + \ip{\gamma}{\nor} \partial_t ds &= \ip{\gamma}{(\partial_s \curvecurv + \tangspeed \curvecurv)\tang} ds + \ip{\gamma}{\nor} (\partial_s \tangspeed - \curvecurv^2) ds \\
+&= \ip{\gamma}{\partial_s(\curvecurv\tang) + \curvecurv^2 \nor} ds + \tangspeed\curvecurv \ip{\gamma}{\tang} ds \\
+&\quad + \ip{\gamma}{\partial_s (\tangspeed \nor) - \tangspeed \curvecurv \tang} ds - \curvecurv^2 \ip{\gamma}{\nor} ds \\
+&= \partial_s \ip{\gamma}{\curvecurv\tang + \tangspeed \nor} ds - \ip{\tang}{\curvecurv \tang + \tangspeed \nor} ds \\
+&= \partial_s \ip{\gamma}{\curvecurv\tang + \tangspeed \nor} ds - \curvecurv ds.
+\end{split}
+\]
+Integrating we obtain,
+\begin{equation}
+\label{eq:dtA_prelim}
+\begin{split}
+\partial_t \area &= -\int_{\gamma} \curvecurv ds + \frac{1}{2} \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} \\
+&= - \left(2 - \tfrac{k}{3}\right)\pi + \frac{1}{2} \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-},
+\end{split}
+\end{equation}
+since the turning angle at each node is \(\theta_i = \arccos \ip{\tang^+}{\tang^-} = \tfrac{\pi}{3}\).
+
+As to the sum, the compatibility conditions,
+\[
+-\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+ = -\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^- \tag{\ref{eq:speedcompatability} revisited}
+\]
+give
+\[
+\ip{\gamma}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} = 2\ip{\gamma}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
+\]
+Substituting into equation \eqref{eq:dtA_prelim} gives the result.
 \end{proof}
+
+\begin{remark}
+\begin{enumerate}
+\item It is quite possible (especially for \(k > 6\)) that \(\partial_t \area > 0\) as opposed to smooth curve shortening flow where \(\partial_t \area = - 2\pi < 0\). This raises the question of the avoidance principle, which holds in the smooth setting, but we immediately see fails in general for networks. The usual (smooth) argument can only rule out the possibility that a disjoint curve first touches at a smooth point but there could be a first point of contact at a node. Thus for example, an initially disjoint, bounding circle shrinks to a point under the curve shortening flow, while a network with \(\partial_t \area \geq 0\) has area bounded below. Hence the flow either extinguishes before the circle touches, or the circle meets the network at a node, and then passes through. In particular, if avoidance fails, then the network flow is not equal to the level set flow (which satisfies the avoidance principle as in \cite{}). What's more, if the level set flow fattens, it still satisfies the avoidance principle and hence the network flow does not even lie within the fattened region determined by the level set flow.
+
+\item In the proof we used,
+\[
+\int \curvecurv ds = (2 - \frac{k}{3}) \pi.
+\]
+From this equation we may also conclude that if \(\gamma\) is a convex network (so that \(\curvecurv \geq 0\) with \(k\) nodes satisfying the triple condition \eqref{eq:triplecondition}, then \(k \leq 6\). In the case \(k = 6\), we must have \(\curvecurv \equiv 0\) so that \(\gamma\) is an equi-angular hexagon, and this condition must be preserved by the network curve shortening flow, or convexity must be lost. What happens is determined by the unbounded curves \(L_i\). In particular, if all the \(L_i\) are straight lines, then such a network is a static solution. Otherwise, we expect the curvature of the \(L_i\) to drive the loop away from convexity. Notice that to keep the loop static, the unbounded curves would need to satisfy the curve shortening flow along with fixed boundary conditions (as the node is stationary) and fixed gradient at the boundary (as the angle must be preserved). This is an over-determined system so we do not expect the loop to be static if at least one of the \(L_i\) is not a straight line.
+
+\item The sum on the right hand side of the evolution of \(\area\) will generally not vanish. In certain symmetric cases, such as the convex, symmetric, lens shaped networks studied in \cite{MR2763716}, the symmetry does in fact cause the terms to cancel. Such symmetries, being invariance under ambient isometry are of course preserved along the flow. The presence of the nodes is still felt in these cases through \(\partial_t \area = (2- \tfrac{k}{3})\pi\) (as opposed to \(\partial_t \area = - 2\pi\) in the smooth case) but only the number of nodes \(k\), is relevant.
+\end{enumerate}
+\end{remark}
 
 \section{Short time existence and uniqueness}
 \label{sec:orgheadline6}
