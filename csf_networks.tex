@@ -422,35 +422,29 @@ be the unit vector pointing from \(X(p)\) to \(X(q)\) and \(\theta(p,q)\) the an
 
 Define the following "indicator" functions,
 \begin{align*}
-\xi(p, q) &= \begin{cases}
+\iota(p, q) &= \begin{cases}
 1,& \tang_{p} \ne \tang_{q} \\
-0,& \tang_{p} = \tang_{q}
+-1,& \tang_{p} = \tang_{q}
 \end{cases} \\
 \intertext{and}
-\delta(p, q) &= \begin{cases}
+\chi(p, q) &= \begin{cases}
 1,& \ip{w}{\nor_{p}} > 0 \\
-0,& \ip{w}{\nor_{p}} < 0.
+-1,& \ip{w}{\nor_{p}} < 0.
 \end{cases}
 \end{align*}
 Also define the matrices
 \begin{align*}
-K(p,q) &= (-1)^{\delta}\begin{pmatrix}
+K(p,q) &= -\chi\begin{pmatrix}
 \curvecurv_{p} & 0 \\
-0 & (-1)^{\xi +1} \curvecurv_{q}
+0 & \iota \curvecurv_{q}
 \end{pmatrix} \\
-M_{\pm} &= \begin{pmatrix}
-1 & \pm 1 \\
-\pm 1 & 1 
-\end{pmatrix}
+M(p,q) &= \begin{pmatrix}
+1 & \iota \\
+\iota & 1
+\end{pmatrix}.
 \end{align*}
-and
-\[
-M(p,q) = \begin{cases}
-M_+,& \xi(p,q) = 1 \\
-M_-,& \xi(p,q) = 0.
-\end{cases}
-\]
-We think of \(K\), \(M_+\) and \(M_-\) as linear operators acting on \(T(\sphere^1\times\sphere^1)\) written with respect to the basis \(\{\tang_p, \tang_q\}\). Observe that \(M_+\) and \(M_-\) are simultaneously diagonalised by the eigenvectors 
+
+We think of \(K\) and \(M\) as linear operators acting on \(T(\sphere^1\times\sphere^1)\) written with respect to the basis \(\{\tang_p, \tang_q\}\). Observe that \(M\) is diagonalised by the eigenvectors
 \begin{equation}
 \label{eq:eigenvectors}
 v_1 = \tang_{p} + \tang_{q}, \quad v_2 = \tang_{p} - \tang_{q}
@@ -458,10 +452,15 @@ v_1 = \tang_{p} + \tang_{q}, \quad v_2 = \tang_{p} - \tang_{q}
 with corresponding eigenvalues
 \begin{equation}
 \label{eq:eigenvalues}
-\begin{split}
-\lambda^+_1 &= \lambda^-_2 = 2 \\
-\lambda^+_2 &= \lambda^-_1 = 0.
-\end{split}
+\lambda_1 (p, q) = \begin{cases}
+2, & \iota = 1 \\
+0, & \iota = -1
+\end{cases}
+\quad
+\lambda_2 (p, q) = \begin{cases}
+0, & \iota = 1 \\
+2, & \iota = -1
+\end{cases}
 \end{equation} 
 
 Now we may express the first and second variations of distance in this notation. The derivation is quite standard these days, but we give the full details here to be complete, and to illustrate the effect of the nodes, which is only felt by the extrinsic distance.
