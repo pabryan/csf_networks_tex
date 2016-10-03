@@ -305,13 +305,7 @@ Substituting into equation \eqref{eq:dtA_prelim} gives the result.
 
 \begin{remark}
 \begin{enumerate}
-\item It is quite possible (especially for \(k > 6\)) that \(\partial_t \area > 0\) as opposed to smooth curve shortening flow where \(\partial_t \area = - 2\pi < 0\). This raises the question of the avoidance principle, which holds in the smooth setting, but we immediately see fails in general for networks. The usual (smooth) argument can only rule out the possibility that a disjoint curve first touches at a smooth point but there could be a first point of contact at a node. Thus for example, an initially disjoint, bounding circle shrinks to a point under the curve shortening flow, while a network with \(\partial_t \area \geq 0\) has area bounded below. Hence the flow either extinguishes before the circle touches, or the circle meets the network at a node, and then passes through. In particular, if avoidance fails, then the network flow is not equal to the level set flow (which satisfies the avoidance principle as in \cite{}). What's more, if the level set flow fattens, it still satisfies the avoidance principle and hence the network flow does not even lie within the fattened region determined by the level set flow.
-
-\item In the proof we used,
-\[
-\int \curvecurv ds = (2 - \frac{k}{3}) \pi.
-\]
-From this equation we may also conclude that if \(\gamma\) is a convex network (so that \(\curvecurv \geq 0\) with \(k\) nodes satisfying the triple condition \eqref{eq:triplecondition}, then \(k \leq 6\). In the case \(k = 6\), we must have \(\curvecurv \equiv 0\) so that \(\gamma\) is an equi-angular hexagon, and this condition must be preserved by the network curve shortening flow, or convexity must be lost. What happens is determined by the unbounded curves \(L_i\). In particular, if all the \(L_i\) are straight lines, then such a network is a static solution. Otherwise, we expect the curvature of the \(L_i\) to drive the loop away from convexity. Notice that to keep the loop static, the unbounded curves would need to satisfy the curve shortening flow along with fixed boundary conditions (as the node is stationary) and fixed gradient at the boundary (as the angle must be preserved). This is an over-determined system so we do not expect the loop to be static if at least one of the \(L_i\) is not a straight line.
+\item It is quite possible (especially for \(k > 6\)) that \(\partial_t \area > 0\) as opposed to smooth curve shortening flow where \(\partial_t \area = - 2\pi < 0\).
 
 \item The sum on the right hand side of the evolution of \(\area\) will generally not vanish. In certain symmetric cases, such as the convex, symmetric, lens shaped networks studied in \cite{MR2763716}, the symmetry does in fact cause the terms to cancel. Such symmetries, being invariance under ambient isometry are of course preserved along the flow. The presence of the nodes is still felt in these cases through \(\partial_t \area = (2- \tfrac{k}{3})\pi\) (as opposed to \(\partial_t \area = - 2\pi\) in the smooth case) but only the number of nodes \(k\), is relevant.
 \end{enumerate}
@@ -742,6 +736,13 @@ which is the required inequality when $\xi=0$.
 \subsection{Convex Networks}
 
 We now consider the implications of the variational formulae and differential inequalities in the case of convex networks. These are rather more well behaved than general networks, and serve as a model case. In particular, the chord-arc profile is concave. We also deduce some properties for general networks at optimal points that behave similar to the convex case, in particular relating local concavity of the profile to convex-like behaviour at corresponding optimal points. The analysis, particularly of the second variation affords control of the topology of optimal points (through the indicator functions) essential to the comparison arguments later.
+
+First let us remark that convex networks are constrained in the maximum number of nodes possible. In the proof of Lemma \ref{lem:dtA}, we used,
+\[
+\int \curvecurv ds = (2 - \frac{k}{3}) \pi.
+\]
+From this equation we may also conclude that if \(\gamma\) is a convex network (so that \(\curvecurv \geq 0\)) with \(k\) nodes satisfying the triple condition \eqref{eq:triplecondition}, then \(k \leq 6\). In the case \(k = 6\), we must have \(\curvecurv \equiv 0\) so that \(\gamma\) is an equi-angular hexagon, and either this condition must be preserved by the network curve shortening flow, or convexity must be lost. What happens is determined by the unbounded curves \(L_i\). In particular, if all the \(L_i\) are straight lines, then such a network is a static solution. Otherwise, we expect the curvature of the \(L_i\) to drive the loop away from convexity. Notice that to keep the loop static, the unbounded curves would need to satisfy the curve shortening flow along with fixed boundary conditions (as the node is stationary) and fixed gradient at the boundary (as the angle must be preserved). This is an over-determined system so we do not expect the loop to be static if at least one of the \(L_i\) is not a straight line.
+
 
 \begin{lemma}
 If $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
