@@ -191,19 +191,25 @@ The \emph{oriented intrinsic distance} or \emph{oriented arc length} is defined 
 where \(p \in I_i = [a_{i-1}, a_i]\), \(q \in I_j = [a_{j-1}, a_j]\) and \(i,j\) are taken modulo \(k\).
 \end{defn}
 
-Note that by oriented, we mean the length along \(\gamma\) from \(p\) to \(q\) in the chosen orientation of \(\gamma\). With this definition \(\ell\) is not symmetric but satisfies
+Note that by oriented, we mean the length along \(\gamma\) from \(p\) to \(q\) in the chosen orientation of \(\gamma\). For \(p > q\), (for the moment not taking \(i,j\) modulo \(k\)),
 \[
-\ell(q, p) = 2\pi L - \ell(p, q).
+\ell(p, q) = \int_p^{a_i} ds_t + \sum_{m=i+1}^{k} \int_{a_{m-1}}^{a_m} ds_t + \sum_{m=1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t
 \]
+and \(\ell(p, q)\) is always non-negative. Note also that with our definition \(\ell\) is not symmetric but satisfies,
+\begin{equation}
+\label{eq:ell_symmetry}
+\ell(q, p) = 2\pi L - \ell(p, q).
+\end{equation}
 The usual intrinsic distance between \(p\) and \(q\), denoted here by \(\tilde{\ell}(p, q)\), satisfies
 \[
 \tilde{\ell}(p, q) = \min\{\ell(p, q), \ell(q, p)\} = \min\{\ell(p, q), 2\pi L - \ell(p, q)\}.
 \]
 
 Let us also define
-\[
+\begin{equation}
+\label{eq:w}
 w(p, q) = \frac{\gamma(q) - \gamma(p)}{d(p,q)},
-\]
+\end{equation}
 the unit vector pointing from \(p\) to \(q\).
 
 Later we will only require the evolution of the extrinsic and intrinsic distances at smooth points.
