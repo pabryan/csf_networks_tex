@@ -18,12 +18,14 @@
 \usepackage{hyperref}
 \tolerance=1000
 \usepackage{amsmath}
+
 \usepackage[bibstyle=alphabetic,citestyle=alphabetic,backend=bibtex]{biblatex}
 \bibliography{refs}
 \AtEveryBibitem{\clearfield{doi}}
 \AtEveryBibitem{\clearfield{url}}
 \AtEveryBibitem{\clearfield{issn}}
 \renewcommand*{\bibfont}{\footnotesize}
+
 \DeclareMathOperator{\tangspeed}{v}
 \DeclareMathOperator{\norfactor}{\lambda}
 \DeclareMathOperator{\ineq_rel}{\simeq}
@@ -31,7 +33,11 @@
 \newcommand\holder{H\"older}
 \DeclareMathOperator{\network}{\mathcal{N}}
 \DeclareMathOperator{\corneranglespeed}{{\Delta v}}
+\DeclareMathOperator{\tangindicator}{\iota}
+\DeclareMathOperator{\norindicator}{\tau}
+
 \usepackage{snapshot}
+
 \address{Department of Mathematics, University of California San Diego}
 \email{pbryan@ucsd.edu}
 \keywords{Curvature flows, Distance comparison, Networks, curves}
@@ -412,58 +418,11 @@ There is a \emph{qualitative} change in behaviour. Firstly, the first order coef
 \subsection{Variations}
 \label{sec:orgheadline8}
 
-The main techniques we employ in this paper to understand the chord/arc-profile are variational and we begin with the first and second variations of the geometric quantities \(d\) and \(\ell\).
+The main techniques we employ in this paper to understand the chord/arc-profile are variational and we begin with the first and second variations of the geometric quantities \(\ell\) and \(d\). Throughout this section we will assume that \(\gamma\) is parametrised by arc-length. As with the evolution of \(\ell\) and \(d\), we generally only require the variations at smooth points, so throughout this section we also assume that \((p,q) \in \gamma^{\ast} \times \gamma^{\ast}\) is a smooth point. The only exception is that we will have occasion later to use the first variation, Lemma \ref{lem:firstvar} at a node and so we state it for arbitrary points \((p,q)\).
 
-It will prove useful to make various definitions that will feature throughout this paper. First let
-\[
-w(p, q) = \frac{X(q) - X(p)}{d(p,q)}
-\]
-be the unit vector pointing from \(X(p)\) to \(X(q)\) and \(\theta(p,q)\) the angle between \(\tang_{p}\) and \(w\) so that \(\ip{w}{\tang_p} = \cos\theta\). 
+Recall that \(w\) defined in equation \eqref{eq:w} denotes the unit vector pointing from \(\gamma(p)\) to \(\gamma(q)\). Let us also write $\omega_p$ and $\omega_q$ for the $1$-forms dual to the unit tangent vectors $\tang_p$ and $\tang_q$ at $p$ and $q$ respectively.
 
-Define the following "indicator" functions,
-\begin{align*}
-\iota(p, q) &= \begin{cases}
-1,& \tang_{p} \ne \tang_{q} \\
--1,& \tang_{p} = \tang_{q}
-\end{cases} \\
-\intertext{and}
-\chi(p, q) &= \begin{cases}
-1,& \ip{w}{\nor_{p}} > 0 \\
--1,& \ip{w}{\nor_{p}} < 0.
-\end{cases}
-\end{align*}
-Also define the matrices
-\begin{align*}
-K(p,q) &= -\chi\begin{pmatrix}
-\curvecurv_{p} & 0 \\
-0 & \iota \curvecurv_{q}
-\end{pmatrix} \\
-M(p,q) &= \begin{pmatrix}
-1 & \iota \\
-\iota & 1
-\end{pmatrix}.
-\end{align*}
-
-We think of \(K\) and \(M\) as linear operators acting on \(T(\sphere^1\times\sphere^1)\) written with respect to the basis \(\{\tang_p, \tang_q\}\). Observe that \(M\) is diagonalised by the eigenvectors
-\begin{equation}
-\label{eq:eigenvectors}
-v_1 = \tang_{p} + \tang_{q}, \quad v_2 = \tang_{p} - \tang_{q}
-\end{equation}
-with corresponding eigenvalues
-\begin{equation}
-\label{eq:eigenvalues}
-\lambda_1 (p, q) = \begin{cases}
-2, & \iota = 1 \\
-0, & \iota = -1
-\end{cases}
-\quad
-\lambda_2 (p, q) = \begin{cases}
-0, & \iota = 1 \\
-2, & \iota = -1
-\end{cases}
-\end{equation} 
-
-Now we may express the first and second variations of distance in this notation. The derivation is quite standard these days, but we give the full details here to be complete, and to illustrate the effect of the nodes. The opposite situation the time variations holds, in that the presense of the nodes felt by the extrinsic distance and not the intrinsic distance. Recall from Definition \ref{defn:dist} that the extrinsic distance is defined to be,
+The derivation is quite standard these days, but we give the full details here to be complete. Recall from Definition \ref{defn:dist} that the extrinsic distance is defined to be,
 \[
 d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|.
 \]
@@ -472,11 +431,10 @@ and the oriented intrinsic distance is defined to be
 \ell_t(p, q) = \int_{\gamma_t} ds_t = \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t.
 \]
 
-We need to take a little care at a node, distinguishing between variations in the direction \(\tang^+\) and variations in the direction \(\tang^-\). It's easier to phrase this by varying \(p\) and \(q\) individually and then using linearity. For convenience, let us also write \(\tang^+ = \tang^-\) for the tangent at a smooth point. Throughout we assume an arc-length parametrisation.
+We need to take a little care at a node, distinguishing between variations in the direction \(\tang^+\) and variations in the direction \(\tang^-\). It's easier to phrase this by varying \(p\) and \(q\) individually and then using linearity. For convenience, let us also write \(\tang^+ = \tang^-\) for the tangent at a smooth point.
 
-\begin{lemma}
+\begin{lemma}[First Variation]
 \label{lem:firstvar}
-The first variation formulae are
 \[
 \begin{split}
 \left.\partial_u\right|_{u=0} \ell (p \pm u, q)  &= \mp 1 \\
@@ -489,6 +447,14 @@ and
 \left.\partial_u\right|_{u=0} d (p \pm u, q) &= \mp \ip{\tang^{\pm}(p)}{w} \\
 \left.\partial_u\right|_{u=0} d (p, q \pm u) &= \pm \ip{\tang^{\pm}(q)}{w}.
 \end{split}
+\]
+In particular, at smooth points \((p,q) \in \gamma^{\ast} \times \gamma^{\ast}\) we have,
+\[
+D\ell = -\omega_p + \omega_q
+\]
+and
+\[
+D d = -\ip{\tang_p}{w} \omega_p + \ip{\tang_q}{w} \omega_q.
 \]
 \end{lemma}
 
@@ -506,62 +472,120 @@ Hence,
 The variation in the second argument is similar.
 \end{proof}
 
-Using the lemma, we may now obtain the second variation formula at optimal points.
+Next we have the second variation. The presence of nodes is not felt at smooth points.
+
+\begin{lemma}[Second Variation]
+\label{lem:secondvar}
+Let \((p,q)\) be a smooth point. Then,
+\[
+D^2 \ell = 0
+\]
+and
+\[
+\begin{split}
+D^2d &= \left(\ip{w}{\curvecurv_p \nor_p} + \frac{1}{d}(1 - \ip{w}{\tang_p}^2) \right) \omega_p \tensor \omega_p \\
+&+ \left(-\ip{w}{\curvecurv_q \nor_q} + \frac{1}{d}(1 - \ip{w}{\tang_q}^2) \right) \omega_q \tensor \omega_q \\
+&- \left(\frac{1}{d}\left(\ip{\tang_p}{\tang_q} - \ip{w}{\tang_p}\ip{w}{\tang_q}\right) \right) \left(\omega_p \tensor \omega_q + \omega_q \tensor \omega_p\right).
+\end{split}
+\]
+\end{lemma}
+
+\begin{proof}
+The second variation of \(\ell\) is immediate by differentiating the first variation in Lemma \ref{lem:firstvar}.
+
+For the second variation of \(d\), we first differentiate $w$:
+\[
+\begin{split}
+\partial_p w &= \partial_p \left[\frac{1}{d} (\gamma(q) - \gamma(p))\right] \\
+&= \frac{1}{d^2} \ip{w}{\tang_p} (\gamma(q) - \gamma(p)) - \frac{1}{d} \tang_p \\
+&= -\frac{1}{d}\left(\tang_p - \ip{w}{\tang_p} w\right).
+\end{split}
+\]
+and similarly for $\pd{q} w$ (again with the sign changed).  Putting this together with the Frenet-Serret formula $\pd{p} \tang_p = -\curvecurv_p \nor_p$ \eqref{eq:frenetserret} then gives
+\[
+\begin{split}
+\partial_p^2 d &= \partial_p \left[-\ip{\tang_p}{w}\right] \\
+&= \ip{\frac{1}{d}\left(\tang_p - \ip{w}{\tang_p} w\right)}{\tang_p} + \ip{w}{\curvecurv_p \nor_p} \\
+&= \frac{1}{d}\left(1 - \ip{w}{\tang_p}^2\right) + \ip{w}{\curvecurv_p \nor_p}.
+\end{split}
+\]
+Similar computations give $\partial_q^2 d$. For the mixed partial,
+\[
+\begin{split}
+\partial_q \partial_p d &= \partial_q \left[-\ip{w}{\tang_p}\right] \\
+&= -\ip{\frac{1}{d}(\tang_q - \ip{\tang_q}{w}w}{\tang_p} \\
+&= - \frac{1}{d} \left(\ip{\tang_q}{\tang_p} - \ip{\tang_q}{w}\ip{\tang_p}{w}\right).
+\end{split}
+\]
+These second derivatives yield the desired expression for \(D^2 d\).
+\end{proof}
+
+Using Lemmas \ref{lem:firstvar} and \ref{lem:secondvar} we may now obtain the second variation formula at smooth, optimal points. Let us first introduce some notation. Write \(\theta(p,q) \in (-\pi/2, \pi/2)\) for the angle between \(\tang_{p}\) and \(w\) so that \(\ip{w}{\tang_p} = \cos\theta\). Define the following "indicator" functions,
+\begin{align*}
+\tangindicator(p, q) &= \begin{cases}
+1,& \tang_{p} \ne \tang_{q} \\
+-1,& \tang_{p} = \tang_{q}
+\end{cases} \\
+\intertext{and}
+\norindicator(p, q) &= \begin{cases}
+1,& \ip{w}{\nor_{p}} > 0 \\
+-1,& \ip{w}{\nor_{p}} < 0.
+\end{cases}
+\end{align*}
+Define the bilinear forms,
+\begin{align*}
+K(p, q) &= \norindicator \left(\curvecurv_p \omega_p \otimes \omega_p + \tangindicator \curvecurv_q \omega_q \otimes \omega_q\right), \\
+M(p, q) &= \omega_p \otimes \omega_p + \tangindicator\left(\omega_p \otimes \omega_q + \omega_q \otimes \omega_p\right) + \omega_q \otimes \omega_q.
+\end{align*}
+In matrix form, written with respect to the basis \(\{\tang_p, \tang_q\}\) we have,
+\begin{align*}
+K(p,q) &= \norindicator\begin{pmatrix}
+\curvecurv_{p} & 0 \\
+0 & \tangindicator \curvecurv_{q}
+\end{pmatrix} \\
+M(p,q) &= \begin{pmatrix}
+1 & \tangindicator \\
+\tangindicator & 1
+\end{pmatrix}.
+\end{align*}
+
+Observe that \(M\) is diagonalised by the eigenvectors
+\begin{equation}
+\label{eq:eigenvectors}
+v_1 = \tang_{p} + \tang_{q}, \quad v_2 = \tang_{p} - \tang_{q}
+\end{equation}
+with corresponding eigenvalues
+\begin{equation}
+\label{eq:eigenvalues}
+\lambda_1 (p, q) = \begin{cases}
+2, & \tangindicator = 1 \\
+0, & \tangindicator = -1
+\end{cases}
+\quad
+\lambda_2 (p, q) = \begin{cases}
+0, & \tangindicator = 1 \\
+2, & \tangindicator = -1
+\end{cases}
+\end{equation}
+
+We express the second variation of distance at an optimal point using this notation.
 
 \begin{prop}[Spatial Second Variation at Optimal Points]
 \label{prop:spatial_var}
-Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile(\ell(p_0,q_0)) = d(p_0, q_0)$), then 
+Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile(\ell(p_0,q_0)) = d(p_0, q_0)$), then
 \[
 D^2d_{(p_0,q_0)} =  \sqrt{1-\cos^2\theta}K + \frac{1-\cos^2 \theta}{d} M.
 \]
 \end{prop}
 
 \begin{proof}
-Let us begin by deriving variational formulae for $d$ and $\ell$ without constraint. Let $\omega_p$ and $\omega_q$ denote the $1$-forms dual to the unit tangent vectors $\tang_p$ and $\tang_q$ at $p$ and $q$ respectively. Parametrise $\gamma$ by arc-length, so that $\pd{p} \ell = - 1$ and $\pd{q} \ell = 1$ which gives 
-\begin{equation}
-\label{eq:l_first_var}
-D\ell = -\omega_p + \omega_q.
-\end{equation}
-
-Next, differentiating $d$ and using $\pd{p}X = \tang_p$, $\pd{q}X = \tang_q$, the unit tangents at $p$ and $q$ respectively, gives
+Consider the curve $\alpha: u \mapsto (p_0,q_0) + uv_1 = (p_0,q_0) + (u, u) \in \sphere^1\times \sphere^1$ which satisfies,
 \[
-\pd{p} d (p, q) = \frac{1}{d} \ip{\pd{p}(X(q) - X(p))}{X(q) - X(p)} = -\ip{w}{\tang_p}
+\ell(\alpha(u)) = \ell(\alpha(0)).
 \]
-and similarly for $\pd{q} d$ (but with the sign changed) so that
-\begin{equation}
-\label{eq:d_first_var}
-Dd = -\ip{w}{\tang_p} \omega_p + \ip{w}{\tang_q} \omega_q.
-\end{equation}
+Thus $\ell$ is constant, equal to $\ell(p_0, q_0)$ along the curve $\alpha$.
 
-For the second variation, we first differentiate $w$:
-\[
-\begin{split}
-\pd{p} w &= \pd{p} \frac{1}{d} (X(q) - X(p)) \\
-&= \frac{1}{d^2} \ip{w}{\tang_p} (X(q) - X(p)) - \frac{1}{d} \tang_p \\
-&= -\frac{1}{d}\left(\tang_p - \ip{w}{\tang_p} w\right).
-\end{split}
-\]
-and similarly for $\pd{q} w$ (again with the sign changed).  Putting this together with the Frenet-Serret formula $\pd{p} T_p = -\curvecurv_p \nor_p$ (the $-$ coming from our choice of outer unit normal and the convention that convex curves have positive curvature) then gives
-\[
-d_{pp} = \ip{\frac{1}{d}\left(\tang_p - \ip{w}{\tang_p} w\right)}{\tang_p} + \ip{w}{\curvecurv_p \nor_p} = \frac{1}{d}\left(1 - \ip{w}{\tang_p}^2\right) + \ip{w}{\curvecurv_p \nor_p}.
-\]
-Similar computations give $d_{qq}$ and $d_{pq}$ leading to
-\begin{equation}
-\label{eq:d_second_var}
-\begin{split}
-D^2d &= \left(\ip{w}{\curvecurv_p \nor_p} + \frac{1}{d}(1 - \ip{w}{\tang_p}^2) \right) \omega_p \tensor \omega_p \\
-&+ \left(-\ip{w}{\curvecurv_q \nor_q} + \frac{1}{d}(1 - \ip{w}{\tang_q}^2) \right) \omega_q \tensor \omega_q \\
-&- \left(\frac{1}{d}\left(\ip{\tang_p}{\tang_q} - \ip{w}{\tang_p}\ip{w}{\tang_q}\right) \right) \left(\omega_p \tensor \omega_q + \omega_q \tensor \omega_p\right).
-\end{split}
-\end{equation}
-
-Now, consider the curve $\alpha: u \mapsto (p_0,q_0) + uv_1 = (p_0,q_0) + (u, u) \in \sphere^1\times \sphere^1$ which satisfies,
-\[
-\pd{u} \ell(\alpha(u)) = 0 
-\]
-by equation \eqref{eq:l_first_var}. Thus $\ell$ is constant, equal to $\ell(p_0, q_0)$ along the curve $\alpha$. 
-
-Since $(p_0, q_0)$ minimises $d$ amongst all $(p,q)$ with $\ell(p, q) = \ell(p_0, q_0)$, we have that $u=0$ is a local minima of the function $u\mapsto d(\alpha(u))$. Then from the first variation of $d$ \eqref{eq:d_first_var},
+Since $(p_0, q_0)$ minimises $d$ amongst all $(p,q)$ with $\ell(p, q) = \ell(p_0, q_0)$, we have that $u=0$ is a local minima of the function $u\mapsto d(\alpha(u))$. Then from the first variation of $d$ in Lemma \ref{lem:firstvar},
 \[
 0 = \left.\pd{u}\right|_{u=0} d(\alpha(u)) = -\ip{w}{\tang_p} + \ip{w}{\tang_q}
 \]
@@ -569,40 +593,45 @@ so that
 \[
 \cos\theta = \ip{\tang_p}{w} = \ip{\tang_q}{w}.
 \]
-Thus either $\tang_{p_0} = \tang_{q_0}$, or $\tang_{p_0} \ne \tang_{q_0}$ and $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$. These cases are recorded by the indicator function $\xi$. 
-
-\emph{Case 1}: $\tang_{p_0} \ne \tang_{q_0}$ ($\xi = 0$).
-
-Assuming that $\tang_{p_0} \ne \tang_{q_0}$, we have $\ip{w}{\nor_{p_0}} = - \ip{w}{\nor_{q_0}}$. We can also deduce that $\ip{w}{\nor_{p_0}} = \pm \sqrt{1-\cos^2\theta}$ with the sign depending on whether $w$ points into or out of $\gamma_{t_0}$ at $p_0$ which we can then write as
+We also have,
 \[
-\ip{w}{\nor_{p_0}} = -\ip{w}{\nor_{q_0}} = (-1)^\delta \sqrt{1-\cos^2\theta}.
+\norindicator \sqrt{1 - \cos^2 \theta} = \ip{\nor_p}{w}
+\]
+recalling that \(\norindicator = \pm 1\) accordingly as \(w\) points outward or inward at \(p\).
+
+Now, either $\tang_{p_0} = \tang_{q_0}$, or $\tang_{p_0} \ne \tang_{q_0}$ and $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$. These cases are recorded by the indicator function $\tangindicator$.
+
+\emph{Case 1}: $\tang_{p_0} \ne \tang_{q_0}$ ($\tangindicator = 1$).
+
+Assuming that $\tang_{p_0} \ne \tang_{q_0}$, since \(w\) bisects \(\tang_{p_0}\) and \(\tang_{q_0}\), we have
+\[
+-\ip{w}{\nor_{q_0}} = \ip{w}{\nor_{p_0}} = \norindicator \sqrt{1-\cos^2\theta}.
 \]
 Since $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$, applying the double angle formula, we also have 
 \[
 \ip{\tang_{p_0}}{\tang_{q_0}} = 2\cos^2\theta - 1.
 \]
-Substituting these expressions into the second variation of $d$ \eqref{eq:d_second_var} gives
+Substituting these expressions into the second variation of $d$ from Lemma \ref{lem:secondvar} gives
 \begin{align*}
-D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\curvecurv_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \tensor \omega_{p_0} \\
-&+ \left((-1)^{\delta} \sqrt{1-\cos^2\theta} \curvecurv_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \tensor \omega_{q_0} \\
+D^2d_{(p_0,q_0)} &=  \left(\norindicator \sqrt{1-\cos^2\theta}\curvecurv_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \tensor \omega_{p_0} \\
+&+ \left(\norindicator \sqrt{1-\cos^2\theta} \curvecurv_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \tensor \omega_{q_0} \\
 &+ \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \tensor \omega_{q_0} + \omega_{q_0} \tensor \omega_{p_0} \right)
 \end{align*}
-which gives the desired expression for $\xi=0$ when expressed in matrix form.
+which is the desired expression when $\tangindicator=1$.
 
-\emph{Case 2}: $\tang_{p_0} = \tang_{q_0}$ ($\xi = 1$).
+\emph{Case 2}: $\tang_{p_0} = \tang_{q_0}$ ($\tangindicator = 1$).
 
 In this case, we have 
 \[
-\ip{w}{\nor_{p_0}} = \ip{w}{\nor_{q_0}} = (-1)^\delta \sqrt{1-\cos^2\theta}
+\ip{w}{\nor_{p_0}} = \ip{w}{\nor_{q_0}} = \norindicator \sqrt{1-\cos^2\theta}
 \]
-and $\ip{\tang_{p_0}}{\tang_{q_0}} = 1$. Substituting these expressions into the second variation of $d$ \eqref{eq:d_second_var} gives
+and $\ip{\tang_{p_0}}{\tang_{q_0}} = 1$. Substituting these expressions into the second variation of $d$  from Lemma \ref{lem:secondvar} gives
 \begin{align*}
-D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\curvecurv_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \tensor \omega_{p_0} \\
-&+ \left(-(-1)^{\delta} \sqrt{1-\cos^2\theta} \curvecurv_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \tensor \omega_{q_0} \\
+D^2d_{(p_0,q_0)} &=  \left(\norindicator \sqrt{1-\cos^2\theta}\curvecurv_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \tensor \omega_{p_0} \\
+&+ \left(-\norindicator \sqrt{1-\cos^2\theta} \curvecurv_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \tensor \omega_{q_0} \\
 &- \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \tensor \omega_{q_0} + \omega_{q_0} \tensor \omega_{p_0} \right)
 \end{align*}
-which gives the desired expression for $\xi=1$ when expressed in matrix form.
-
+which gives the desired expression for $\tangindicator=1$ when expressed in matrix form.
 \end{proof}
 
 \subsection{Differential inequalities}
