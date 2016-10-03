@@ -463,14 +463,47 @@ with corresponding eigenvalues
 \end{cases}
 \end{equation} 
 
-Now we may express the first and second variations of distance in this notation. The derivation is quite standard these days, but we give the full details here to be complete, and to illustrate the effect of the nodes, which is only felt by the extrinsic distance.
+Now we may express the first and second variations of distance in this notation. The derivation is quite standard these days, but we give the full details here to be complete, and to illustrate the effect of the nodes. The opposite situation the time variations holds, in that the presense of the nodes felt by the extrinsic distance and not the intrinsic distance. Recall from Definition \ref{defn:dist} that the extrinsic distance is defined to be,
+\[
+d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|.
+\]
+and the oriented intrinsic distance is defined to be
+\[
+\ell_t(p, q) = \int_{\gamma_t} ds_t = \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t.
+\]
+
+We need to take a little care at a node, distinguishing between variations in the direction \(\tang^+\) and variations in the direction \(\tang^-\). It's easier to phrase this by varying \(p\) and \(q\) individually and then using linearity. For convenience, let us also write \(\tang^+ = \tang^-\) for the tangent at a smooth point. Throughout we assume an arc-length parametrisation.
 
 \begin{lemma}
-The variation formulae are
+\label{lem:firstvar}
+The first variation formulae are
+\[
+\begin{split}
+\left.\partial_u\right|_{u=0} \ell (p \pm u, q)  &= \mp 1 \\
+\left.\partial_u\right|_{u=0} (p, q \pm u) &= \pm 1.
+\end{split}
+\]
+and
+\[
+\begin{split}
+\left.\partial_u\right|_{u=0} d (p \pm u, q) &= \mp \ip{\tang^{\pm}(p)}{w} \\
+\left.\partial_u\right|_{u=0} d (p, q \pm u) &= \pm \ip{\tang^{\pm}(q)}{w}.
+\end{split}
+\]
 \end{lemma}
 
 \begin{proof}
+The variations of \(l\) follow by taking one-sided derivatives of \(\int_{p\pm u}^{a_i} ds_t\) and \(\int_{a_{j-1}}^{q \pm u} ds_t\) with respect to u.
 
+For \(d\),
+\[
+\left.\partial_u\right|_{u=0} \ip{\gamma(q) - \gamma(p \pm u)}{\gamma(q) - \gamma(p \pm u)} = \mp 2 \ip{\tang^{\pm}(p)}{\gamma(q) - \gamma(p)}.
+\]
+Hence,
+\[
+\left.\partial_u\right|_{u=0} d (p \pm u, q) =  \mp \frac{1}{d} \ip{\tang^{\pm}(p)}{\gamma(q) - \gamma(p)} = \mp \ip{\tang^{\pm}(p)}{w}.
+\]
+The variation in the second argument is similar.
 \end{proof}
 
 Next, let us note that optimal points are never nodes.
