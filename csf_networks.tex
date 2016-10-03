@@ -568,13 +568,17 @@ with corresponding eigenvalues
 \end{cases}
 \end{equation}
 
-We express the second variation of distance at an optimal point using this notation.
+We express the variations of distance at an optimal point using this notation.
 
-\begin{prop}[Spatial Second Variation at Optimal Points]
+\begin{prop}[Spatial Variations at Optimal Points]
 \label{prop:spatial_var}
-Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile(\ell(p_0,q_0)) = d(p_0, q_0)$), then
+Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile\left(\tfrac{L}{2\pi}\ell(p_0,q_0)\right) = \tfrac{2\pi}{L} d(p_0, q_0)$), then
 \[
-D^2d_{(p_0,q_0)} =  \sqrt{1-\cos^2\theta}K + \frac{1-\cos^2 \theta}{d} M.
+\begin{split}
+D d &= \cos\theta(-\omega_{p_0} + \omega_{q_0}) \\
+\intertext{and}
+D^2d_{(p_0,q_0)} &= \sqrt{1-\cos^2\theta}K + \frac{1-\cos^2 \theta}{d} M.
+\end{split}
 \]
 \end{prop}
 
@@ -587,12 +591,17 @@ Thus $\ell$ is constant, equal to $\ell(p_0, q_0)$ along the curve $\alpha$.
 
 Since $(p_0, q_0)$ minimises $d$ amongst all $(p,q)$ with $\ell(p, q) = \ell(p_0, q_0)$, we have that $u=0$ is a local minima of the function $u\mapsto d(\alpha(u))$. Then from the first variation of $d$ in Lemma \ref{lem:firstvar},
 \[
-0 = \left.\pd{u}\right|_{u=0} d(\alpha(u)) = -\ip{w}{\tang_p} + \ip{w}{\tang_q}
+0 = \left.\pd{u}\right|_{u=0} d(\alpha(u)) = -\ip{w}{\tang_{p_0}} + \ip{w}{\tang_{q_0}}
 \]
 so that
 \[
-\cos\theta = \ip{\tang_p}{w} = \ip{\tang_q}{w}.
+\cos\theta = \ip{\tang_{p_0}}{w} = \ip{\tang_{q_0}}{w}
 \]
+yielding the desired first variation,
+\[
+Dd = \cos\theta(-\omega_{p_0} + \omega_{q_0}).
+\]
+
 We also have,
 \[
 \norindicator \sqrt{1 - \cos^2 \theta} = \ip{\nor_p}{w}
@@ -637,83 +646,105 @@ which gives the desired expression for $\tangindicator=1$ when expressed in matr
 \subsection{Differential inequalities}
 \label{sec:orgheadline9}
 
-Next, from these variational formulae, we obtain a (weak) differential inequality for \(\chordarcprofile\).
+Next, from these variational formulae, we obtain a (weak) differential inequality for \(\chordarcprofile\). Let us make the following definition.
+\begin{defn}
+The point \(x_0 \in (0, 2\pi)\) will be called a \emph{smooth point} if there exists a smooth minimiser \((p_0, q_0)\). That is, if there exists \((p_0, q_0) \in \gamma^{\ast} \times \gamma^{\ast}\) such that \(\ell(p_0, q_0) = \tfrac{L}{2\pi} x_0\) and \(\chordarcprofile(x_0) = \tfrac{2\pi}{L} d(p_0, q_0)\).
+\end{defn}
 
 \begin{prop}
 \label{prop:barrier}
-The chord/arc-profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
+At smooth points \(x_0\), the chord/arc-profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
 \begin{align*}
 Z'_- &\leq \cos\theta \leq Z'_+, \\
-Z'' &\leq \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\curvecurv_{p_0} + (-1)^{\xi+1}\curvecurv_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+Z'' &\leq \frac{L}{2\pi}\left[\frac{\norindicator \sqrt{1-\cos^2\theta}}{4} (\curvecurv_p + \tangindicator\curvecurv_q) + \frac{1}{2}(1-\tangindicator) \frac{1-\cos^2\theta}{d}\right].
 \end{align*}
 \end{prop}
 
-Recall that the support inequality means for every \(x_0 \in [0,2\pi]\) there exists a smooth function \(Z\) defined in a neighbourhood of \(x_0\) such that \(Z(x) \geq \chordarcprofile\), \(Z(x_0) = \chordarcprofile(x_0)\) and
+Recall that the support inequality means for every \(x_0 \in [0,2\pi]\) there exists a smooth, upper support function \(Z\) (\(Z(x) \geq \chordarcprofile (x)\), \(Z(x_0) = \chordarcprofile(x_0)\)) defined in a neighbourhood of \(x_0\) such that
 \begin{align*}
 Z' &= \cos \theta, \\
-Z'' &= \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\curvecurv_{p_0} + (-1)^{\xi+1}\curvecurv_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+Z'' &= \frac{L}{2\pi}\left[\frac{\norindicator\sqrt{1-\cos^2\theta}}{4} (\curvecurv_p + \tangindicator\curvecurv_q) + \frac{1}{2} (1-\tangindicator) \frac{1-\cos^2\theta}{d}\right].
 \end{align*}
 
 \begin{proof}
-For any $x_0$, again let $(p_0,q_0)$ be such that $\ell(p_0,q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0,q_0)$. Consider the curve
+For any $x_0$, let $(p_0,q_0)$ be such that $\ell(p_0,q_0) = \tfrac{L}{2\pi} x_0$ and $\chordarcprofile(x_0) = \tfrac{2\pi}{L} d(p_0,q_0)$. Consider the curve
 \[
 \alpha(u) = (p_0, q_0) + uv_2 = (p_0, q_0) + u(1,-1).
 \]
-This satisfies
+Let \(x(u) = \tfrac{2\pi}{L} \ell(\alpha(u))\). We have
 \[
-\pd{u} \ell(\alpha(u)) = -2
+\partial_u (\ell \circ \alpha) = -2
 \]
-so that $\ell\circ\alpha$ has a smooth local inverse near $u=0$. Thus we can define the smooth function
+so that $\ell\circ\alpha$ has a smooth local inverse near $u=0$: \(u = u(x) = (\ell \circ \alpha)^{-1}(\tfrac{L}{2\pi} x)\) satisfying \(u(x_0) = 0\) and \(u'(x) = -\tfrac{L}{4\pi}\).
+
+Define
 \[
-Z(x) = d(\alpha((\ell\circ\alpha)^{-1} (x)))
+Z(x) = \frac{2\pi}{L} d(\alpha \circ u (x))
 \]
-which satisfies
+which is indeed a smooth, upper support function, since
 \begin{align*}
-Z(x_0) &= d(p_0, q_0) = \chordarcprofile(x_0) \\
+Z(x_0) &= \frac{2\pi}{L} d(\alpha(0)) = \frac{2\pi}{L} d(p_0, q_0) = \chordarcprofile(x_0) \\
 \intertext{and}
-Z(x) &= d(\alpha((\ell\circ\alpha)^{-1} (x))) \geq \chordarcprofile ((\ell\circ\alpha)^{-1} (x)) = \chordarcprofile(x).
+Z(x) &= \frac{2\pi}{L} d(\alpha \circ u(x)) \geq \chordarcprofile \left(\frac{2\pi}{L}\ell\circ\alpha(u(x))\right) = \chordarcprofile(x).
 \end{align*}
 
-Observe that $\alpha' = v_2$ and
+Observe that $\alpha' = v_2 = \tang_{p_0} - \tang_{q_0}$ so that \(\partial_x \alpha(u(x)) = -\tfrac{L}{4\pi} v_2\). Using also the first variation of $d$ at optimal points in Proposition \ref{prop:spatial_var}
 \[
-\pd{x} (\ell\circ\alpha)^{-1} = -\frac{1}{2}.
-\]
-Therefore, using also the first variation of $d$ \eqref{eq:d_first_var}, we have
-\[
-Z'(x_0) = Dd \cdot \left(-\frac{1}{2}v_2\right) = -\frac{1}{2} \cos\theta (-\omega_{p_0} + \omega_{q_0}) \cdot (\tang_{p_0} - \tang_{q_0}) = \cos\theta
+Z'(x_0) = \frac{2\pi}{L} Dd \cdot \left(-\frac{L}{4\pi}v_2\right) = -\frac{1}{2} \cos\theta (-\omega_{p_0} + \omega_{q_0}) \cdot (\tang_{p_0} - \tang_{q_0}) = \cos\theta
 \]
 proving the first equation.
 
 For the second equation, we have
 \[
-Z''(x_0) = D^2 d \cdot \left(-\frac{1}{2} v_2\right)
+Z''(x_0) = \frac{2\pi}{L} D^2 d \left(-\frac{L}{4\pi} v_2, -\frac{L}{4\pi} v_2\right) = \frac{L}{8\pi} D^2 d (v_2, v_2)
 \]
-thinking of $D^2 d$ as a quadratic form. Now apply Proposition \ref{prop:spatial_var} to obtain
+as a bilinear form. Now apply Proposition \ref{prop:spatial_var} to obtain
+\begin{equation}
+\label{eq:barrier_secondvar}
+Z''(x_0) = \frac{L}{8\pi} \left(\sqrt{1-\cos^2\theta} K (v_2, v_2) + \frac{1-\cos^2\theta}{d} M (v_2, v_2)\right).
+\end{equation}
+
+We have,
 \[
-Z''(x_0) = \sqrt{1-\cos^2\theta} K\cdot \left(-\frac{1}{2} v_2\right) + \frac{1-\cos^2\theta}{d} M \cdot \left(-\frac{1}{2} v_2\right).
-\]
-For the first term we have
-\begin{align*}
-\sqrt{1-\cos^2\theta} K \cdot \left(-\frac{1}{2} v_2\right) &= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} 
+K(v_2, v_2) =
 \begin{pmatrix}
 1 & -1
 \end{pmatrix}
 \begin{pmatrix}
-\curvecurv_{p_0} & 0 \\
-0 & (-1)^{\xi + 1} \curvecurv_{q_0}
+\curvecurv_{p} & 0 \\
+0 & \tangindicator \curvecurv_{q}
 \end{pmatrix}
 \begin{pmatrix}
 1 \\
 -1
-\end{pmatrix} \\
-&= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} (\curvecurv_{p_0} + (-1)^{\xi + 1} \curvecurv_{q_0})
-\end{align*}
-which is the first term in the second equation of the proposition.
+\end{pmatrix}
+= \curvecurv_p + \tangindicator \curvecurv_q
+\]
+and
+\[
+M(v_2, v_2) = \begin{pmatrix}
+1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+1 & \tangindicator \\
+\tangindicator & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+-1
+\end{pmatrix}
+= \begin{cases}
+0, & \tangindicator = 1 \\
+4, & \tangindicator = -1.
+\end{cases}
+\]
 
-For the second term, we treat the two cases $\xi=1$ and $\xi=0$ separately. In the first case, we just observe that $v_2$ is a null eigenvector of $M=M_+$ so that the second term vanishes when $\xi=1$. 
-
-For case two, we have $M=M_-$ and we can't apply the same trick to kill the second term, since this would require we use the null eigenvector $v_1$ of $M_-$ in the definition of the curve $\alpha$. But recall that from the proof of Proposition \ref{prop:spatial_var}, $v_1$ is annihilated by $d\ell$ and so we can't invert $\ell\circ\alpha$ in this situation. Instead, we make do again with using $v_2$, which has length $\sqrt{2}$ and is an eigenvector of $M_-$ with eigenvalue $2$ so that $M_- (v_2) = 4$ which leads to the required second term when $\xi=0$.
+Substitution in equation \eqref{eq:barrier_secondvar} gives the desired expression.
 \end{proof}
+
+\begin{remark}
+In the case \(\tangindicator = 1\), the second term of \(\chordarcprofile''\) is not present. This is because \(v_2\) is an eigenvector of \(M\) with eigenvalue \(\lambda_2 = 0\) in the case \(\tangindicator = 1\). In the case \(\tangindicator = -1\), the corresponding eigenvalue is \(\lambda_2 = 2\) and so the second term is not annihilated. We might like to try annihilate this term by using \(v_1\) instead of \(v_2\) in the case \(\tangindicator = -1\), but this leads to the vacuous equation \(0 = 0\) since the corresponding curve \(\alpha(u) = (p_0, q_0) + u v_1\) preserves length.
+\end{remark}
 
 To end this section, we derive a viscosity equation for the chord/arc-profile of \(\gamma\). In the next section, we couple this with time variations to obtain a viscosity equation for the chord/arc-profile of a simple closed curve evolving by \ref{eq:normalised_flow} which forms the basis of the comparison theorem \ref{thm:comparison}. 
 
