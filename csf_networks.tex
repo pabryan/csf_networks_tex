@@ -506,16 +506,6 @@ Hence,
 The variation in the second argument is similar.
 \end{proof}
 
-Next, let us note that optimal points are never nodes.
-
-\begin{lemma}
-Let \((p_0,q_0) \in \sphere^1 \times \sphere^1\) optimal; that is \(Z(\tfrac{2\pi}{L}\ell(p_0,q_0)) = \tfrac{L}{2\pi} d(p_0, q_0)\). Then \(p_0,q_0 \notin \{a_i\}\).
-\end{lemma}
-
-\begin{proof}
-There are precisely two length preserving variations, and one increases \(d\).
-\end{proof}
-
 Using the lemma, we may now obtain the second variation formula at optimal points.
 
 \begin{prop}[Spatial Second Variation at Optimal Points]
@@ -615,33 +605,6 @@ which gives the desired expression for $\xi=1$ when expressed in matrix form.
 
 \end{proof}
 
-The next lemma gives a useful first application of the first variation formula for \(d\) that allows us to exploit concavity properties of the chord/arc-profile. 
-
-\begin{lemma}
-\label{lem:concave_barrier}
-If there exists a strictly concave, positive function $\phi: (0, 2\pi) \to \RR$ that is symmetric about $\pi$ and supporting $\chordarcprofile$ at $x_0=\ell(p_0,q_0)$ (so that $\phi(x) \leq \chordarcprofile(x)$ and $\phi(x_0)=\chordarcprofile(x_0)$), then $\tang_{p_0} \ne \tang_{q_0}$. In particular, this is true if $\gamma$ is strictly convex.
-\end{lemma}
-
-\begin{proof}
-Suppose there is a $\phi$ as in the statement of the lemma. We proceed as described in \cite{MR2794630}. To obtain a contradiction, let us suppose that $\tang_{p_0} = \tang_{q_0} \ne w$. Then the normal makes an acute angle with the chord $\overline{p_0 q_0}$ at one endpoint, and an obtuse angle at the other. Therefore points on the chord near one endpoint are inside the region enclosed by $\gamma$, while points near the other endpoint are outside, implying that there is at least one other point where the curve $\gamma$ meets the chord. We may assume that an intersection occurs at $s$ with $p_0 < s < q_0$. Then we have
-\begin{align*}
-d(p_0, q_0) &= d(p_0, s) + d(s, q_0) \\
-\ell(p_0, q_0) &= \min\{\ell(p_0, s) + \ell(s, q_0),  2\pi -\ell(p_0,s ) - \ell(s, q_0)\}.
-\end{align*}
-Since $\phi$ is strictly concave, $\phi(x + y) = \phi(x + y) + \phi(0) \leq \phi(x) + \phi(y)$ whenever $x, y > 0$ and $x + y < 2\pi$. Noting also that $\phi(x) = \phi(2\pi - x)$, we have
-\[
-\begin{split}
-0 = \chordarcprofile(\ell(p_0, q_0)) - \phi(\ell(p_0, q_0)) &=  d(p_0, q_0) - \phi(\ell(p_0, q_0)) \\
-&= d(p_0, s) + d(s, q_0) - \phi(\ell(p_0, s) + \ell(s,  q_0)) \\
-&> d(p_0, s) - \phi(\ell(p_0, s)) + d(s, q_0) - \phi(\ell(s, q_0)) \\
-&\geq \chordarcprofile(\ell(p_0, s)) - \phi(\ell(p_0, s)) + \chordarcprofile(\ell(s, q_0)) - \phi(\ell(s, q_0)) \geq 0.
-\end{split}
-\]
-Thus we have a contradiction. 
-
-If $\gamma$ is strictly convex, of course $\tang_p \ne \tang_q$ for any $p\ne q$, but we can also note that $\phi=\chordarcprofile$ is itself strictly concave by Proposition \ref{prop:barrier} below and then apply the lemma.
-\end{proof}
-
 \subsection{Differential inequalities}
 \label{sec:orgheadline9}
 
@@ -654,7 +617,6 @@ The chord/arc-profile $\chordarcprofile$ satisfies the following differential in
 Z'_- &\leq \cos\theta \leq Z'_+, \\
 Z'' &\leq \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\curvecurv_{p_0} + (-1)^{\xi+1}\curvecurv_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
 \end{align*}
-In particular, if $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
 \end{prop}
 
 Recall that the support inequality means for every \(x_0 \in [0,2\pi]\) there exists a smooth function \(Z\) defined in a neighbourhood of \(x_0\) such that \(Z(x) \geq \chordarcprofile\), \(Z(x_0) = \chordarcprofile(x_0)\) and
@@ -722,21 +684,7 @@ which is the first term in the second equation of the proposition.
 For the second term, we treat the two cases $\xi=1$ and $\xi=0$ separately. In the first case, we just observe that $v_2$ is a null eigenvector of $M=M_+$ so that the second term vanishes when $\xi=1$. 
 
 For case two, we have $M=M_-$ and we can't apply the same trick to kill the second term, since this would require we use the null eigenvector $v_1$ of $M_-$ in the definition of the curve $\alpha$. But recall that from the proof of Proposition \ref{prop:spatial_var}, $v_1$ is annihilated by $d\ell$ and so we can't invert $\ell\circ\alpha$ in this situation. Instead, we make do again with using $v_2$, which has length $\sqrt{2}$ and is an eigenvector of $M_-$ with eigenvalue $2$ so that $M_- (v_2) = 4$ which leads to the required second term when $\xi=0$.
-
-Finally, if $\gamma$ is convex, then $\curvecurv \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$. Moreover, since the closure of the region bounded by $\curvecurv$ is a convex body, and since $X(p_0), X(q_0)$ lie in the closure of this region, for any $u \in [0,1]$, we must have that $X(p_0) + u(X(q_0) - X(p_0))$ also lies in this region so that $(X(q_0) - X(p_0))$ (and hence $w = \tfrac{1}{d(p_0,q_0)} (X(q_0) - X(p_0))$) points inward ensuring that $\delta = 1$. Therefore, at every point $x_0$, the function $Z$ satisfies
-\[
-Z'' \leq - \frac{\sqrt{1-\cos^2 \theta}}{4} (\curvecurv_{p_0} + \curvecurv_{q_0}) \leq 0
-\]
-and $\chordarcprofile$ is everywhere supported above by a concave function, hence is itself concave \cite{MR1674097}.
 \end{proof}
-
-\begin{remark}
-Compare the above with similar results obtained in \cite{MR1674097}, pertaining to isoperimetric regions of convex bodies in Euclidean space and in \cite{MR875084}, pertaining to isoperimetric regions in compact surfaces. As described in \cite{pbthesis}, both arguments lead to the concavity of $\isoprofile^2(x) + K_0 x^2$ where $\isoprofile$ is the isoperimetric profile, and $K_0$ is a lower bound on boundary mean curvature or ambient Gauss curvature respectively. In particular, if the curvature is non-negative, then not only is the isoperimetric profile concave, but it's square also. Here, the analogous result is not true for the chord/arc-profile in the strongest possible sense as seen by the simple counter-example of the unit circle, whose chord/arc-profile is 
-\[
-\chordarcprofile_{\sphere^1} (x) = 2 \sin \left(\frac{x}{2}\right).
-\]
-This is a strictly concave function whose square is not concave. This seems related to the fact that the local behaviour of the chord/arc-profile is determined by $\curvecurv^2$ as opposed to the isoperimetric profile of a surface or convex body in the plane, which is locally determined by the Gauss curvature or boundary mean curvature as appropriate. The difference is that for the chord/arc-profile the sign of the curvature is irrelevant.
-\end{remark}
 
 To end this section, we derive a viscosity equation for the chord/arc-profile of \(\gamma\). In the next section, we couple this with time variations to obtain a viscosity equation for the chord/arc-profile of a simple closed curve evolving by \ref{eq:normalised_flow} which forms the basis of the comparison theorem \ref{thm:comparison}. 
 
@@ -789,6 +737,76 @@ In this case $M=M_-$, but applying inequality \eqref{eq:matrix_inequality} to $v
 0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\curvecurv_{p_0} - \curvecurv_{q_0}) + 4\frac{1-(Z')^2(x_0)}{Z(x_0)} -4Z''
 \]
 which is the required inequality when $\xi=0$.
+\end{proof}
+
+\subsection{Convex Networks}
+
+We now consider the implications of the variational formulae and differential inequalities in the case of convex networks. These are rather more well behaved than general networks, and serve as a model case. In particular, the chord-arc profile is concave. We also deduce some properties for general networks at optimal points that behave similar to the convex case, in particular relating local concavity of the profile to convex-like behaviour at corresponding optimal points. The analysis, particularly of the second variation affords control of the topology of optimal points (through the indicator functions) essential to the comparison arguments later.
+
+\begin{lemma}
+If $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
+\end{lemma}
+
+\begin{proof}
+If $\gamma$ is convex, then $\curvecurv \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$. Moreover, since the closure of the region bounded by $\curvecurv$ is a convex body, and since $X(p_0), X(q_0)$ lie in the closure of this region, for any $u \in [0,1]$, we must have that $X(p_0) + u(X(q_0) - X(p_0))$ also lies in this region so that $(X(q_0) - X(p_0))$ (and hence $w = \tfrac{1}{d(p_0,q_0)} (X(q_0) - X(p_0))$) points inward ensuring that $\delta = 1$. Therefore, at every point $x_0$, the function $Z$ satisfies
+\[
+Z'' \leq - \frac{\sqrt{1-\cos^2 \theta}}{4} (\curvecurv_{p_0} + \curvecurv_{q_0}) \leq 0
+\]
+and $\chordarcprofile$ is everywhere supported above by a concave function, hence is itself concave \cite{MR1674097}.
+\end{proof}
+
+\begin{remark}
+Compare the above with similar results obtained in \cite{MR1674097}, pertaining to isoperimetric regions of convex bodies in Euclidean space and in \cite{MR875084}, pertaining to isoperimetric regions in compact surfaces. As described in \cite{pbthesis}, both arguments lead to the concavity of $\isoprofile^2(x) + K_0 x^2$ where $\isoprofile$ is the isoperimetric profile, and $K_0$ is a lower bound on boundary mean curvature or ambient Gauss curvature respectively. In particular, if the curvature is non-negative, then not only is the isoperimetric profile concave, but it's square also. Here, the analogous result is not true for the chord/arc-profile in the strongest possible sense as seen by the simple counter-example of the unit circle, whose chord/arc-profile is
+\[
+\chordarcprofile_{\sphere^1} (x) = 2 \sin \left(\frac{x}{2}\right).
+\]
+This is a strictly concave function whose square is not concave. This seems related to the fact that the local behaviour of the chord/arc-profile is determined by $\curvecurv^2$ as opposed to the isoperimetric profile of a surface or convex body in the plane, which is locally determined by the Gauss curvature or boundary mean curvature as appropriate. The difference is that for the chord/arc-profile the sign of the curvature is irrelevant.
+\end{remark}
+
+Next, let us note that for strictly convex \(\gamma\), optimal points are never nodes.
+
+\begin{lemma}
+Let \(\gamma\) be strictly convex and let \((p_0,q_0) \in \sphere^1 \times \sphere^1\) be optimal; that is \(Z(\tfrac{2\pi}{L}\ell(p_0,q_0)) = \tfrac{L}{2\pi} d(p_0, q_0)\). Then \(p_0,q_0 \notin \{a_i\}_{i=1}^k\). That is, neither \(p_0\) nor \(q_0\) is a node.
+\end{lemma}
+
+\begin{proof}
+We show that if at least one of \(p_0, q_0\) is a node, then there is a length preserving variation strictly decreasing \(d\) and hence \((p_0, q_0)\) cannot be optimum.
+
+The argument is symmetric in \(p_0, q_0\) so without loss of generality, suppose \(p_0 = a_i\) is a node and \(q_0\) is any other point, possibly also a node. Let \(\alpha_{\pm} (u) = (a_i \pm u, q_0 \pm u)\). Then \(\ell(\alpha_{\pm} (u)) = \ell(a_i, q_0)\) is constant. Lemma \ref{lem:firstvar} gives
+\[
+\left.\partial_u\right|_{u=0} d (\alpha_{\pm} (u)) = \mp\ip{\tang^{\pm}(a_i)}{w} \pm \ip{\tang^{\pm} (q_0)}{w}.
+\]
+
+First consider the case where \(q_0\) is not a node, in which case \(\tang^-(q_0) = \tang^+(q_0)\). If \(-\ip{\tang^+(a_i)}{w} + \ip{\tang^+ (q_0)}{w} < 0\), then we are done so suppose that \(-\ip{\tang^+(a_i)}{w} + \ip{\tang^+ (q_0)}{w} \geq 0\). Then
+\[
+\ip{\tang^-(a_i)}{w} - \ip{\tang^- (q_0)}{w} \leq \ip{\tang^-(a_i) - \tang^+(a_i)}{w}.
+\]
+\end{proof}
+
+The next lemma gives a useful first application of the first variation formula for \(d\) that allows us to exploit concavity properties of the chord/arc-profile. In particular, it shows that if the chord-arc profile is supported from below by a concave function, then the corresponding optimal points are convex-like.
+
+\begin{lemma}
+\label{lem:concave_barrier}
+If there exists a strictly concave, positive function $\phi: (0, 2\pi) \to \RR$ that is symmetric about $\pi$ and supporting $\chordarcprofile$ at $x_0=\ell(p_0,q_0)$ (so that $\phi(x) \leq \chordarcprofile(x)$ and $\phi(x_0)=\chordarcprofile(x_0)$), then $\tang_{p_0} \ne \tang_{q_0}$.
+\end{lemma}
+
+\begin{proof}
+Suppose there is a $\phi$ as in the statement of the lemma. We proceed as described in \cite{MR2794630}. To obtain a contradiction, let us suppose that $\tang_{p_0} = \tang_{q_0} \ne w$. Then the normal makes an acute angle with the chord $\overline{p_0 q_0}$ at one endpoint, and an obtuse angle at the other. Therefore points on the chord near one endpoint are inside the region enclosed by $\gamma$, while points near the other endpoint are outside, implying that there is at least one other point where the curve $\gamma$ meets the chord. We may assume that an intersection occurs at $s$ with $p_0 < s < q_0$. Then we have
+\begin{align*}
+d(p_0, q_0) &= d(p_0, s) + d(s, q_0) \\
+\ell(p_0, q_0) &= \min\{\ell(p_0, s) + \ell(s, q_0),  2\pi -\ell(p_0,s ) - \ell(s, q_0)\}.
+\end{align*}
+Since $\phi$ is strictly concave, $\phi(x + y) = \phi(x + y) + \phi(0) \leq \phi(x) + \phi(y)$ whenever $x, y > 0$ and $x + y < 2\pi$. Noting also that $\phi(x) = \phi(2\pi - x)$, we have
+\[
+\begin{split}
+0 = \chordarcprofile(\ell(p_0, q_0)) - \phi(\ell(p_0, q_0)) &=  d(p_0, q_0) - \phi(\ell(p_0, q_0)) \\
+&= d(p_0, s) + d(s, q_0) - \phi(\ell(p_0, s) + \ell(s,  q_0)) \\
+&> d(p_0, s) - \phi(\ell(p_0, s)) + d(s, q_0) - \phi(\ell(s, q_0)) \\
+&\geq \chordarcprofile(\ell(p_0, s)) - \phi(\ell(p_0, s)) + \chordarcprofile(\ell(s, q_0)) - \phi(\ell(s, q_0)) \\
+&\geq 0.
+\end{split}
+\]
+Thus we have a contradiction.
 \end{proof}
 
 \section{Comparison functions}
