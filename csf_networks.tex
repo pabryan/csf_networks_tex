@@ -317,9 +317,12 @@ Substituting into equation \eqref{eq:dtA_prelim} gives the result.
 
 \begin{remark}
 \begin{enumerate}
-\item It is quite possible (especially for \(k > 6\)) that \(\partial_t \area > 0\) as opposed to smooth curve shortening flow where \(\partial_t \area = - 2\pi < 0\).
+\item The sum on the right hand side of the evolution of \(\area\) will generally not vanish. In certain symmetric cases, such as the convex, symmetric, lens shaped networks studied in \cite{MR2763716}, the symmetry does in fact cause the terms to cancel. In that situation, there are two nodes \(a_1, a_2\) and \(\curvecurv^{\pm}_1 = \curvecurv^{\mp}_2\). Such symmetries, being invariance under ambient isometry, are of course preserved along the flow. The presence of the nodes is still felt in these cases through \(\partial_t \area = -(2- \tfrac{k}{3})\pi\) (as opposed to \(\partial_t \area = - 2\pi\) in the smooth case) but only the number of nodes \(k\), is relevant.
 
-\item The sum on the right hand side of the evolution of \(\area\) will generally not vanish. In certain symmetric cases, such as the convex, symmetric, lens shaped networks studied in \cite{MR2763716}, the symmetry does in fact cause the terms to cancel. Such symmetries, being invariance under ambient isometry are of course preserved along the flow. The presence of the nodes is still felt in these cases through \(\partial_t \area = (2- \tfrac{k}{3})\pi\) (as opposed to \(\partial_t \area = - 2\pi\) in the smooth case) but only the number of nodes \(k\), is relevant.
+\item From the term, \(-(2- \tfrac{k}{3})\pi\) in \(\partial_t \area\), we see that increasing the number of nodes tends to slow the contraction. In fact, it is quite possible (especially for \(k > 6\)) that \(\partial_t \area > 0\), whence \(\gamma\) expands. Compare with the smooth curve shortening flow where \(\partial_t \area = - 2\pi < 0\).
+
+\item In the particular case \(k = 6\), there exist static solutions enclosing area \(A\) for every \(A > 0\). These are obtained by letting \(\gamma\) be any equi-angular hexagon, and the \(L_i\) straight lines. On the other hand, by Gauss-Bonnet, and the triple condition we have \(\int_{\gamma} \curvecurv = (2 - \tfrac{k}{3}) \pi\), so that \(\gamma\) is polygonal if and only if \(\curvecurv \equiv 0\), if and only if \(k = 6\) and \(\gamma\) is an equi-angular hexagon. Given such an initial, equi-angular hexagon \(\gamma\), if the \(L_i\) are not straight lines, then the curvature at the node will drive \(\gamma\) away from a hexagon. Even if the curvature of the \(L_i\) vanishes in a neighbourhood of node, but is not identically zero, we expect infinite propagation speed to force the curvature at the node away from zero and again disturb the hexagon. Thus the static solutions are unstable under small perturbations.
+
 \end{enumerate}
 \end{remark}
 
@@ -390,7 +393,7 @@ with \(R\) bounded independently of \(a_i\) and depending only on bounds for \(\
 \lim_{s\to 0} \frac{\tfrac{2\pi}{L} d(a_{i_{\max}} - s, a_{i_{\max}} + s) - \sqrt{3} s}{s^2} = - \frac{1}{4} (\curvecurv^+_{i_{\max}} + \curvecurv^-_{i_{\max}})
 \]
 
-If we knew that for small \(x\), the infimum defining \(\chordarcprofile\) was realized symmetrically so that \(\chordarcprofile(x) = \tfrac{2\pi}{L} d(a_i - s, a_i + s)\), then we'd be done. We cannot guarantee this will be happen, but we only need it to first order. That is, choose \(s_1, s_2 > 0\) such that \(\chordarcprofile(x) = \tfrac{2\pi}{L} d(a_i - s_1, a_i + s_2)\) with \(x = \tfrac{2\pi}{L} \ell(a_i - s_1, a_i + s_2) = \tfrac{2\pi}{L} (s_1 + s_2)\). Let \(\epsilon = s_2 - s_1 \in (-\tfrac{2\pi}{L} x, \tfrac{2\pi}{L}x)\). Noting that \((a_i - s_1, a_i + s_2)\) is smooth point, expanding to first order in \(\epsilon\) near \(\epsilon = 0\) we have,
+If we knew that for small \(x\), the infimum defining \(\chordarcprofile\) was realized symmetrically so that \(\chordarcprofile(x) = \tfrac{2\pi}{L} d(a_i - s, a_i + s)\), then we'd be done. We cannot guarantee this will be happen, but we only need it to first order. That is, choose \(s_1, s_2 > 0\) such that \(\chordarcprofile(x) = \tfrac{2\pi}{L} d(a_i - s_1, a_i + s_2)\) with \(x = \tfrac{2\pi}{L} \ell(a_i - s_1, a_i + s_2) = \tfrac{2\pi}{L} (s_1 + s_2)\). Let \(\epsilon = s_2 - s_1 \in (-\tfrac{2\pi}{L} x, \tfrac{2\pi}{L}x)\). Noting that \((a_i - s_1, a_i + s_2)\) is a smooth point, expanding to first order in \(\epsilon\) near \(\epsilon = 0\) we have,
 \[
 \begin{split}
 \abs{\frac{2\pi}{L} d(a_i - s_1, a_i + s_1) - \chordarcprofile(x)} &= \abs{d(a_i - s_1, a_i + s_1) - d(a_i - s_1, a_i + s_1 + \epsilon)} \\
@@ -616,7 +619,7 @@ Assuming that $\tang_{p_0} \ne \tang_{q_0}$, since \(w\) bisects \(\tang_{p_0}\)
 \[
 -\ip{w}{\nor_{q_0}} = \ip{w}{\nor_{p_0}} = \norindicator \sqrt{1-\cos^2\theta}.
 \]
-Since $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$, applying the double angle formula, we also have 
+Also since $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$, applying the double angle formula yields,
 \[
 \ip{\tang_{p_0}}{\tang_{q_0}} = 2\cos^2\theta - 1.
 \]
@@ -648,12 +651,12 @@ which gives the desired expression for $\tangindicator=1$ when expressed in matr
 
 Next, from these variational formulae, we obtain a (weak) differential inequality for \(\chordarcprofile\). Let us make the following definition.
 \begin{defn}
-The point \(x_0 \in (0, 2\pi)\) will be called a \emph{smooth point} if there exists a smooth minimiser \((p_0, q_0)\). That is, if there exists \((p_0, q_0) \in \gamma^{\ast} \times \gamma^{\ast}\) such that \(\ell(p_0, q_0) = \tfrac{L}{2\pi} x_0\) and \(\chordarcprofile(x_0) = \tfrac{2\pi}{L} d(p_0, q_0)\).
+The point \(x_0 \in (0, 2\pi)\) will be called a \emph{regular point} if there exists a smooth minimiser \((p_0, q_0)\). That is, if there exists \((p_0, q_0) \in \gamma^{\ast} \times \gamma^{\ast}\) such that \(\ell(p_0, q_0) = \tfrac{L}{2\pi} x_0\) and \(\chordarcprofile(x_0) = \tfrac{2\pi}{L} d(p_0, q_0)\).
 \end{defn}
 
 \begin{prop}
 \label{prop:barrier}
-At smooth points \(x_0\), the chord/arc-profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
+At regular points \(x_0\), the chord/arc-profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
 \begin{align*}
 Z'_- &\leq \cos\theta \leq Z'_+, \\
 Z'' &\leq \frac{L}{2\pi}\left[\frac{\norindicator \sqrt{1-\cos^2\theta}}{4} (\curvecurv_p + \tangindicator\curvecurv_q) + \frac{1}{2}(1-\tangindicator) \frac{1-\cos^2\theta}{d}\right].
