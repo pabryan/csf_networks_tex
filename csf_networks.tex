@@ -421,11 +421,45 @@ There is a \emph{qualitative} change in behaviour. Firstly, the first order coef
 \subsection{Variations}
 \label{sec:orgheadline8}
 
-The main techniques we employ in this paper to understand the chord/arc-profile are variational and we begin with the first and second variations of the geometric quantities \(\ell\) and \(d\). Throughout this section we will assume that \(\gamma\) is parametrised by arc-length. As with the evolution of \(\ell\) and \(d\), we generally only require the variations at smooth points, so throughout this section we also assume that \((p,q) \in \gamma^{\ast} \times \gamma^{\ast}\) is a smooth point. The only exception is that we will have occasion later to use the first variation, Lemma \ref{lem:firstvar} at a node and so we state it for arbitrary points \((p,q)\).
+The main techniques we employ in this paper to understand the chord/arc-profile are variational and we begin with the first and second variations of the geometric quantities \(\ell\) and \(d\). Throughout this section we will assume that \(\gamma\) is parametrised by arc-length.
 
-Recall that \(w\) defined in equation \eqref{eq:w} denotes the unit vector pointing from \(\gamma(p)\) to \(\gamma(q)\). Let us also write $\omega_p$ and $\omega_q$ for the $1$-forms dual to the unit tangent vectors $\tang_p$ and $\tang_q$ at $p$ and $q$ respectively.
+Now, we need to take a little care at a node, distinguishing between variations in the direction \(\tang^+\) and variations in the direction \(\tang^-\). For convenience, let us write \(\tang^+ = \tang^-\) for the tangent at a smooth point. Write $\omega_p^{\pm}$ and $\omega_q^{\pm}$ for the $1$-forms dual to the unit tangent vectors $\tang_p^{\pm}$ and $\tang_q^{\pm}$ at $p$ and $q$ respectively. At a smooth point \(p\), \(\omega_p^+ = \omega^-_p\) and likewise for a smooth point \(q\). Let us note that at a node, \(\omega_p^+\) acts on \(\tang_p^+\), but not on \(\tang_p^-\) so that \(\omega_p^+ (\tang_p^+) = 1\) but \(\omega_p^+ (\tang_p^-)\) is not defined. Similar considerations applying when swapping \(+\) and \(-\) and also for \(q\).
 
-The derivation is quite standard these days, but we give the full details here to be complete. Recall from Definition \ref{defn:dist} that the extrinsic distance is defined to be,
+For a continuous function \(f : \gamma \times \gamma \to \RR\) that is smooth on each closed interval \([a_{i-1}, a_i] \times [a_{j-1}, a_j]\) let us write,
+\[
+\partial^{\pm}_p f (p_0, q_0) = \lim_{u\to 0^{\pm}} \partial_u f(p_0 + u, q_0)
+\]
+and
+\[
+\partial^{\pm}_q f (p_0, q_0) = \lim_{u\to 0^{\pm}} \partial_u f(p_0, q_0 + u)
+\]
+for the one-sided derivatives and define differentials,
+\[
+D^{\pm}_p f (p_0, q_0) = \partial^{\pm}_p f (p_0, q_0) \omega_p^{\pm}
+\]
+and
+\[
+D^{\pm}_q f (p_0, q_0) = \partial^{\pm}_q f (p_0, q_0) \omega_q^{\pm}.
+\]
+Again, of course, at a smooth point \(D^+_p = D^-_p\) and likewise for \(q\). Then we define the differential of \(f\) (omitting \((p_0, q_0)\) for clarity) by,
+\[
+\begin{split}
+Df \cdot (c_p \tang_p^{\pm} + c_q \tang_q^{\pm}) &= c_p D^{\pm}_p f  (\tang_p^{\pm}) + c_q D^{\pm}_q f  (\tang_q^{\pm}) \\
+&= c_p \partial^{\pm}_p f  + c_q \partial^{\pm}_q f
+\end{split}
+\]
+written more briefly as,
+\[
+Df = \partial^{\pm}_p f \omega^{\pm}_p + \partial^{\pm}_q f \omega^{\pm}_q.
+\]
+
+Note that the \(\pm\) on the \(p\) is independent of the \(\pm\) on the \(q\) so for example,
+\[
+Df \cdot(\tang_p^+ + \tang_q^-) = \partial_p^+ f + \partial_q^- f
+\]
+is a legitimate expression.
+
+For the reader's convenience, let us recall from Definition \ref{defn:dist} that the extrinsic distance is defined to be,
 \[
 d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|.
 \]
@@ -433,44 +467,32 @@ and the oriented intrinsic distance is defined to be
 \[
 \ell_t(p, q) = \int_{\gamma_t} ds_t = \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t.
 \]
-
-We need to take a little care at a node, distinguishing between variations in the direction \(\tang^+\) and variations in the direction \(\tang^-\). It's easier to phrase this by varying \(p\) and \(q\) individually and then using linearity. For convenience, let us also write \(\tang^+ = \tang^-\) for the tangent at a smooth point.
+We also denoted by \(w\) in equation \eqref{eq:w}, the unit vector pointing from \(\gamma(p)\) to \(\gamma(q)\).
 
 \begin{lemma}[First Variation]
 \label{lem:firstvar}
 \[
-\begin{split}
-\left.\partial_u\right|_{u=0} \ell (p \pm u, q)  &= \mp 1 \\
-\left.\partial_u\right|_{u=0} (p, q \pm u) &= \pm 1.
-\end{split}
+D\ell = -\omega_p^{\pm} + \omega_q^{\pm}
 \]
 and
 \[
-\begin{split}
-\left.\partial_u\right|_{u=0} d (p \pm u, q) &= \mp \ip{\tang^{\pm}(p)}{w} \\
-\left.\partial_u\right|_{u=0} d (p, q \pm u) &= \pm \ip{\tang^{\pm}(q)}{w}.
-\end{split}
-\]
-In particular, at smooth points \((p,q) \in \gamma^{\ast} \times \gamma^{\ast}\) we have,
-\[
-D\ell = -\omega_p + \omega_q
-\]
-and
-\[
-D d = -\ip{\tang_p}{w} \omega_p + \ip{\tang_q}{w} \omega_q.
+D d = -\ip{\tang^{\pm}_p}{w} \omega_p^{\pm} + \ip{\tang^{\pm}_q}{w} \omega_q^{\pm}.
 \]
 \end{lemma}
 
 \begin{proof}
-The variations of \(l\) follow by taking one-sided derivatives of \(\int_{p\pm u}^{a_i} ds_t\) and \(\int_{a_{j-1}}^{q \pm u} ds_t\) with respect to u.
+The variations of \(l\) follow by taking one-sided derivatives of \(\int_{p + u}^{a_i} ds_t\) and \(\int_{a_{j-1}}^{q + u} ds_t\) with respect to u.
 
 For \(d\),
 \[
-\left.\partial_u\right|_{u=0} \ip{\gamma(q) - \gamma(p \pm u)}{\gamma(q) - \gamma(p \pm u)} = \mp 2 \ip{\tang^{\pm}(p)}{\gamma(q) - \gamma(p)}.
+\begin{split}
+\lim_{u\to 0^{\pm}} \partial_u \ip{\gamma(q) - \gamma(p + u)}{\gamma(q) - \gamma(p + u)} &= \lim_{u\to 0^{\pm}} \left(- 2 \ip{\tang(p+u)}{\gamma(q) - \gamma(p+u)}\right) \\
+&= - 2 \ip{\tang^{\pm}(p)}{\gamma(q) - \gamma(p)}.
+\end{split}
 \]
 Hence,
 \[
-\left.\partial_u\right|_{u=0} d (p \pm u, q) =  \mp \frac{1}{d} \ip{\tang^{\pm}(p)}{\gamma(q) - \gamma(p)} = \mp \ip{\tang^{\pm}(p)}{w}.
+\lim_{u\to 0^{\pm}}  \partial_u d (p + u, q) =  -\frac{1}{d} \ip{\tang^{\pm}(p)}{\gamma(q) - \gamma(p)} = -\ip{\tang^{\pm}(p)}{w}.
 \]
 The variation in the second argument is similar.
 \end{proof}
