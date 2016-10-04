@@ -649,19 +649,23 @@ which gives the desired expression for $\tangindicator=1$ when expressed in matr
 \subsection{Differential inequalities}
 \label{sec:orgheadline9}
 
-Next, from these variational formulae, we obtain a (weak) differential inequality for \(\chordarcprofile\). Let us make the following definition.
+In this section, using the variational formulae, we obtain two (weak) differential inequalities for \(\chordarcprofile\). The first, Theorem \ref{thm:barrier} is a barrier inequality, asserting the existence of a smooth, upper barrier at \emph{regular} points \(x_0\) (defined below). Such a barrier proves quite useful for deducing properties of the chord-arc profile in the sequel. As a corollary of the barrier inequality, we obtain the second differential inequality, Theorem \ref{thm:spatial_viscosity}. This is a viscosity equation for the chord-arc profile, asserting that \emph{if} a smooth, lower support function exists, it satisfies a certain differential inequality. Such an equation is useful for comparisons and forms the heart of our later arguments.
+
+Let us make the following definition.
 \begin{defn}
 The point \(x_0 \in (0, 2\pi)\) will be called a \emph{regular point} if there exists a smooth minimiser \((p_0, q_0)\). That is, if there exists \((p_0, q_0) \in \gamma^{\ast} \times \gamma^{\ast}\) such that \(\ell(p_0, q_0) = \tfrac{L}{2\pi} x_0\) and \(\chordarcprofile(x_0) = \tfrac{2\pi}{L} d(p_0, q_0)\).
 \end{defn}
 
-\begin{prop}
-\label{prop:barrier}
+Our barrier inequality now reads as follows:
+
+\begin{theorem}
+\label{thm:barrier}
 At regular points \(x_0\), the chord/arc-profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
 \begin{align*}
-Z'_- &\leq \cos\theta \leq Z'_+, \\
-Z'' &\leq \frac{L}{2\pi}\left[\frac{\norindicator \sqrt{1-\cos^2\theta}}{4} (\curvecurv_p + \tangindicator\curvecurv_q) + \frac{1}{2}(1-\tangindicator) \frac{1-\cos^2\theta}{d}\right].
+\chordarcprofile'_- &\leq \cos\theta \leq \chordarcprofile'_+, \\
+\chordarcprofile'' &\leq \frac{L}{2\pi}\left[\frac{\norindicator \sqrt{1-\cos^2\theta}}{4} (\curvecurv_p + \tangindicator\curvecurv_q) + \frac{1}{2}(1-\tangindicator) \frac{1-\cos^2\theta}{d}\right].
 \end{align*}
-\end{prop}
+\end{theorem}
 
 Recall that the support inequality means for every \(x_0 \in [0,2\pi]\) there exists a smooth, upper support function \(Z\) (\(Z(x) \geq \chordarcprofile (x)\), \(Z(x_0) = \chordarcprofile(x_0)\)) defined in a neighbourhood of \(x_0\) such that
 \begin{align*}
@@ -749,57 +753,44 @@ Substitution in equation \eqref{eq:barrier_secondvar} gives the desired expressi
 In the case \(\tangindicator = 1\), the second term of \(\chordarcprofile''\) is not present. This is because \(v_2\) is an eigenvector of \(M\) with eigenvalue \(\lambda_2 = 0\) in the case \(\tangindicator = 1\). In the case \(\tangindicator = -1\), the corresponding eigenvalue is \(\lambda_2 = 2\) and so the second term is not annihilated. We might like to try annihilate this term by using \(v_1\) instead of \(v_2\) in the case \(\tangindicator = -1\), but this leads to the vacuous equation \(0 = 0\) since the corresponding curve \(\alpha(u) = (p_0, q_0) + u v_1\) preserves length.
 \end{remark}
 
-To end this section, we derive a viscosity equation for the chord/arc-profile of \(\gamma\). In the next section, we couple this with time variations to obtain a viscosity equation for the chord/arc-profile of a simple closed curve evolving by \ref{eq:normalised_flow} which forms the basis of the comparison theorem \ref{thm:comparison}. 
+We finish this section with the viscosity equation.
 
 \begin{theorem}
 \label{thm:spatial_viscosity}
-Let $(p_0,q_0)$ be points such that $d(p_0, q_0) = \chordarcprofile(\ell(p_0, q_0))$. The chord/arc-profile $\chordarcprofile$ of a smooth, simple, closed curve satisfies the following inequality in the viscosity-sense:
+At a regular point \(x_0\), the chord-arc profile $\chordarcprofile$ of \(\gamma\) satisfies the following inequality in the viscosity-sense:
 \[
--\frac{Z''}{\sqrt{1-(Z')^2}} + (1-\xi(p_0,q_0)) \frac{\sqrt{1 - (Z')^2}}{Z} \geq \frac{(-1)^{\delta(p_0,q_0)+1}}{4} \left[\curvecurv_{p_0} + (-1)^{1-\xi(p_0,q_0)} \curvecurv_{q_0}\right].
+-\frac{\chordarcprofile''}{\sqrt{1-(\chordarcprofile')^2}} + \frac{1}{2} (1-\tangindicator) \frac{\sqrt{1 - (\chordarcprofile')^2}}{\chordarcprofile} \geq \frac{L}{8\pi} \norindicator \left[\curvecurv_p + \tangindicator \curvecurv_q\right].
 \]
 \end{theorem}
 
-This means that for any \(x_0 \in (0,2\pi)\), if \(Z\) is a smooth lower supporting function at \(x_0\), i.e. \(Z\) is defined in a neighbourhood of \(x_0\) such that \(Z(x_0) = \chordarcprofile (x_0)\) and \(Z(x) \leq \chordarcprofile (x)\), then \(Z\) satisfies the inequality in the usual sense.
+This means that for any regular point \(x_0 \in (0,2\pi)\), if \(\varphi\) is a local, smooth, lower supporting function at \(x_0\), (\(\varphi\) is defined in a neighbourhood of \(x_0\) and \(\varphi(x) \leq \chordarcprofile (x)\), \(\varphi(x_0) = \chordarcprofile (x_0)\)), then \(\varphi\) satisfies the inequality in the usual sense. The coefficients, \(\tangindicator, \norindicator, \curvecurv_p, \curvecurv_q\) are evaluated at an optimal point \((p_0, q_0)\) for \(x_0\) and though determined, are a priori unknown.
 
 \begin{proof}
-Fix $x_0 \in (0,2\pi)$. Let $Z(x)$ be a smooth function defined in neighbourhood of $x_0$ and such that $Z(x_0) = \chordarcprofile(x_0)$ and $Z(x) \leq \chordarcprofile(x)$. Choose $(p_0,q_0)$ with $p_0\ne q_0$ so that $\ell(p_0, q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0, q_0)$.  Then we have $d(p, q) \geq \chordarcprofile(\ell(p, q)) \geq Z(\ell(p, q))$ for all $(p,q)$ in an open neighbourhood of $(p_0,q_0)$ small enough so that $Z$ is defined for all $x=\ell(p,q)$. Moreover, we have equality at $(p_0, q_0)$ so that the smooth function $\Phi(p, q) = d(p,q) - Z(\ell(p, q))$ satisfies
+Fix a regular point, $x_0 \in (0,2\pi)$ and suppose $\varphi(x)$ is a smooth function defined in neighbourhood of $x_0$ such that $\varphi(x_0) = \chordarcprofile(x_0)$ and $\varphi(x) \leq \chordarcprofile(x)$. Let \(Z\) denote the smooth, upper barrier function constructed in Theorem \ref{thm:barrier} at \(x_0\). Then,
 \[
-D \Phi = 0, \quad D^2\Phi \geq 0
+Z(x) - \varphi(x) \geq \chordarcprofile(x) - \varphi(x) \geq 0, \quad Z(x_0) - \varphi(x_0) = \chordarcprofile(x_0) - \chordarcprofile(x_0) = 0.
 \]
-at $(p_0, q_0)$.
-
-From the vanishing at $(p_0,q_0)$ of $D\Phi$ applied to $\tang_{p_0}$ and $\tang_{q_0}$ in turn, and from the first variation of $d$ \eqref{eq:d_first_var}, we obtain
-\begin{equation}
-\label{eq:vanishing_first_var}
-Z' = \ip{w}{\tang_{p_0}} = \ip{w}{\tang_{q_0}} = \cos\theta.
-\end{equation}
-
-Using Proposition \ref{prop:spatial_var} then gives the inequality
-\begin{equation}
-\label{eq:matrix_inequality}
-\begin{split}
-0 &\leq D^2\Phi_{(p_0,q_0)} = D^2 d_{(p_0,q_0)} - Z'' D\ell\tensor D\ell \\
-&= \sqrt{1 - (Z')^2(x_0)} K(p_0,q_0) + \frac{1-(Z')^2(x_0)}{Z(x_0)} M (p_0,q_0) - Z''(x_0) M_-.
-\end{split}
-\end{equation}
-
-Again, we consider the two cases, $\xi=1$ and $\xi=0$.
-
-\emph{Case 1} $\xi=1$:
-
-In this case $M=M_+$ and we apply the inequality \eqref{eq:matrix_inequality} to $v_2 = \tang_{p_0} - \tang_{q_0}$, the null eigenvector of $M_+$, to obtain
+Thus the smooth function \(Z(x) - \varphi(x)\) has a local minimum at \(x_0\), hence
 \[
-0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\curvecurv_{p_0} + \curvecurv_{q_0}) - 4Z''
+Z'(x_0) = \varphi'(x_0), \quad Z''(x_0) \geq \varphi''(x_0).
 \]
-which is the required inequality when $\xi=1$.
-
-\emph{Case 2} $\xi=0$:
-
-In this case $M=M_-$, but applying inequality \eqref{eq:matrix_inequality} to $v_1 = \tang_{p_0} + \tang_{q_0}$, the null eigenvector of $M_-$, effectively cancels out all the $Z$ terms which is of no use to us. So instead we use the eigenvector $v_1$ once more to obtain
+We also have,
 \[
-0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\curvecurv_{p_0} - \curvecurv_{q_0}) + 4\frac{1-(Z')^2(x_0)}{Z(x_0)} -4Z''
+\varphi(x_0) = \chordarcprofile(x_0) = \frac{2\pi}{L} d(p_0, q_0)
 \]
-which is the required inequality when $\xi=0$.
+where \((p_0, q_0)\) is optimal for \(x_0\).
+
+Recall, Theorem \ref{thm:barrier} implies
+\begin{align*}
+Z'(x_0) &= \cos \theta, \\
+Z''(x_0) &= \frac{L}{2\pi}\left[\frac{\norindicator\sqrt{1-\cos^2\theta}}{4} (\curvecurv_p + \tangindicator\curvecurv_q) + \frac{1}{2} (1-\tangindicator) \frac{1-\cos^2\theta}{d}\right].
+\end{align*}
+
+Thus \(\varphi' = \cos \theta\) and,
+\[
+\varphi'' \leq \frac{L}{2\pi}\left[\frac{\norindicator\sqrt{1-(\varphi')^2}}{4} (\curvecurv_p + \tangindicator\curvecurv_q) + \frac{1}{2} (1-\tangindicator) \frac{1-(\varphi')^2}{\tfrac{L}{2\pi} \varphi}\right].
+\]
+Rearranging gives the proof.
 \end{proof}
 
 \section{Convex Networks}
