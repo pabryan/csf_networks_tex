@@ -245,7 +245,7 @@ The evolution of \(d = \left(\ip{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\r
 Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 \begin{align*}
 \partial_t \ell(p,q) &= \partial_t \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \partial_t \int_{a_{m-1}}^{a_m} ds_t + \partial_t  \int_{a_{j-1}}^q ds_t \\
-&= \int_p^{a_i} \partial_s \tangspeed - \curvecurv^2 ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} \partial_s \tangspeed - \curvecurv^2 ds_t + \int_{a_{j-1}}^q \partial_s \tangspeed - \curvecurv^2 ds_t \\
+&= \int_p^{a_i} (\partial_s \tangspeed - \curvecurv^2 )ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} (\partial_s \tangspeed - \curvecurv^2 )ds_t + \int_{a_{j-1}}^q (\partial_s \tangspeed - \curvecurv^2) ds_t \\
 &= -\int_p^q \curvecurv^2 ds + \tangspeed_i^- - \tangspeed(p) + \sum_{m=i+1}^{j-1} \tangspeed_m^- - \tangspeed_{m-1}^+ + \tangspeed(q) - \tangspeed_{j-1}^+ \\
 &= -\int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) + \sum_{m=i}^{j-1} \tangspeed_m^- - \tangspeed_m^+.
 \end{align*}
