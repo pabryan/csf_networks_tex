@@ -803,6 +803,51 @@ First let us remark that convex networks are constrained in the maximum number o
 \]
 From this equation we may also conclude that if \(\gamma\) is a convex network (so that \(\curvecurv \geq 0\)) with \(k\) nodes satisfying the triple condition \eqref{eq:triplecondition}, then \(k \leq 6\). In the case \(k = 6\), we must have \(\curvecurv \equiv 0\) so that \(\gamma\) is an equi-angular hexagon, and either this condition must be preserved by the network curve shortening flow, or convexity must be lost. What happens is determined by the unbounded curves \(L_i\). In particular, if all the \(L_i\) are straight lines, then such a network is a static solution. Otherwise, we expect the curvature of the \(L_i\) to drive the loop away from convexity. Notice that to keep the loop static, the unbounded curves would need to satisfy the curve shortening flow along with fixed boundary conditions (as the node is stationary) and fixed gradient at the boundary (as the angle must be preserved). This is an over-determined system so we do not expect the loop to be static if at least one of the \(L_i\) is not a straight line.
 
+Next, let us note that for strictly convex \(\gamma\), optimal points are never nodes.
+
+\begin{lemma}
+Let \(\gamma\) be strictly convex. Then all but at most finitely many \(x_0\) are regular points. More precisely, let \((p_0,q_0) \in \sphere^1 \times \sphere^1\) be optimal; that is \(Z(\tfrac{2\pi}{L}\ell(p_0,q_0)) = \tfrac{L}{2\pi} d(p_0, q_0)\). Then either \((p_0, q_0) \in \gamma^{\ast} \times \gamma^{\ast}\) or \((p_0, q_0) = (a_i, a_j)\) for some \(1 \leq i < j \leq k\).
+\end{lemma}
+
+\begin{proof}
+We show that if one of \(p_0, q_0\) is a node but not the other, then there is a length preserving variation strictly decreasing \(d\) and hence \((p_0, q_0)\) cannot be optimum. Then since there are only finitely many nodes, the set \(\{x_{ij} = \tfrac{L}{2\pi} \ell(a_i, a_j)\}_{i\ne j}\) is finite and all other possible optimum points are regular.
+
+Let us offer two proofs.
+
+\emph{Method 1}: The argument is symmetric in \(p_0, q_0\) so without loss of generality, suppose \(p_0 = a_i\) is a node and \(q_0 \in \gamma^{\ast}\) is a smooth point. If \((p_0, q_0)\) is optimal, from the first variation at optimal points, Proposition \ref{prop:spatial_var}, we have
+\[
+\cos\theta_p^{\pm} = \ip{\tang_p^{\pm}}{w} = \ip{\tang_q}{w} = \cos\theta_q \Rightarrow \theta_p^+ = \theta_p^- = \theta_q.
+\]
+Since \(\tang_p^+ \ne \tang_q^-\) we cannot have \(\theta_p^+ = \theta_p^- = 0\). But for each \(\theta \ne 0\), there are precisely two vectors making angle \(\theta\) with \(w\) and so we conclude that \(\tang_p^+ = \tang_q\) or \(\tang_p^- = \tang_q\). But for a closed, convex curve (even with nodes) this can never happen for \(p \ne q\) hence we obtain a contradiction.
+
+\emph{Method 2}: Again, the argument is symmetric in \(p_0, q_0\). So let \(p_0 = a_i\) and \(q \in \gamma^{\ast}\). Let \(\alpha_{\pm} (u) = (p_0 \pm u, q_0 \pm u)\). Then \(\ell(\alpha_{\pm} (u)) = \ell(p_0, q_0)\) is constant. Lemma \ref{lem:firstvar} gives
+\begin{equation}
+\label{eq:method2_1}
+\left.\partial_u\right|_{u=0} d (\alpha_{\pm} (u)) = \pm \left(-\ip{\tang^{\pm}(p_0)}{w} + \ip{\tang (q_0)}{w}\right).
+\end{equation}
+
+If \(-\ip{\tang^+(p_0)}{w} + \ip{\tang (q_0)}{w} < 0\), then we are done so suppose that \(-\ip{\tang^+(p_0)}{w} + \ip{\tang (q_0)}{w} \geq 0\). Then
+\begin{equation}
+\label{eq:method2_2}
+\ip{\tang^-(p_0)}{w} - \ip{\tang (q_0)}{w} \leq \ip{\tang^-(p_0) - \tang^+(p_0)}{w}.
+\end{equation}
+
+Let \(K\) denote the closed region enclosed by \(\gamma\), which is a closed, convex set. Since \(p_0, q_0 \in K\) the line joining \(p_0\) to \(q_0\) is contained in \(K\) and hence \(w\) is inward pointing: \(\ip{w}{\nor^+(p_0)}, \ip{w}{\nor^-(p_0)} < 0\). Writing \(w = \ip{w}{\tang^+(p_0)} \tang^+(p_0) + \ip{w}{\nor^+(p_0)} \nor^+(p_0)\) we then have,
+\begin{equation}
+\label{eq:method2_3}
+\begin{split}
+\ip{w}{\tang^-(p_0)} &= \ip{\ip{w}{\tang^+(p_0)} \tang^+(p_0) + \ip{w}{\nor^+(p_0)} \nor^+(p_0)}{\tang^-(p_0)} \\
+&= \ip{w}{\tang^+(p_0)} \ip{\tang^+(p_0)}{\tang^-(p_0)} + \ip{w}{\nor^+(p_0)} \ip{\nor^+(p_0)}{\tang^-(p_0)} \\
+&= \frac{1}{2} \ip{w}{\tang^+(p_0)} + \frac{\sqrt{3}}{2} \ip{w}{\nor^+(p_0)}.
+\end{split}
+\end{equation}
+
+Putting equations \eqref{eq:method2_2} and \eqref{eq:method2_3} into \eqref{eq:method2_1} produces a length preserving, strictly distance decreasing variation:
+\[
+\left.\partial_u\right|_{u=0} d (\alpha_{-} (u)) \leq \ip{\tang^-(p_0) - \tang^+(p_0)}{w} \leq \ip{\tang^-(p_0) - \frac{1}{2}\tang^+(p_0)}{w} = \frac{\sqrt{3}}{2} \ip{w}{\nor^+(p_0)} < 0.
+\]
+\textbf{But this relies on \(\ip{w}{\tang^+(p_0)} \geq 0\) which cannot be guaranteed. If this fails, it may make \(\ip{w}{\tang^-(p_0)}\) sufficiently negative to overcome this lack of positivity.}
+\end{proof}
 
 \begin{lemma}
 If $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
@@ -823,26 +868,6 @@ Compare the above with similar results obtained in \cite{MR1674097}, pertaining 
 \]
 This is a strictly concave function whose square is not concave. This seems related to the fact that the local behaviour of the chord/arc-profile is determined by $\curvecurv^2$ as opposed to the isoperimetric profile of a surface or convex body in the plane, which is locally determined by the Gauss curvature or boundary mean curvature as appropriate. The difference is that for the chord/arc-profile the sign of the curvature is irrelevant.
 \end{remark}
-
-Next, let us note that for strictly convex \(\gamma\), optimal points are never nodes.
-
-\begin{lemma}
-Let \(\gamma\) be strictly convex and let \((p_0,q_0) \in \sphere^1 \times \sphere^1\) be optimal; that is \(Z(\tfrac{2\pi}{L}\ell(p_0,q_0)) = \tfrac{L}{2\pi} d(p_0, q_0)\). Then \(p_0,q_0 \notin \{a_i\}_{i=1}^k\). That is, neither \(p_0\) nor \(q_0\) is a node.
-\end{lemma}
-
-\begin{proof}
-We show that if at least one of \(p_0, q_0\) is a node, then there is a length preserving variation strictly decreasing \(d\) and hence \((p_0, q_0)\) cannot be optimum.
-
-The argument is symmetric in \(p_0, q_0\) so without loss of generality, suppose \(p_0 = a_i\) is a node and \(q_0\) is any other point, possibly also a node. Let \(\alpha_{\pm} (u) = (a_i \pm u, q_0 \pm u)\). Then \(\ell(\alpha_{\pm} (u)) = \ell(a_i, q_0)\) is constant. Lemma \ref{lem:firstvar} gives
-\[
-\left.\partial_u\right|_{u=0} d (\alpha_{\pm} (u)) = \mp\ip{\tang^{\pm}(a_i)}{w} \pm \ip{\tang^{\pm} (q_0)}{w}.
-\]
-
-First consider the case where \(q_0\) is not a node, in which case \(\tang^-(q_0) = \tang^+(q_0)\). If \(-\ip{\tang^+(a_i)}{w} + \ip{\tang^+ (q_0)}{w} < 0\), then we are done so suppose that \(-\ip{\tang^+(a_i)}{w} + \ip{\tang^+ (q_0)}{w} \geq 0\). Then
-\[
-\ip{\tang^-(a_i)}{w} - \ip{\tang^- (q_0)}{w} \leq \ip{\tang^-(a_i) - \tang^+(a_i)}{w}.
-\]
-\end{proof}
 
 The next lemma gives a useful first application of the first variation formula for \(d\) that allows us to exploit concavity properties of the chord/arc-profile. In particular, it shows that if the chord-arc profile is supported from below by a concave function, then the corresponding optimal points are convex-like.
 
