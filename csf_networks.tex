@@ -589,7 +589,9 @@ Similar computations give $\partial_q^2 d$. For the mixed partial,
 These second derivatives yield the desired expression for \(D^2 d\) with the appropriate \(\pm\) terms coming from taking one-sided derivatives.
 \end{proof}
 
-Using Lemmas \ref{lem:firstvar} and \ref{lem:secondvar} we may now obtain the second variation formula at smooth, optimal points. Let us first introduce some notation. Write \(\theta(p,q) \in (-\pi/2, \pi/2)\) for the angle between \(\tang_{p}\) and \(w\) so that \(\ip{w}{\tang_p} = \cos\theta\). Define the following "indicator" functions,
+Using Lemmas \ref{lem:firstvar} and \ref{lem:secondvar} we may now obtain the second variation formula at optimal points. We begin with smooth points for which we not burdened with keeping track of the various \(\pm\) and the derivation is much cleaner. With the smooth case in hand, then we give the case of nodes which should be then be reasonably clear. So, for now, we assume \((p,q) \in \gamma^{\ast} \otimes \gamma^{\ast}\) is a smooth point.
+
+We first introduce some notation. Write \(\theta(p,q) \in [0, \pi)\) for the angle between \(\tang_{p}\) and \(w\) so that \(\ip{w}{\tang_p} = \cos\theta\). Define the following "indicator" functions,
 \begin{align*}
 \tangindicator(p, q) &= \begin{cases}
 1,& \tang_{p} \ne \tang_{q} \\
@@ -640,8 +642,8 @@ with corresponding eigenvalues
 We express the variations of distance at an optimal point using this notation.
 
 \begin{prop}[Spatial Variations at Optimal Points]
-\label{prop:spatial_var}
-Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile\left(\tfrac{L}{2\pi}\ell(p_0,q_0)\right) = \tfrac{2\pi}{L} d(p_0, q_0)$), then
+\label{prop:optimal_smooth_var}
+Let $(p_0, q_0) \in \gamma{\ast} \times \gamma^{\ast}$ be a smooth point, such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ with $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile\left(\tfrac{L}{2\pi}\ell(p_0,q_0)\right) = \tfrac{2\pi}{L} d(p_0, q_0)$). Then
 \[
 \begin{split}
 D d &= \cos\theta(-\omega_{p_0} + \omega_{q_0}) \\
@@ -710,6 +712,86 @@ D^2d_{(p_0,q_0)} &=  \left(\norindicator \sqrt{1-\cos^2\theta}\curvecurv_{p_0} +
 &- \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \tensor \omega_{q_0} + \omega_{q_0} \tensor \omega_{p_0} \right)
 \end{align*}
 which gives the desired expression for $\tangindicator=1$ when expressed in matrix form.
+\end{proof}
+
+Now let us consider the case of a node. Define \(\theta_p^{\pm} \in [0, \pi)\) by \(\cos\theta_p^{\pm} = \ip{w}{\tang_p^{\pm}}\) and likewise for \(\theta_q^{\pm}\). Since \(\ip{\tang_p^+}{\tang_p^-} = \tfrac{1}{2}\), \(\theta_p^+\) and \(\theta_p^-\) are related, but this relation depends on how \(w\) relates to \(\tang_p^{\pm}\). For example, if \(w\) lies between \(\tang_p^+\) and \(\tang_p^-\), then \(\theta_p^- = \tfrac{\pi}{3} - \theta_p^+\). The remaining possible configurations are \(\theta_p^- = \tfrac{\pi}{3} + \theta_p^+\), \(\theta_p^- = \tfrac{5\pi}{3} - \theta_p^+\), and \(\theta_p^- = \theta_p^+ - \tfrac{\pi}{3}\).
+
+The main difference with the smooth case is that the length preserving variation \(\alpha(u) = (p_0, q_0) + uv_1\) needs to be one-sided. This leads to two first variation identities - one for each side - identifying \(\cos\theta_p^{\pm} = \cos \theta_q^{\pm}\) with the \(\pm\) preserved all the way through. Then everything else proceeds in much the same way as for the smooth case. But be aware that now we can take \(\omega_p^{\pm}\) and \(\omega_q^{\pm}\) with independent \(\pm\)'s. Thus for instance,
+\[
+D d (\tang_p^+ \oplus \tang_q^+) = (-\cos\theta_p^+ \omega_p^+ + \cos\theta_q^+ \omega_q^+) (\tang_p^+ \oplus \tang_q^+) = 0
+\]
+since \(\theta_q^+ = \theta_q^+\), while
+\[
+\begin{split}
+D d (\tang_p^+ \oplus \tang_q^-) &= (-\cos\theta^+\omega_p^+ + \cos\theta^-\omega_q^-) (\tang_p^+ \oplus \tang_q^-) \\
+&= \begin{cases}
+0 & \text{at at smooth point}, \\
+-\cos\theta^+ + \cos\theta^- \ne 0 & \text{ at a node}.
+\end{cases}
+\end{split}
+\]
+
+Now let us introduce the appropriate notions of \(K\) and \(M\) where \(p\) or \(q\) (or both) are allowed to be nodes. First we define the indicator functions as before.
+
+\[
+\tangindicator^{\pm} (p, q) = \begin{cases}
+1,& \tang_{p}^{\pm} \ne \tang_{q}^{\pm} \\
+-1,& \tang_{p}^{\pm} = \tang_{q}^{\pm}
+\end{cases}
+\]
+keeping in mind that \(\tang_p^+ = \tang_q^+\) if and only if \(\tang_p^- = \tang_q^-\) so that \(\tangindicator^+ = \tangindicator^-\) and we may drop the \(\pm\) from \(\tangindicator\). The other indicator function is,
+\[
+\norindicator^{\pm} (p, q) = \begin{cases}
+1,& \ip{w}{\nor_{p}^{\pm}} > 0 \\
+-1,& \ip{w}{\nor_{p}^{\pm}} < 0.
+\end{cases}
+\]
+
+Since we need to deal with terms like \(\omega_p^+ \otimes \omega_q^-\) where the signs are different, it's helpful to adorn the indicator functions with \(p\) or \(q\) and so write expressions such as,
+\[
+\tangindicator_p^{\pm} \omega_p^{\pm} \otimes \omega_p^{\pm} + \tangindicator_q^{\pm} \omega_q^{\pm} \otimes \omega_q^{\pm}
+\]
+where it's understood that all the terms adorned with \(p\) have the same sign, and all the terms adorned with \(q\) have the same sign. Thus for example, the expression,
+\[
+\tangindicator_p^+ \omega_p^+ \otimes \omega_p^+ + \tangindicator_q^- \omega_q^- \otimes \omega_q^-
+\]
+is allowed.
+
+\begin{prop}[Spatial Variations at Arbitrary Points]
+\label{prop:optimal_var}
+Let $(p_0, q_0) \in \gamma \times \gamma$ be an arbitrary point such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$. Then
+\[
+\begin{split}
+D d &= -\cos\theta_{p_0}^{\pm}\omega_{p_0}^{\pm} + \cos\theta_{q_0}^{\pm} \omega_{q_0}^{\pm} \\
+\intertext{and}
+D^2d_{(p_0,q_0)} &= \sqrt{1-\cos^2\theta_{p_0}^{\pm}}\norindicator_p^{\pm} \curvecurv_p^{\pm} \omega_p^{\pm} \otimes \omega_p^{\pm} + \sqrt{1-\cos^2\theta_{q_0}^{\pm}} \norindicator_q^{\pm} \curvecurv_q^{\pm} \omega_q^{\pm} \otimes \omega_q^{\pm} \\
+&\quad + \frac{1-\cos^2 \theta^{\pm}}{d} M.
+\end{split}
+\]
+\end{prop}
+
+\begin{proof}
+As in the smooth case, defining \(\alpha(u) = (p_0, q_0) + uv_1\) yields \(\ell(\alpha(u)) = \ell(\alpha(0))\) is constant. Taking one-sided derivatives yields,
+\[
+\cos\theta_p^{\pm} = \ip{w}{\tang_p^{\pm}} = \ip{w}{\tang_q^{\pm}} = \cos\theta_q^{\pm}
+\]
+Similarly to the smooth case,
+\[
+\sqrt{1 - \cos^2 \theta_p^{\pm}} = \norindicator^{\pm}_p \ip{w}{\nor_p^{\pm}}
+\]
+and,
+\[
+\sqrt{1 - \cos^2 \theta_q^{\pm}} = \norindicator^{\pm}_q \ip{w}{\nor_q^{\pm}}.
+\]
+
+Then we substitute into:
+\[
+\begin{split}
+D^2d &= \left(\ip{w}{\curvecurv_p \nor_p} + \frac{1}{d}(1 - \ip{w}{\tang_p}^2) \right) \omega_p \tensor \omega_p \\
+&+ \left(-\ip{w}{\curvecurv_q \nor_q} + \frac{1}{d}(1 - \ip{w}{\tang_q}^2) \right) \omega_q \tensor \omega_q \\
+&- \left(\frac{1}{d}\left(\ip{\tang_p}{\tang_q} - \ip{w}{\tang_p}\ip{w}{\tang_q}\right) \right) \left(\omega_p \tensor \omega_q + \omega_q \tensor \omega_p\right).
+\end{split}
+\]
 \end{proof}
 
 \subsection{Differential inequalities}
