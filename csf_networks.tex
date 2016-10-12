@@ -497,7 +497,51 @@ Hence,
 The variation in the second argument is similar.
 \end{proof}
 
-Next we have the second variation. The presence of nodes is not felt at smooth points.
+Next we have the second variation. As with first derivatives, we can take one-sided second derivatives such as,
+\[
+\partial_p^+ \partial_p^+ f = \lim_{u \to 0^+} \partial_u^2 f(p_0 + u, q_0),
+\]
+but expressions like,
+\[
+\partial_p^+ \partial_p^- f
+\]
+are not allowed since \(\partial_p^- f (p_0 + u, q_0)\) is not defined for \(u > 0\), hence preventing us from applying \(\partial_p^+\). On the other hand, for the mixed derivatives, we are allowed to mix up the signs by defining,
+\[
+\partial_p^{\pm} \partial_q^{\pm} f = \partial_u^{\pm} \partial_v^{\pm} f(p_0 + u, q_0 + v)
+\]
+where the \(\pm\) on the \(p\) and the \(\pm\) on the \(q\) may vary independently. From the point of view of the differentials, \(\omega_p^{\pm}\) and \(\omega_q^{\pm}\), this implies we are allowed to form expressions such as
+\[
+\omega_p^+ \otimes \omega_q^-,
+\]
+but not expressions such as
+\[
+\omega_p^+ \otimes \omega_p^-.
+\]
+More generally an expression like,
+\[
+\omega_p^+ \otimes \omega_p^+ + \omega_p^+ \otimes \omega_q^- + \omega_q^- \otimes \omega_q^-
+\]
+is allowed, but
+\[
+\omega_p^+ \otimes \omega_p^+ + \omega_p^- \otimes \omega_q^- + \omega_q^- \otimes \omega_q^-
+\]
+is not allowed. In the first example, the given two-form acts on \(\tang_p^+ \oplus \tang_q^-\).  In the second example the first term can act on \(\tang_p^+ \oplus \tang_q^{\pm}\), the second term acts on \(\tang_p^- \oplus \tang_q^-\) and the final term can act on \(\tang_p^{\pm} \oplus \tang_q^-\). In all cases we can define, \(\omega_p^+(\tang_q^{\pm}) = 0\) and likewise swapping \(p\) and \(q\). Thus there is no problem allowing \(\omega_p^+ \otimes \omega_p^+\) to act on \(\tang_p^+ \oplus \tang_q^{\pm}\). But in the second example, there is a problem with the first term acting on \(\tang_p^+\) while the second term acts on \(\tang_p^-\). None of this causes any concern about our applications however, since the first example arises through the one-sided variation \(u \geq 0 \mapsto (p_0, q_0) + u(1, -1)\) while the second example can never arise through a one-sided variation.
+
+So with all this in mind, let us define,
+\[
+\begin{split}
+D^2 f &= \partial_p^{\pm} \partial_p^{\pm} f (\omega_p^{\pm} \otimes \omega_p^{\pm}) + \partial_q^{\pm} \partial_q^{\pm} f (\omega_q^{\pm} \otimes \omega_q^{\pm}) \\
+&\quad + \partial_p^{\pm} \partial_q^{\pm} f (\omega_p^{\pm} \otimes \omega_q^{\pm}) + \partial_q^{\pm} \partial_p^{\pm} f (\omega_q^{\pm} \otimes \omega_p^{\pm})
+\end{split}
+\]
+with the understanding that all of the \(\pm\) attached to \(p\)'s are the same, and all of the \(\pm\) attached to \(q\)'s are the same, which rules out the second example above. For ease of reading, we will omit the \(\pm\) writing simply,
+\[
+\begin{split}
+D^2 f &= \partial_p \partial_p f (\omega_p \otimes \omega_p) + \partial_q \partial_q f (\omega_q \otimes \omega_q) \\
+&\quad + \partial_p \partial_q f (\omega_p \otimes \omega_q) + \partial_q \partial_p f (\omega_q \otimes \omega_p)
+\end{split}
+\]
+where it is understood that all \(p\)-terms are adorned with a \(+\) or all \(p\)-terms are adorned with a \(-\) (but never with \(\pm\) mixed). Similarly all \(q\)-terms are adorned with the same \(\pm\). The \(p\) and \(q\) adornments are however independent, so for example, all \(p\)'s may be adorned with a \(+\) and all \(q\)'s may be adorned with a \(-\).
 
 \begin{lemma}[Second Variation]
 \label{lem:secondvar}
@@ -542,7 +586,7 @@ Similar computations give $\partial_q^2 d$. For the mixed partial,
 &= - \frac{1}{d} \left(\ip{\tang_q}{\tang_p} - \ip{\tang_q}{w}\ip{\tang_p}{w}\right).
 \end{split}
 \]
-These second derivatives yield the desired expression for \(D^2 d\).
+These second derivatives yield the desired expression for \(D^2 d\) with the appropriate \(\pm\) terms coming from taking one-sided derivatives.
 \end{proof}
 
 Using Lemmas \ref{lem:firstvar} and \ref{lem:secondvar} we may now obtain the second variation formula at smooth, optimal points. Let us first introduce some notation. Write \(\theta(p,q) \in (-\pi/2, \pi/2)\) for the angle between \(\tang_{p}\) and \(w\) so that \(\ip{w}{\tang_p} = \cos\theta\). Define the following "indicator" functions,
