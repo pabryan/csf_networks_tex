@@ -21,14 +21,14 @@ Nm = R * Np
 
 w = (pointQ - pointP)/norm(pointQ - pointP)
 
-nodeP = [pointP, angleP, Tp, Np, Tm, Nm, w, "p", 1]
-nodeQ = [pointQ, angleQ, Tp, Np, Tm, Nm, w, "q", -1]
+nodeP = [pointP, angleP, Tp, Np, Tm, Nm, w, "p_0", 1]
+nodeQ = [pointQ, angleQ, Tp, Np, Tm, Nm, w, "q_0", -1]
 
 
 w_range = [0, 2 * tangangle]
 wp = cos(t) * Tp - sin(t) * Np
 wq = cos(t) * Tm + sin(t) * Nm
-︡fa628d56-51dc-4f41-802b-39e201c12af3︡{"done":true}︡
+︡bf69b418-89e3-4bc0-b4d6-9bb99265c691︡{"done":true}︡
 ︠ecb86249-be3e-493f-938a-cec2d3a94266s︠
 # First order plot of network at an optimal node pair
 def plotarrow(base, vec, string, color):
@@ -59,11 +59,11 @@ def plot_node(node):
     
     p += point2d(P, color="black", size=100, zorder=100)
 
-    p += plotarrow(P, Tp, "$T^+_" + label + "$", "blue")
-    p += plotarrow(P, Np, "$N^+_" + label + "$", "blue")
+    p += plotarrow(P, Tp, "$T^+_{" + label + "}$", "blue")
+    p += plotarrow(P, Np, "$N^+_{" + label + "}$", "blue")
 
-    p += plotarrow(P, Tm, "$T^-_" + label + "$", "red")
-    p += plotarrow(P, Nm, "$N^-_" + label + "$", "red")
+    p += plotarrow(P, Tm, "$T^-_{" + label + "}$", "red")
+    p += plotarrow(P, Nm, "$N^-_{" + label + "}$", "red")
 
     p += line([P, P + 2 * flip * Tp], color="black", linestyle="--")
     p += line([P, P -2 * flip * Tm], color="black", linestyle="--")
@@ -94,13 +94,13 @@ Tq_minus = R * nodeQ[4]
 p += bezier_path([[P, P + Tp_plus, (2.5, 0), (1.5, 1)], [(0.5, 2), Q - Tq_minus, Q]])
 p += bezier_path([[Q, Q + Tq_plus, P - Tp_minus, P]])
 
-p += text("P", P - vector((0.05, 0.3)), color="black")
-p += text("Q", Q + vector((0, 0.3)), color="black")
+p += text("$" + nodeP[7] + "$", P - vector((0.05, 0.3)), color="black")
+p += text("$" + nodeQ[7] + "$", Q + vector((0, 0.3)), color="black")
 
 p.show(axes=False, aspect_ratio=1)
 
-p.save("optimal_smooth.png")
-︡6e3a357c-2ac7-483f-82a2-2a7f12cb6b5f︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/32390/tmp_Bi69sQ.svg","show":true,"text":null,"uuid":"544390e9-46d9-45bf-bc40-8c62195bff1c"},"once":false}︡{"done":true}︡
+p.save("optimal_smooth.png", axes=False, aspect_ratio=1)
+︡058d198a-8d3f-4a86-8c98-1d8ecafdd4b2︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/32390/tmp_weB13M.svg","show":true,"text":null,"uuid":"6b4e3952-54be-4eae-95a6-7cc062978b84"},"once":false}︡{"done":true}︡
 ︠ca357a8f-269d-4166-8192-59a499fa8362s︠
 # Used in lem:convex_optimum_regular_points. Function to show if w is inward pointing, then there is a length decreasing variation
 Tp = nodeP[2]
