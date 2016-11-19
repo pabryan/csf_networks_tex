@@ -57,7 +57,7 @@ def plot_node(node):
     
     flip = node[8]
     
-    p += point2d(P, color="black", size=100, zorder=100)
+    p += point2d(P, color="black", size=50, zorder=100)
 
     p += plotarrow(P, Tp, "$T^+_{" + label + "}$", "blue")
     p += plotarrow(P, Np, "$N^+_{" + label + "}$", "blue")
@@ -100,7 +100,7 @@ p += text("$" + nodeQ[7] + "$", Q + vector((0, 0.3)), color="black")
 p.show(axes=False, aspect_ratio=1)
 
 p.save("optimal_smooth.png", axes=False, aspect_ratio=1)
-︡058d198a-8d3f-4a86-8c98-1d8ecafdd4b2︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/32390/tmp_weB13M.svg","show":true,"text":null,"uuid":"6b4e3952-54be-4eae-95a6-7cc062978b84"},"once":false}︡{"done":true}︡
+︡12a13349-afcf-48e3-8ce2-ef5153e4544d︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/32390/tmp_X5fZSK.svg","show":true,"text":null,"uuid":"6473659f-acd8-4b07-86c4-76b7bd7c4f6f"},"once":false}︡{"done":true}︡
 ︠ca357a8f-269d-4166-8192-59a499fa8362s︠
 # Used in lem:convex_optimum_regular_points. Function to show if w is inward pointing, then there is a length decreasing variation
 Tp = nodeP[2]
