@@ -575,7 +575,17 @@ Hence,
 proving equation \eqref{eq:optimal_regular_q}.
 \end{proof}
 
-As noted above, the Lemma allows us to compute the second variation at smooth points only.
+\begin{cor}
+\label{lem:convex_regular}
+
+Let \(\gamma\) be convex and \((p_0,q_0) \in \sphere^1 \times \sphere^1\) be optimal. Then \((p_0, q_0) \in \gamma^{\ast} \times \gamma^{\ast}\).
+\end{cor}
+
+\begin{proof}
+If $\gamma$ is convex, then $\overline{\Omega}$ is a closed convex set with $\gamma(p_0), \gamma(q_0) \in \overline{\Omega}$ whence the chord $\overline{p_0q_0} \subseteq \overline{\Omega}$ and the lemma applies.
+\end{proof}
+
+As noted above, thanks to the Lemma, we only need to compute the second variation at smooth points.
 
 \begin{lemma}[Second Variation]
 \label{lem:secondvar}
@@ -673,9 +683,9 @@ with corresponding eigenvalues
 
 We express the variations of distance at an optimal point using this notation.
 
-\begin{prop}[Spatial Variations at Optimal Points]
+\begin{prop}[Spatial Variations At Smooth Optimal Points]
 \label{prop:spatial_var}
-Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile\left(\tfrac{L}{2\pi}\ell(p_0,q_0)\right) = \tfrac{2\pi}{L} d(p_0, q_0)$), then
+Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be smooth and optimal. Then
 \[
 \begin{split}
 D d &= \cos\theta(-\omega_{p_0} + \omega_{q_0}) \\
@@ -749,7 +759,7 @@ which gives the desired expression for $\tangindicator=1$ when expressed in matr
 \subsection{Differential inequalities}
 \label{sec:orgheadline9}
 
-In this section, using the variational formulae, we obtain two (weak) differential inequalities for \(\chordarcprofile\). The first, Theorem \ref{thm:barrier} is a barrier inequality, asserting the existence of a smooth, upper barrier at \emph{regular} points \(x_0\) (defined below). Such a barrier proves quite useful for deducing properties of the chord-arc profile in the sequel. As a corollary of the barrier inequality, we obtain the second differential inequality, Theorem \ref{thm:spatial_viscosity}. This is a viscosity equation for the chord-arc profile, asserting that \emph{if} a smooth, lower support function exists, it satisfies a certain differential inequality. Such an equation is useful for comparisons and forms the heart of our later arguments.
+In this section, using the variational formulae, we obtain a weak differential inequality for \(\chordarcprofile\). Theorem \ref{thm:barrier} is a barrier inequality, asserting the existence of a smooth, upper barrier at \emph{regular} points \(x_0\) (defined below). Such a barrier proves quite useful for deducing properties of the chord-arc profile in the sequel. As a corollary of the barrier inequality, we obtain Theorem \ref{thm:spatial_viscosity}, a viscosity equation for the chord-arc profile, asserting that \emph{if} a smooth, lower support function exists, it satisfies a certain differential inequality. The viscosity equation is weaker than the barrier inequality, and is not strictly necessary, but if provides a convenient formulation for comparisons.
 
 Let us make the following definition.
 \begin{defn}
