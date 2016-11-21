@@ -9,7 +9,7 @@ tangangle = pi/3
 R = rotation_matrix(tangangle)
 J = rotation_matrix(pi/2)
 
-︡13d79caf-6183-42a0-bd5e-798c47f934a2︡{"done":true}︡
+︡c5457e86-2a71-4c70-9da8-d3c118e8336c︡{"done":true}︡
 ︠341acbbb-7062-4fe1-8984-e7d51d6f96c2s︠
 # Network functions
 def create_node(P, T, label):
@@ -22,7 +22,7 @@ def create_node(P, T, label):
             "label" : label}
     
     return node
-︡0fb549ef-4112-4176-8a75-b1be34bbb135︡{"done":true}︡
+︡8a2a4cf8-c429-4ae8-a391-0136537a53f7︡{"done":true}︡
 ︠8b047b87-f61e-4c08-bda4-a35c6574edd2s︠
 
 # Plotting functions
@@ -32,9 +32,6 @@ def plotarrow(base, vec, string, color):
     t = text(string, base + vec + textoffset, color=color)
     
     return(a + t)
-︡b0639221-5a04-4586-90d0-ce75da0c2b76︡{"done":true}︡
-︠10f49ba4-98f0-4c76-ac1c-ce40344a7e09︠
-
 
 def plot_node(node):
     P = node["point"]
@@ -72,7 +69,7 @@ def plot_network(network):
     p += network["loop"]
     
     return p
-︡1c9bc6ae-9fac-48e7-a0f2-af9a857e3a00︡{"done":true}︡
+︡625cfa76-8723-4111-b6cc-ce9779ada32b︡{"done":true}︡
 ︠88369e8b-da9b-4b2c-9d2f-6944e902affes︠
 # Create a network
 nodeP = create_node(vector((0, 0)), rotation_matrix(pi/3) * vector((1, 0)), "p_0")
@@ -108,11 +105,15 @@ p += plot(-Tp_minus, start=P, linestyle="--", color="blue")
 p += plot(-Ts_minus, start=S, linestyle="--", color="blue")
 p += plot(-Tq_minus, start=Q, linestyle="--", color="blue")
 
+p += plot(Lp, start=P, color="gray")
+p += plot(Ls, start=S, color="gray")
+p += plot(Lq, start=Q, color="gray")
+
 p.show(aspect_ratio=1, axes=False)
 p.save("network.png", aspect_ratio=1, axes=False)
 
 
-︡890cd257-75e0-484f-979a-c4fefc0b8b8b︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/27119/tmp_8xnl1F.svg","show":true,"text":null,"uuid":"c3023660-3e07-44e4-bc8c-cb519a3f1684"},"once":false}︡{"done":true}︡
+︡e48e3929-cf81-429a-b680-01326e1d765f︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/22709/tmp_vcl5Ie.svg","show":true,"text":null,"uuid":"6fb0aa11-a5dd-490b-8056-f27462cd6622"},"once":false}︡{"done":true}︡
 ︠264ee530-a83a-4c8c-ad2d-87a0ba242dc8s︠
 
 # First order plot of network at an optimal node pair
