@@ -576,7 +576,7 @@ proving equation \eqref{eq:optimal_regular_q}.
 \end{proof}
 
 \begin{cor}
-\label{lem:convex_regular}
+\label{cor:convex_regular}
 
 Let \(\gamma\) be convex and \((p_0,q_0) \in \sphere^1 \times \sphere^1\) be optimal. Then \((p_0, q_0) \in \gamma^{\ast} \times \gamma^{\ast}\).
 \end{cor}
@@ -918,11 +918,11 @@ If $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is str
 \end{lemma}
 
 \begin{proof}
-If $\gamma$ is convex, then $\curvecurv \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$. Moreover, since the closure of the region bounded by $\curvecurv$ is a convex body, and since $X(p_0), X(q_0)$ lie in the closure of this region, for any $u \in [0,1]$, we must have that $X(p_0) + u(X(q_0) - X(p_0))$ also lies in this region so that $(X(q_0) - X(p_0))$ (and hence $w = \tfrac{1}{d(p_0,q_0)} (X(q_0) - X(p_0))$) points inward ensuring that $\delta = 1$. Therefore, at every regular point $x_0$, the function $Z$ satisfies
+If $\gamma$ is convex, then by Corollary \ref{cor:convex_regular} all points $x \in (0, 2\pi)$ are regular. Moreover, $\curvecurv \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$, while \(w\) points inward at $p_0$ as in Corollary \ref{cor:convex_regular} ensuring that $\delta = 1$. Therefore, at every point $x$, the upper barrier $Z$ from Theorem \ref{thm:barrier} satisfies
 \[
 Z'' \leq - \frac{\sqrt{1-\cos^2 \theta}}{4} (\curvecurv_{p_0} + \curvecurv_{q_0}) \leq 0.
 \]
-Thus $\chordarcprofile$ is supported above by a concave function at all regular points and by Lemma \ref{lem:convex_optimum_regular_points}, there can be at most finitely many non-regular points. Hence $\chordarcprofile$ is itself concave \cite[Lemma 2.7]{MR1674097}.
+Thus $\chordarcprofile$ is supported above by a concave function at all points. Hence $\chordarcprofile$ is itself concave \cite[Lemma 2.7]{MR1674097}.
 \end{proof}
 
 \begin{remark}
@@ -937,11 +937,11 @@ The next lemma gives a useful first application of the first variation formula f
 
 \begin{lemma}
 \label{lem:concave_barrier}
-If there exists a strictly concave, positive function $\phi: (0, 2\pi) \to \RR$ that is symmetric about $\pi$ and supporting $\chordarcprofile$ at $x_0=\ell(p_0,q_0)$ (so that $\phi(x) \leq \chordarcprofile(x)$ and $\phi(x_0)=\chordarcprofile(x_0)$), then $\tang_{p_0} \ne \tang_{q_0}$.
+If there exists a strictly concave, positive function $\phi: (0, 2\pi) \to \RR$ that is symmetric about $\pi$ and supporting $\chordarcprofile$ at $x_0=\tfrac{2\pi}{L} \ell(p_0,q_0)$ from above (so that $\phi(x) \leq \chordarcprofile(x)$ and $\phi(x_0)=\chordarcprofile(x_0)$), then $x_0$ is regular, $\tangindicator = 1$, and $\norindicator = 1$.
 \end{lemma}
 
 \begin{proof}
-Suppose there is a $\phi$ as in the statement of the lemma. We proceed as described in \cite{MR2794630}. To obtain a contradiction, let us suppose that $\tang_{p_0} = \tang_{q_0} \ne w$. Then the normal makes an acute angle with the chord $\overline{p_0 q_0}$ at one endpoint, and an obtuse angle at the other. Therefore points on the chord near one endpoint are inside the region enclosed by $\gamma$, while points near the other endpoint are outside, implying that there is at least one other point where the curve $\gamma$ meets the chord. We may assume that an intersection occurs at $s$ with $p_0 < s < q_0$. Then we have
+We proceed similarly to \cite{MR2794630} by showing that $\overline{p_0q_0} \subseteq \overline{\Omega}$. Suppose then that there is a $\phi$ as in the statement of the lemma, and in order to obtain a contradiction, that $\overline{p_0q_0}$ is not contained in $\overline{\Omega}$. Thus there is a point $s$ such that $\overline{p_0q_0}$ intersects $\gamma$ at $s$. We may assume that an intersection occurs at $s$ with $p_0 < s < q_0$. Then we have
 \begin{align*}
 d(p_0, q_0) &= d(p_0, s) + d(s, q_0) \\
 \ell(p_0, q_0) &= \min\{\ell(p_0, s) + \ell(s, q_0),  2\pi -\ell(p_0,s ) - \ell(s, q_0)\}.
@@ -956,7 +956,9 @@ Since $\phi$ is strictly concave, $\phi(x + y) = \phi(x + y) + \phi(0) \leq \phi
 &\geq 0.
 \end{split}
 \]
-Thus we have a contradiction.
+Thus we have our contradiction. Therefore $\overline{p_0q_0} \subseteq \overline{\Omega}$ and by Lemma \ref{lem:optimal_regular}, \(x_0\) is regular. Since $w$ points inward at $\norindicator = 1$.
+
+To show that $\tangindicator = 1$, suppose that $\tang_{p_0} = \tang_{q_0}$. Then the normal makes an acute angle with the chord $\overline{p_0 q_0}$ at one endpoint, and an obtuse angle at the other. Therefore points on the chord $\overline{p_0q_0}$ near one endpoint are inside $\Omega$, while points near the other endpoint are outside contradicting $\overline{p_0q_0} \subset \overline{\Omega}$.
 \end{proof}
 
 \section{Comparison functions}
