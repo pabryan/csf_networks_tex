@@ -129,12 +129,13 @@ p += plotarrow(S, Np, "$N^+_{" + label + "}$", "red")
 p += plotarrow(S, Tm, "$T^-_{" + label + "}$", "blue")
 p += plotarrow(S, Nm, "$N^-_{" + label + "}$", "blue")
 
-p += bezier_path([[P, P + Tp_plus, (2.5, 0), (1.5, 1)], [(0.5, 2), S - Ts_minus, S], [S + Ts_plus, Q - Tq_minus, Q]])
+#p += bezier_path([[P, P + Tp_plus, (2.5, 0), (1.5, 1)], [(0.5, 2), S - Ts_minus, S], [S + Ts_plus, Q - Tq_minus, Q]])
+p += bezier_path([[P, P + Tp_plus, (2.5, 0), (1.5, 1)], [(0.5, 2), S - Ts_minus, S], [S + Ts_plus, Q - Tq_minus, Q], [Q + Tq_plus, P - Tp_minus, P]])
 p += bezier_path([[S, S + Ls, S + 2 * R * Ls - vector((0, 1)), S + 2 * rotation_matrix(pi/6) * Ls]])
 
 p.show(aspect_ratio=1, axes=False)
 p.save("node.png", aspect_ratio=1, axes=False)
-︡1652331e-68e7-4d2d-aba2-baaa73cf2f71︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/22709/tmp__2RK2r.svg","show":true,"text":null,"uuid":"cf003d29-a951-4f84-b5c4-308a3cf8e58f"},"once":false}︡{"done":true}︡
+︡6c5613a5-2e8b-4ebe-a68a-1a4ab5e3ea89︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/22709/tmp_qZ3p4g.svg","show":true,"text":null,"uuid":"4ede1207-f13a-435b-ad36-8ac2baef4b12"},"once":false}︡{"done":true}︡
 ︠3b2f49e3-d37d-4174-a0ef-01e1a238650fs︠
 
 # First order plot of network at an optimal node pair
