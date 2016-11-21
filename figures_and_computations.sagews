@@ -50,11 +50,13 @@ def plot_node(node):
     #p += text("$" + label + "$", P - vector((0, 0.3)), color="black")
 
     p += plotarrow(P, Tp, "$T^+_{" + label + "}$", "red")
-    p += plotarrow(P, Np, "$N^+_{" + label + "}$", "red")
+    #p += plotarrow(P, Np, "$N^+_{" + label + "}$", "red")
 
-    p += plotarrow(P, Tm, "$T^-_{" + label + "}$", "blue")
-    p += plotarrow(P, Nm, "$N^-_{" + label + "}$", "blue")
-
+    #p += plotarrow(P, Tm, "$T^-_{" + label + "}$", "blue")
+    #p += plotarrow(P, Nm, "$N^-_{" + label + "}$", "blue")
+    #p += plot(-Tm, start=P, linestyle="--", color="blue")
+    #p += text("$-T^-_{" + label + "}$", P - Tm + 0.2 *  vector((-Tm[1], Tm[0])), color="blue")
+    
     return p
 
 def plot_network(network):
@@ -69,8 +71,8 @@ def plot_network(network):
     p += network["loop"]
     
     return p
-︡625cfa76-8723-4111-b6cc-ce9779ada32b︡{"done":true}︡
-︠88369e8b-da9b-4b2c-9d2f-6944e902affes︠
+︡6fc765e3-eb4a-4e3d-9db6-cd4939fc5ffc︡{"done":true}︡
+︠88369e8b-da9b-4b2c-9d2f-6944e902affe︠
 # Create a network
 nodeP = create_node(vector((0, 0)), rotation_matrix(pi/3) * vector((1, 0)), "p_0")
 nodeQ = create_node(vector((4, 0.5)), rotation_matrix(-3*pi/4) * vector((1, 0)), "q_0")
@@ -110,11 +112,30 @@ p += plot(Ls, start=S, color="gray")
 p += plot(Lq, start=Q, color="gray")
 
 p.show(aspect_ratio=1, axes=False)
-p.save("network.png", aspect_ratio=1, axes=False)
+#p.save("network.png", aspect_ratio=1, axes=False)
 
-
-︡e48e3929-cf81-429a-b680-01326e1d765f︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/22709/tmp_vcl5Ie.svg","show":true,"text":null,"uuid":"6fb0aa11-a5dd-490b-8056-f27462cd6622"},"once":false}︡{"done":true}︡
+︡2caa3fd9-5ad8-4cbc-9f2a-eacc85dd8498︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/22709/tmp_6etr7y.svg","show":true,"text":null,"uuid":"ecd3c8cd-a698-4cd7-85ff-7604de17dfa0"},"once":false}︡{"done":true}︡
 ︠264ee530-a83a-4c8c-ad2d-87a0ba242dc8s︠
+p = Graphics()
+
+Np = nodeS["Nplus"]
+Tm = nodeS["Tminus"]
+Nm = nodeS["Nminus"]
+label = nodeS["label"]
+
+p += plot_node(nodeS)
+
+p += plotarrow(S, Np, "$N^+_{" + label + "}$", "red")
+p += plotarrow(S, Tm, "$T^-_{" + label + "}$", "blue")
+p += plotarrow(S, Nm, "$N^-_{" + label + "}$", "blue")
+
+p += bezier_path([[P, P + Tp_plus, (2.5, 0), (1.5, 1)], [(0.5, 2), S - Ts_minus, S], [S + Ts_plus, Q - Tq_minus, Q]])
+p += bezier_path([[S, S + Ls, S + 2 * R * Ls - vector((0, 1)), S + 2 * rotation_matrix(pi/6) * Ls]])
+
+p.show(aspect_ratio=1, axes=False)
+p.save("node.png", aspect_ratio=1, axes=False)
+︡1652331e-68e7-4d2d-aba2-baaa73cf2f71︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/22709/tmp__2RK2r.svg","show":true,"text":null,"uuid":"cf003d29-a951-4f84-b5c4-308a3cf8e58f"},"once":false}︡{"done":true}︡
+︠3b2f49e3-d37d-4174-a0ef-01e1a238650fs︠
 
 # First order plot of network at an optimal node pair
 nodeP = create_node(vector((0, 0)), rotation_matrix(pi/3) * vector((1, 0)), "p_0")
@@ -152,7 +173,7 @@ p += line([Q, Q + 2  * Tq_minus], color="black", linestyle="--")
 p.show(axes=False, aspect_ratio=1)
 
 p.save("optimal_smooth.png", axes=False, aspect_ratio=1)
-︡e5be1487-8023-44d9-ad64-862e630ee1ff︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/27119/tmp_EW2stE.svg","show":true,"text":null,"uuid":"5e7550de-01d2-4ed9-b329-9b428d0e280f"},"once":false}︡{"done":true}︡
+︡a5265a07-2063-446d-b269-ccf7692684a4︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/22709/tmp_mZxepw.svg","show":true,"text":null,"uuid":"a115f9ab-7547-4858-a235-452ed8bc0de3"},"once":false}︡{"done":true}︡
 ︠f5c59d5e-1014-4d7f-9e53-089785ec093as︠
 
 # Used in lem:convex_optimum_regular_points. Function to show if w is inward pointing, then there is a length decreasing variation
