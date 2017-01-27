@@ -341,6 +341,50 @@ Substituting into equation \eqref{eq:dtA_prelim} gives the result.
 \end{enumerate}
 \end{remark}
 
+\textcolor{red}{HERE ARE THE EXTRA COMPUTATIONS}
+\begin{lemma}
+Assume that the arcs $L_i$ have bounded length and let
+$L_T$ be the
+total length of the network $N_t$ (i.e.
+ the length of the loop plus the length of $L_i$). Then 
+  $$\partial_t L_T=-\int_{N_t}k^2 ds.$$
+
+
+\begin{proof}
+As before we have that
+$$\partial_t L_T=-\int_{N_t}k^2 ds+\sum_i \Delta v_i + v_{L_i}(1)-v_{L_i}(0).$$
+
+If the point at the boundary is fixed we have that $v_{L_i}(1)=0$. 
+Then the claim follows from showing that 
+$\Delta v_i-v_{L_i}(0)=0$.
+
+From \eqref{eq:speedcompatability}
+we have that
+\begin{align*}
+\tangspeed_i^+ &= \ip{-\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^-}{\tang_i^+} = \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{2} \tangspeed_i^- \\
+\tangspeed_i^- &= \ip{-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+}{\tang_i^-} = - \frac{\sqrt{3}}{2} \curvecurv_i^+ + \frac{1}{2} \tangspeed_i^+
+\\
+\tangspeed_i^+ &= \ip{-\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}}{\tang_i^+} = \frac{\sqrt{3}}{2} \curvecurv_{L_i} - \frac{1}{2} \tangspeed_{L_i}\\
+\tangspeed_i^- &= \ip{-\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}}{\tang_i^-} =  \frac{\sqrt{3}}{2} \curvecurv_{L_i} + \frac{1}{2} \tangspeed_{L_i}\\
+\tangspeed_{L_i} &= \ip{-\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^-}{\tang_{L_i}} = - \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{2} \tangspeed_i^-\\
+\tangspeed_{L_i} &= \ip{-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+}{\tang_{L_i}} = - \frac{\sqrt{3}}{2} \curvecurv_i^+ - \frac{1}{2} \tangspeed_i^+.
+\end{align*}
+
+Then taking $2(\tangspeed_i^--
+\tangspeed_i^+-\tangspeed_{L_i})$
+from the right hand side (and being careful with the signs of the other side) we get the desired result.
+
+\end{proof}
+\end{lemma}
+\begin{remark}
+If for $p=\gamma(x,t)$ and $q=\gamma(y,t)$ we define the function 
+$$\tilde{\ell}=\ell(p,q)+\sum_{\{i:x\leq a_i <y\}}|L_i|,$$
+and $\ell$ is the distance oriented in some direction, then
+$$\partial_t\tilde{\ell}(p,q)=-\int_p^qk^2- \sum_{\{i:x\leq a_i <y\}}\int_{L_i} k^2$$
+
+
+This function is not continuous in $p$ and $q$ as one of them approaches a node, but it can be made lower or upper semi-continuous and there is a theory of viscosity solutions for such class of functions. The function is not symmetric respect to the half of the total distance either.
+\end{remark}
 \section{Short time existence and uniqueness}
 \label{sec:orgheadline6}
 Clean up \cite{MR1240580} and make it more geometric.
@@ -971,6 +1015,15 @@ To show that $\tangindicator = 1$, suppose that $\tang_{p_0} = \tang_{q_0}$. The
 
 \section{Comparison functions}
 \label{sec:orgheadline11}
+Following the computations above we are looking for a function $f$ satisfying
+
+$$4f''+\bar{Q}(f-xf')+f'(\Delta Q(p,q))-f_t\geq 0,$$
+
+Here $\bar{Q}=\frac{1}{L}\int k^2 ds-\sum_{m=1}^n \Delta v_m$ and 
+$\Delta Q(p,q)=\frac{1}{L}\int_p^q k^2 ds-\sum_{m=i_p}^{i_q} \Delta v_m
+$.
+
+The question would be how to relate the  $v_i$ with $f$ and the curve
 \section{Convergence}
 \label{sec:orgheadline12}
 \end{document}
