@@ -50,7 +50,7 @@
 \subjclass[2010]{53C44, 35K55, 58J35}
 \date{}
 
-\title{A distance comparison theorem for curve shortening of planar networks}
+\title{A Distance Comparison Theorem For Curve Shortening Of Planar Networks}
 \hypersetup{
  pdfauthor={Paul Bryan},
  pdftitle={A distance comparison theorem for curve shortening of planar networks},
@@ -58,13 +58,14 @@
  pdfsubject={},
  pdfcreator={Emacs 24.5.1 (Org mode 8.3.4)}, 
  pdflang={English}}
+
 \begin{document}
 
 \maketitle
 
 \section{Introduction}
 \label{sec:orgheadline1}
-\section{Notation and Definitions}
+\section{Notation And Definitions}
 \label{sec:orgheadline5}
 
 \subsection{Networks}
@@ -129,7 +130,7 @@ Analogously we also write \(\curvecurv\) for the curvature of \(\gamma^{\ast}\),
 \end{equation}
 with \(s\) denoting the arc-length parameter.
 
-\subsection{Curve Shortening of Networks}
+\subsection{Curve Shortening Of Networks}
 \label{sec:orgheadline3}
 
 \begin{defn}
@@ -386,15 +387,15 @@ $$\partial_t\tilde{\ell}(p,q)=-\int_p^qk^2- \sum_{\{i:x\leq a_i <y\}}\int_{L_i} 
 
 This function is not continuous in $p$ and $q$ as one of them approaches a node, but it can be made lower or upper semi-continuous and there is a theory of viscosity solutions for such class of functions. The function is not symmetric respect to the half of the total distance either.
 \end{remark}
-\section{Short time existence and uniqueness}
+\section{Short Time Existence And Uniqueness}
 \label{sec:orgheadline6}
 Clean up \cite{MR1240580} and make it more geometric.
-\section{The chord-arc profile}
+\section{The Chord-Arc Profile}
 \label{sec:orgheadline10}
 
 In this section we introduce the chord-arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. Of course, the presence of nodes for networks is felt here.
 
-\subsection{Definition and basic properties}
+\subsection{Definition And Basic Properties}
 \label{sec:orgheadline7}
 
 By using the oriented intrinsic distance, we are able to give a single, clean definition of the chord-arc profile for \(x \in (0, 2\pi)\) rather than just for \(x \in (0, \pi)\) as is the case for the usual, un-oriented intrinsic distance. In brief, the chord-arc profile gives the least length of a chord joining to points for each pair of points of a fixed, oriented arc-length (intrinsic distance) apart.
@@ -799,7 +800,7 @@ D^2d_{(p_0,q_0)} &=  \left(\norindicator \sqrt{1-\cos^2\theta}\curvecurv_{p_0} +
 which gives the desired expression for $\tangindicator=1$ when expressed in matrix form.
 \end{proof}
 
-\subsection{Differential inequalities}
+\subsection{Differential Inequalities}
 \label{sec:orgheadline9}
 
 In this section, using the variational formulae, we obtain a weak differential inequality for \(\chordarcprofile\). Theorem \ref{thm:barrier} is a barrier inequality, asserting the \emph{existence of a smooth, upper barrier} at regular points \(x_0\) (defined below). Such a barrier proves quite useful for deducing properties of the chord-arc profile in the sequel. As a corollary of the barrier inequality, we obtain Theorem \ref{thm:spatial_viscosity}, a viscosity equation for the chord-arc profile, asserting that \emph{if a smooth, lower support function exists}, it satisfies a certain differential inequality. The viscosity equation is weaker than the barrier inequality, and is not strictly necessary (one can work directly with the barrier inequality), but if provides a convenient formulation for comparisons.
@@ -986,14 +987,15 @@ d(p_0, q_0) &= d(p_0, s) + d(s, q_0) \\
 Since $\phi$ is strictly concave, $\phi(x + y) = \phi(x + y) + \phi(0) \leq \phi(x) + \phi(y)$ whenever $x, y > 0$ and $x + y < 2\pi$. Noting also that $\phi(x) = \phi(2\pi - x)$, we have
 \[
 \begin{split}
-0 = \chordarcprofile(\ell(p_0, q_0)) - \phi(\ell(p_0, q_0)) &=  d(p_0, q_0) - \phi(\ell(p_0, q_0)) \\
+0 &= \chordarcprofile(\ell(p_0, q_0)) - \phi(\ell(p_0, q_0)) \\
+&=  d(p_0, q_0) - \phi(\ell(p_0, q_0)) \\
 &= d(p_0, s) + d(s, q_0) - \phi(\ell(p_0, s) + \ell(s,  q_0)) \\
 &> d(p_0, s) - \phi(\ell(p_0, s)) + d(s, q_0) - \phi(\ell(s, q_0)) \\
 &\geq \chordarcprofile(\ell(p_0, s)) - \phi(\ell(p_0, s)) + \chordarcprofile(\ell(s, q_0)) - \phi(\ell(s, q_0)) \\
 &\geq 0.
 \end{split}
 \]
-Thus we have our contradiction. Therefore $\overline{p_0q_0} \subseteq \overline{\Omega}$ and by Lemma \ref{lem:optimum_are_regular}, \(x_0\) is regular. Since $w$ points inward at $\norindicator = 1$.
+Thus we have our contradiction. Therefore $\overline{p_0q_0} \subseteq \overline{\Omega}$ and by Lemma \ref{lem:optimum_are_regular}, \(x_0\) is regular. Morevoer, since $w$ points inward, $\norindicator = 1$.
 
 To show that $\tangindicator = 1$, suppose that $\tang_{p_0} = \tang_{q_0}$. Then the normal makes an acute angle with the chord $\overline{p_0 q_0}$ at one endpoint, and an obtuse angle at the other. Therefore points on the chord $\overline{p_0q_0}$ near one endpoint are inside $\Omega$, while points near the other endpoint are outside contradicting $\overline{p_0q_0} \subset \overline{\Omega}$.
 \end{proof}
@@ -1007,7 +1009,7 @@ If $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is str
 \end{theorem}
 
 \begin{proof}
-If $\gamma$ is convex, then by Corollary \ref{cor:convex_regular} all points $x \in (0, 2\pi)$ are regular. Moreover, $\curvecurv \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$, while \(w\) points inward at $p_0$ as in Corollary \ref{cor:convex_regular} ensuring that $\delta = 1$. Therefore, at every point $x$, the upper barrier $Z$ from Theorem \ref{thm:barrier} satisfies
+If $\gamma$ is convex, then by lemma \ref{lem:convex_regular} all points $x \in (0, 2\pi)$ are regular. Moreover, $\curvecurv \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$, while \(w\) points inward at $p_0$ as in lemma \ref{lem:convex_regular} ensuring that $\delta = 1$. Therefore, at every point $x$, the upper barrier $Z$ from Theorem \ref{thm:barrier} satisfies
 \[
 Z'' \leq - \frac{\sqrt{1-\cos^2 \theta}}{4} (\curvecurv_{p_0} + \curvecurv_{q_0}) \leq 0.
 \]
@@ -1022,7 +1024,10 @@ Compare the above with similar results obtained in \cite{MR1674097}, pertaining 
 This is a strictly concave function whose square is not concave. This seems related to the fact that the local behaviour of the chord/arc-profile is determined by the \emph{square} of the curvature, $\curvecurv^2$ as opposed to the isoperimetric profile of a surface or convex body in the plane, which is locally determined by the curvature (Gauss curvature for compact surfaces and boundary mean curvature for convex bodies in Euclidean space).
 \end{remark}
 
-\section{Comparison functions}
+\section{Viscosity Equation For Networks Evolving By Curve Shortening}
+\label{sec:viscosity_csf}
+
+\section{Comparison Functions}
 \label{sec:orgheadline11}
 Following the computations above we are looking for a function $f$ satisfying
 
