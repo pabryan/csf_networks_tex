@@ -1027,6 +1027,76 @@ This is a strictly concave function whose square is not concave. This seems rela
 \section{Viscosity Equation For Networks Evolving By Curve Shortening}
 \label{sec:viscosity_csf}
 
+Now we may prove the theorem at the heart of our method. First, let us define,
+\[
+\bar{Q} = \int_{\gamma} \curvecurv^2 ds - \sum_{m=i}^{k} \corneranglespeed_m.
+\]
+and
+\[
+\Delta Q(p_0, q_0) = \int_p^q \curvecurv^2 ds - \sum_{m=i}^{j-1} \corneranglespeed_m.
+\]
+Then Lemma \ref{lem:distance_evolution} may be rewritten,
+\begin{equation}
+\label{eq:distance_evolution_q}
+\begin{split}
+\partial_t d_t(p, q) &= -\curvecurv_q \ip{\nor_q}{w} + \curvecurv_p \ip{\nor_p}{w} + \tangspeed_q \ip{\tang_q}{w} - \tangspeed_p \ip{\tang_p}{w}, \\
+\partial_t \ell_t(p, q) &= -\Delta Q(p_0, q_0) + \tangspeed_{q_0} - \tangspeed_{p_0} \\
+\partial_t L &= -\bar{Q}
+\end{split}
+\end{equation}
+
+\begin{theorem}
+\label{thm:csf_viscosity}
+
+Let $\gamma$ be the loop of a network evolving by the Curve Shortening Flow. Then at regular points, the Chord-Arc profile $\gamma$ satisfies the following viscosity equation
+\[
+\partial_t \chordarcprofile \geq 4 \chordarcprofile'' - 2 (1-\tangindicator) \frac{1 - (\chordarcprofile')^2}{\chordarcprofile} + \left(\chordarcprofile - x \chordarcprofile'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \chordarcprofile' \Delta Q.
+\]
+\end{theorem}
+
+\begin{proof}
+For the parabolic version of viscosity equation we need to prove that for any $(x_0, t_0) \in (0, 2\pi) \times [0, T)$ and any smooth, lower supporting function $\phi$ defined on $(x_0 -\epsilon, x_0 + \epsilon) \times (t_0 - \epsilon, t_0]$ (for some $\epsilon > 0$) then $\phi$ satisfies the differential inequality of the theorem.
+
+Suppose then that such a $\phi$ exists and let $(p_0, q_0)$ be an optimal, smooth point for the $\gamma_{t_0}$. Then we have
+\[
+\frac{2\pi}{L} d(p_0, q_0, t_0) = \chordarcprofile\left(\frac{2\pi}{L} \ell(p_0, q_0, t_0)\right) = \phi\left(\frac{2\pi}{L} \ell(p_0, q_0, t_0), t\right)
+\]
+and
+\[
+\frac{2\pi}{L} d(p_0, q_0, t) \geq \chordarcprofile\left(\frac{2\pi}{L} \ell(p_0, q_0, t)\right) \geq \phi\left(\frac{2\pi}{L} \ell(p_0, q_0, t), t\right)
+\]
+for $t \leq t_0$. Therefore,
+\[
+- \frac{2\pi d}{L} \frac{\partial_t L}{L} + \frac{2\pi}{L} \partial_t d \leq \partial_t \phi - \phi' \frac{2\pi \ell}{L} \frac{\partial_t L}{L} +\phi' \frac{2\pi}{L} \partial_t l.
+\]
+
+Substituting \eqref{eq:distance_evolution_q} gives,
+\begin{equation}
+\label{eq:time_ineq}
+\begin{split}
+\partial_t \phi &\geq \frac{2\pi}{L} \left[-\curvecurv_{q_0} \ip{\nor_{q_0}}{w} + \curvecurv_{p_0} \ip{\nor_{p_0}}{w} + \tangspeed_{q_0} \ip{\tang_{q_0}}{w} - \tangspeed_{p_0} \ip{\tang_{p_0}}{w}\right] \\
+&\quad + \left(\frac{2\pi d}{L} - \phi' \frac{2\pi \ell}{L}\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \phi' \Delta Q \\
+&\quad - \frac{2\pi}{L} \phi' \left(\tangspeed_{q_0} - \tangspeed_{p_0}\right) \\
+&= \frac{2\pi}{L} \left[-\curvecurv_{q_0} \ip{\nor_{q_0}}{w} + \curvecurv_{p_0} \ip{\nor_{p_0}}{w}\right] + \left(\phi - x \phi'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \phi' \Delta Q
+\end{split}
+\end{equation}
+where we applied Theorem \ref{thm:barrier} giving $\phi' = \ip{\tang_{q_0}}{w} = \ip{\tang_{p_0}}{w}$.
+
+On the other hand, at $t_0$, $x \mapsto \phi(x, t_0)$ is a lower supporting function for $x \mapsto \chordarcprofile(x, t_0)$ and hence,
+\begin{equation}
+\label{eq:spatial_inequality}
+-\frac{\phi''}{\sqrt{1-(\phi')^2}} + \frac{1}{2} (1-\tangindicator) \frac{\sqrt{1 - (\phi')^2}}{\phi} \geq \frac{L}{8\pi} \norindicator \left[\curvecurv_p + \tangindicator \curvecurv_q\right]
+\end{equation}
+by the spatial viscosity equation Theorem \ref{thm:spatial_viscosity} at regular points. Recalling that,
+\[
+\norindicator \sqrt{1 - (\phi')^2} \left[\curvecurv_p + \tangindicator \curvecurv_q\right] = \left[\curvecurv_{p_0} \ip{\nor_{p_0}}{w} - \curvecurv_{q_0} \ip{\nor_{q_0}}{w}\right]
+\]
+and combining with \eqref{eq:time_ineq}, we get
+\[
+\partial_t \phi \geq 4 \phi'' - 2 (1-\tangindicator) \frac{1 - (\phi')^2}{\phi} + \left(\phi - x \phi'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \phi' \Delta Q.
+\]
+\end{proof}
+
 \section{Comparison Functions}
 \label{sec:orgheadline11}
 Following the computations above we are looking for a function $f$ satisfying
