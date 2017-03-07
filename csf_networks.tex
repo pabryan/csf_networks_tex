@@ -913,7 +913,7 @@ We finish this section with the viscosity equation.
 \label{thm:spatial_viscosity}
 At a regular point \(x_0\), the chord-arc profile $\chordarcprofile$ of \(\gamma\) satisfies the following inequality in the viscosity-sense:
 \[
--\frac{\chordarcprofile''}{\sqrt{1-(\chordarcprofile')^2}} + \frac{1}{2} (1-\tangindicator) \frac{\sqrt{1 - (\chordarcprofile')^2}}{\chordarcprofile} \geq \frac{L}{8\pi} \norindicator \left[\curvecurv_p + \tangindicator \curvecurv_q\right].
+-\frac{\chordarcprofile''}{\sqrt{1-(\chordarcprofile')^2}} + \frac{1}{2} (1-\tangindicator) \frac{\sqrt{1 - (\chordarcprofile')^2}}{\chordarcprofile} \geq -\frac{L}{8\pi} \norindicator \left[\curvecurv_p + \tangindicator \curvecurv_q\right].
 \]
 \end{theorem}
 
@@ -1050,7 +1050,7 @@ Then Lemma \ref{lem:distance_evolution} may be rewritten,
 
 Let $\gamma$ be the loop of a network evolving by the Curve Shortening Flow. Then at regular points, the Chord-Arc profile $\gamma$ satisfies the following viscosity equation
 \[
-\partial_t \chordarcprofile \geq 4 \chordarcprofile'' - 2 (1-\tangindicator) \frac{1 - (\chordarcprofile')^2}{\chordarcprofile} + \left(\chordarcprofile - x \chordarcprofile'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \chordarcprofile' \Delta Q.
+\partial_t \chordarcprofile \geq \left(\frac{2\pi}{L}\right)^2 \left(4 \chordarcprofile'' - 2 (1-\tangindicator) \frac{1 - (\chordarcprofile')^2}{\chordarcprofile}\right) + \left(\chordarcprofile - x \chordarcprofile'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \chordarcprofile' \Delta Q.
 \]
 \end{theorem}
 
@@ -1085,7 +1085,7 @@ where we applied Theorem \ref{thm:barrier} giving $\phi' = \ip{\tang_{q_0}}{w} =
 On the other hand, at $t_0$, $x \mapsto \phi(x, t_0)$ is a lower supporting function for $x \mapsto \chordarcprofile(x, t_0)$ and hence,
 \begin{equation}
 \label{eq:spatial_inequality}
--\frac{\phi''}{\sqrt{1-(\phi')^2}} + \frac{1}{2} (1-\tangindicator) \frac{\sqrt{1 - (\phi')^2}}{\phi} \geq \frac{L}{8\pi} \norindicator \left[\curvecurv_p + \tangindicator \curvecurv_q\right]
+-\frac{\phi''}{\sqrt{1-(\phi')^2}} + \frac{1}{2} (1-\tangindicator) \frac{\sqrt{1 - (\phi')^2}}{\phi} \geq -\frac{L}{8\pi} \norindicator \left[\curvecurv_p + \tangindicator \curvecurv_q\right]
 \end{equation}
 by the spatial viscosity equation Theorem \ref{thm:spatial_viscosity} at regular points. Recalling that,
 \[
@@ -1093,7 +1093,7 @@ by the spatial viscosity equation Theorem \ref{thm:spatial_viscosity} at regular
 \]
 and combining with \eqref{eq:time_ineq}, we get
 \[
-\partial_t \phi \geq 4 \phi'' - 2 (1-\tangindicator) \frac{1 - (\phi')^2}{\phi} + \left(\phi - x \phi'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \phi' \Delta Q.
+\partial_t \phi \geq \left(\frac{2\pi}{L}\right)^2 \left(4 \phi'' - 2 (1-\tangindicator) \frac{1 - (\phi')^2}{\phi}\right) + \left(\phi - x \phi'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \phi' \Delta Q.
 \]
 \end{proof}
 
