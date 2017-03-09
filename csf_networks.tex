@@ -1215,17 +1215,26 @@ Hence the assumed asymptotic behaviour of $\varphi$ along with the inequality $\
 \section{Comparison Functions}
 \label{sec:orgheadline11}
 
+From Theorem \ref{thm:comparison}, we want to find positive, symmetric about $\pi$, concave functions $\varphi_c$ such that
+\[
+\partial_t \varphi_c \leq \left(\frac{2\pi}{L}\right)^2 4 \varphi_c'' + \frac{1}{L} \bar{Q} (\varphi_c - x \varphi_c') + \frac{2\pi}{L} \Delta Q \varphi_c'.
+\]
+We want that a choice of parameter $c$ gives $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$ - something like $\varphi_c \to 0$ as $c\to\infty$. We also require the asymptotics,
+\[
+\varphi(x, t) = \frac{\sqrt{3}}{2} x - c(t) x^2 + \bigo(x^3) \quad \text{as} \quad x \to 0.
+\]
+
+The question would be how to relate the $v_i$ with $\varphi$ and the curve.
+
 \subsection{Comparison for the normalised flow}
 
-Following the computations above we are looking for a function $f$ satisfying
+Working with the normalised flow instead we have:
 
 $$4f''+\bar{Q}(f-xf')+f'(\Delta Q(p,q))-f_t\geq 0,$$
 
-Here $\bar{Q}=\frac{1}{L}\int k^2 ds-\sum_{m=1}^n \Delta v_m$ and 
-$\Delta Q(p,q)=\frac{1}{L}\int_p^q k^2 ds-\sum_{m=i_p}^{i_q} \Delta v_m
-$.
+Here $\bar{Q}=\frac{1}{2\pi}\int k^2 ds-\sum_{m=1}^n \Delta v_m$ and $\Delta Q(p,q)=\frac{1}{2\pi}\int_p^q k^2 ds-\sum_{m=i_p}^{i_q} \Delta v_m$.
 
-The question would be how to relate the  $v_i$ with $f$ and the curve
+\textcolor{red}{Should there also be $1/2\pi$ attached to the $v_m$ terms?}
 
 \subsection{Comparison via \holder's inequality}
 
@@ -1279,6 +1288,10 @@ Thus we obtain,
 \partial_t \phi \leq F(\phi'', \phi', \phi, x, t)
 \]
 as required by the comparison theorem.
+
+\subsection{Comparison via substitution of self-similar solutions}
+
+Here we make a substitution $y = \varphi_0 (x)$, $\tau = e^t$ where $\varphi_0$ is a self-similar solution of the flow. Then we have to compute what we get and hope some comparison of the curvature integrals helps. In the smooth case, it all works well becuase the self-similar solution has constant curvature so achieves equality in \holder{} which also gives an $\arccos$ term that fits nicely with the self-similar profile which is just $\sin(x/2)$. So perhaps here we should first substitute the self-simlar solution and then see what comes up. This should be checked for the smooth case first to see that it all works okay there.
 
 \section{Convergence}
 \label{sec:orgheadline12}
