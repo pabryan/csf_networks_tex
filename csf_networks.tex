@@ -1197,6 +1197,9 @@ since $\varphi - m e^{\lambda t} < \varphi$. Thus we have a contradiction to \eq
 
 \section{Comparison Functions}
 \label{sec:orgheadline11}
+
+\subsection{Comparison for the normalised flow}
+
 Following the computations above we are looking for a function $f$ satisfying
 
 $$4f''+\bar{Q}(f-xf')+f'(\Delta Q(p,q))-f_t\geq 0,$$
@@ -1206,6 +1209,60 @@ $\Delta Q(p,q)=\frac{1}{L}\int_p^q k^2 ds-\sum_{m=i_p}^{i_q} \Delta v_m
 $.
 
 The question would be how to relate the  $v_i$ with $f$ and the curve
+
+\subsection{Comparison via \holder's inequality}
+
+Suppose  $\varphi$ satisfies the bulleted assumptions of the Comparison Theorem \ref{thm:comparison}, but satisfies the differential inequality,
+\[
+\begin{split}
+\partial_t \phi &\leq \left(\frac{2\pi}{L}\right)^2 \left(4 \phi'' + \frac{4}{x} \phi' \left(\arccos(\phi') - \tfrac{k(p,q)\pi}{6}\right)^2\right) + \left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2 \left(\phi - x \phi'\right) \\
+&\quad - \frac{1}{L} (\phi - x\phi') \bar{V} - \frac{2\pi}{L} \phi' \Delta V (p,q).
+\end{split}
+\]
+where $k(p_0, q_0)$ denotes the number of nodes between $p_0$ and $q_0$,
+\[
+\bar{V} = \sum_{i=1}^k \Delta v_i,
+\]
+and
+\[
+\Delta V (p_0, q_0) = \sum_{i = i_{p_0}}^{i_{q_0}} \Delta v_i
+\]
+where $i_{p_0}$ denotes the first node after $p_0$ and $i_{q_0}$ denotes the last node before $q_0$. Then we can apply the Comparison Theorem \ref{thm:comparison} as follows:
+
+First we estimate $\bar{Q}$ and $\Delta Q$. \holder's inequality and the theorem of turning tangents implies that
+\[
+\frac{1}{L} \int_{\gamma} \curvecurv^2 ds \geq \left(\frac{1}{L}\int_{\gamma} \curvecurv ds\right)^2 = \left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2
+\]
+from the triple condition \eqref{eq:triplecondition} giving exterior angles of $\pi/3$ at each vertex. Similarly,
+\[
+\begin{split}
+\int_{\gamma} \curvecurv^2 ds &\geq \frac{1}{\ell} \left(\int_{p_0}^{q_0} \curvecurv ds\right)^2 = \frac{2\pi}{L} \frac{1}{x} \left(2\theta - \tfrac{k(p,q)\pi}{3}\right)^2 \\
+&= \frac{2\pi}{L} \frac{1}{x} \left(2\arccos(\phi') - \tfrac{k(p,q)\pi}{3}\right)^2
+\end{split}
+\]
+where $\cos \theta = \ip{w}{\tang_{p_0}} = \ip{w}{\tang_{q_0}}$ so that $\cos 2 \theta = \ip{\tang_{p_0}}{\tang_{q_0}}$.
+
+Now concavity of $\phi$ implies $\phi' > 0$ and $(\phi - x \phi')' = -x\phi'' \geq 0$ which along with $(\phi - x\phi) (0) = 0$ implies $\phi -x \phi \geq 0$. Therefore,
+\[
+\begin{split}
+(\phi - x\phi') \left[\left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2 - \frac{1}{L} \bar{V}\right] &\leq (\phi - x\phi') \left[\frac{1}{L} \int_{\gamma} \curvecurv^2 ds - \frac{1}{L} \bar{V}\right] \\
+&= (\phi - x\phi') \frac{1}{L} \bar{Q}
+\end{split}
+\]
+and
+\[
+\begin{split}
+\left(\frac{2\pi}{L}\right)^2 \frac{4}{x} \phi' \left(\arccos(\phi') - \tfrac{k(p,q)\pi}{6}\right)^2 - \frac{2\pi}{L} \phi' \Delta V (p,q) &\leq \frac{2\pi}{L} \phi' \int_{\gamma} \curvecurv^2 ds - \frac{2\pi}{L} \phi' \Delta V (p,q) \\
+&= \phi' \frac{2\pi}{L} \Delta Q.
+\end{split}
+\]
+
+Thus we obtain,
+\[
+\partial_t \phi \leq F(\phi'', \phi', \phi, x, t)
+\]
+as required by the comparison theorem.
+
 \section{Convergence}
 \label{sec:orgheadline12}
 \end{document}
