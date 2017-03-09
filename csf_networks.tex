@@ -415,6 +415,7 @@ By compactness of \(\sphere^1\times \sphere^1\) (which parametrises the set of c
 The next proposition gives the asymptotic behaviour of the chord/arc-profile of networks \(\network\), near the end point \(x=0\), and so by symmetry also at the end point \(x=2\pi\).
 
 \begin{prop}
+\label{prop:asymptotics}
 Let \(\network\) be a network, with piecewise closed curve \(\gamma\). Then as \(x\to 0\) the chord/arc-profile of \(\gamma\) satisfies
 \[
 \lim_{x\to 0} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^2} = - \frac{L}{32\pi} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
@@ -1115,6 +1116,16 @@ If
 \partial_t \varphi \leq \left(\frac{2\pi}{L}\right)^2 4 \varphi'' + \frac{1}{L} \bar{Q} (\varphi - x \varphi') + \frac{2\pi}{L} \Delta Q \varphi'.
 \]
 and $\varphi(x, 0) \leq \chordarcprofile(x, 0)$ for all $x \in [0, 2\pi]$, then $\varphi(x, t) \leq \chordarcprofile(x, t)$ for all $x, t$.
+
+If in addition,
+\[
+\varphi(x, t) = \frac{\sqrt{3}}{2} x - c(t) x^2 + \bigo(x^3) \quad \text{as} \quad x \to 0
+\]
+then
+\[
+\frac{L}{2\pi} \max_i \{\curvecurv^+(a_i, t) + \curvecurv^-(a_i, t)\} \leq 16 c(t).
+\]
+for all $t$.
 \end{theorem}
 
 \begin{proof}
@@ -1191,7 +1202,13 @@ makes $F_{\lambda}$ strictly decreasing in the $y$ variable and hence
 \[
 F_{\lambda} (\varphi'', \varphi', \varphi - m e^{\lambda t}, x, t) > F_{\lambda}(\varphi'', \varphi', \varphi, x, t)
 \]
-since $\varphi - m e^{\lambda t} < \varphi$. Thus we have a contradiction to \eqref{eq:F_leq} and the theorem is true.
+since $\varphi - m e^{\lambda t} < \varphi$. Thus we have a contradiction to \eqref{eq:F_leq} proving the first part of the theorem.
+
+For the second part, recall Proposition \ref{prop:asymptotics} states that
+\[
+\chordarcprofile(x, t) = \frac{\sqrt{3}}{2}x - \frac{L}{32\pi} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\} x^2 + \bigo(x^3) \quad \text{as} \quad x \to 0.
+\]
+Hence the assumed asymptotic behaviour of $\varphi$ along with the inequality $\varphi(x, t) \leq \chordarcprofile(x, t)$ yields the second part.
 \end{proof}
 
 
