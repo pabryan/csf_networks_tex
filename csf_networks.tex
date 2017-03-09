@@ -1097,115 +1097,86 @@ and combining with \eqref{eq:time_ineq}, we get
 \]
 \end{proof}
 
-Now the difficulty in obtaining a suitable comparison principle is in dealing with the $\bar{Q}$ and $\Delta Q$ terms, especially the $\Delta Q$ term which is effectively unknown. Both terms are dependent on the loop $\gamma$ and so we need some universal estimates that hold for all $\gamma$. Our resulting theorem is as follows:
+We may now deduce the following comparison theorem:
 
 \begin{theorem}
-Let $\phi : [0, 2\pi] \times \RR_{\geq 0} \to \RR$ be a continuous function satisfying:
+\label{thm:comparison}
+
+Let $\varphi : [0, 2\pi] \times \RR_{\geq 0} \to \RR$ be a continuous function satisfying:
 \begin{itemize}
-\item $\phi$ is smooth and positive on $(0, 2\pi) \times \RR_{>0}$,
-\item $\phi$ symmetric about $x = \pi$ for every $t$,
-\item $\phi(0, t) = \phi(2\pi, t) = 0$ for every $t$,
-\item $\phi$ is weakly concave in $x$ for each $t$ ($\phi'' \leq 0)$.
+\item $\varphi$ is smooth and positive on $(0, 2\pi) \times \RR_{>0}$,
+\item $\varphi$ symmetric about $x = \pi$ for every $t$,
+\item $\varphi(0, t) = \varphi(2\pi, t) = 0$ for every $t$,
+\item $\varphi$ is weakly concave in $x$ for each $t$ ($\varphi'' \leq 0)$.
 \end{itemize}
 
 If
 \[
-\begin{split}
-\partial_t \phi &\leq \left(\frac{2\pi}{L}\right)^2 \left(4 \phi'' + \frac{4}{x} \phi' \left(\arccos(\phi') - \tfrac{k(p,q)\pi}{6}\right)^2\right) + \left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2 \left(\phi - x \phi'\right) \\
-&\quad - \frac{1}{L} (\phi - x\phi') \bar{V} - \frac{2\pi}{L} \phi' \Delta V (p,q)
-\end{split}
+\partial_t \varphi \leq \left(\frac{2\pi}{L}\right)^2 4 \varphi'' + \frac{1}{L} \bar{Q} (\varphi - x \varphi') + \frac{2\pi}{L} \Delta Q \varphi'.
 \]
-and $\phi(x, 0) \leq \chordarcprofile(x, 0)$ for all $x \in [0, 2\pi]$, then $\phi(x, t) \leq \chordarcprofile(x, t)$ for all $x, t$.
+and $\varphi(x, 0) \leq \chordarcprofile(x, 0)$ for all $x \in [0, 2\pi]$, then $\varphi(x, t) \leq \chordarcprofile(x, t)$ for all $x, t$.
 \end{theorem}
 
 \begin{proof}
-First we estimate $\bar{Q}$ and $\Delta Q$. \holder's inequality and the theorem of turning tangents implies that
-\[
-\frac{1}{L} \int_{\gamma} \curvecurv^2 ds \geq \left(\frac{1}{L}\int_{\gamma} \curvecurv ds\right)^2 = \left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2 
-\]
-from the triple condition \eqref{eq:triplecondition} giving exterior angles of $\pi/3$ at each vertex. Similarly,
-\[
-\begin{split}
-\int_{\gamma} \curvecurv^2 ds &\geq \frac{1}{\ell} \left(\int_{p_0}^{q_0} \curvecurv ds\right)^2 = \frac{2\pi}{L} \frac{1}{x} \left(2\theta - \tfrac{k(p,q)\pi}{3}\right)^2 \\
-&= \frac{2\pi}{L} \frac{1}{x} \left(2\arccos(\phi') - \tfrac{k(p,q)\pi}{3}\right)^2
-\end{split}
-\]
-where $\cos \theta = \ip{w}{\tang_{p_0}} = \ip{w}{\tang_{q_0}}$ so that $\cos 2 \theta = \ip{\tang_{p_0}}{\tang_{q_0}}$, and $k(p_0, q_0)$ denotes the number of nodes between $p_0$ and $q_0$.
-
-Now concavity of $\phi$ implies $\phi' > 0$ and $(\phi - x \phi')' = -x\phi'' \geq 0$ which along with $(\phi - x\phi) (0) = 0$ implies $\phi -x \phi \geq 0$. Therefore,
-\[
-\begin{split}
-(\phi - x\phi') \left[\left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2 - \frac{1}{L} \bar{V}\right] &\leq (\phi - x\phi') \left[\frac{1}{L} \int_{\gamma} \curvecurv^2 ds - \frac{1}{L} \bar{V}\right] \\
-&= (\phi - x\phi') \frac{1}{L} \bar{Q}
-\end{split}
-\]
-and
-\[
-\begin{split}
-\left(\frac{2\pi}{L}\right)^2 \frac{4}{x} \phi' \left(\arccos(\phi') - \tfrac{k(p,q)\pi}{6}\right)^2 - \frac{2\pi}{L} \phi' \Delta V (p,q) &\leq \frac{2\pi}{L} \phi' \int_{\gamma} \curvecurv^2 ds - \frac{2\pi}{L} \phi' \Delta V (p,q) \\
-&= \phi' \frac{2\pi}{L} \Delta Q.
-\end{split}
-\]
-
 For convenience, define
 \[
 F(z, p, y, x, t) = \left(\frac{2\pi}{L}\right)^2 4 z + \frac{1}{L} \bar{Q} (y - x p) + \frac{2\pi}{L} \Delta Q p.
 \]
-so that the assumptions on $\phi$ and the above inequalities give
+so that the assumptions on $\varphi$ give
 \begin{equation}
 \label{eq:comparison_diff_ineq_leq}
-\partial_t \phi \leq F(\phi'', \phi', \phi, x, t).
+\partial_t \varphi \leq F(\varphi'', \varphi', \varphi, x, t).
 \end{equation}
 
-Next, owing to a lack of suitable monotonicity of $F$ in the $y$ variable, we must introduce an exponential factor. We claim that for any $\lambda > 0$, the function $e^{-\lambda t} \chordarcprofile$ is a viscosity solution of
+Owing to a lack of suitable monotonicity of $F$ in the $y$ variable, we must introduce an exponential factor. We first claim that for any $\lambda > 0$, at regular points, the function $e^{-\lambda t} \chordarcprofile$ is a viscosity solution of
 \begin{equation}
 \label{eq:exponential_viscosity}
-\partial_t \chordarcprofile \geq e^{-\lambda t} F_{\lambda} (e^{\lambda t} \chordarcprofile'', e^{\lambda t} \chordarcprofile', e^{\lambda t} \chordarcprofile, x, t)
+\partial_t \chordarcprofile \geq e^{-\lambda t} F_{\lambda} (e^{\lambda t} \chordarcprofile'', e^{\lambda t} \chordarcprofile', e^{\lambda t} \chordarcprofile, x, t) - \left(\frac{2\pi}{L}\right)^2 2 (1-\tangindicator) \frac{1 - (e^{\lambda t} \chordarcprofile')^2}{e^{2\lambda t} \chordarcprofile}
 \end{equation}
 where
 \[
-F_{\lambda}(z, p, y, x, t) = F(z, p, y, x, t) - \lambda y
+F_{\lambda}(z, p, y, x, t) = F(z, p, y, x, t) - \lambda y.
 \]
 To see this, note if $\psi \leq e^{-\lambda t} \chordarcprofile$ for $t\leq t_0$ with equality at $(x_0, t_0)$, then $e^{\lambda t} \psi \leq \chordarcprofile$ for $t\leq t_0$ with equality at $(x_0, t_0)$. Therefore the viscosity equation for $\chordarcprofile$ in Theorem \ref{thm:csf_viscosity} gives
 \[
-e^{\lambda t} (\partial_t \psi + \lambda \psi) = \partial_t (e^{\lambda t} \psi) \geq F(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t)
+e^{\lambda t} (\partial_t \psi + \lambda \psi) = \partial_t (e^{\lambda t} \psi) \geq F(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) - \left(\frac{2\pi}{L}\right)^2 2 (1-\tangindicator) \frac{1 - (e^{\lambda t} \chordarcprofile')^2}{e^{\lambda t} \chordarcprofile}
 \]
 at $(x_0, t_0)$, and so
 \[
 \begin{split}
-\partial_t \psi &\geq e^{-\lambda t} F(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) - \lambda \psi \\
-&= e^{-\lambda t} \left[F(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) - \lambda e^{\lambda t} \psi\right] \\
-&= e^{-\lambda t} F_{\lambda}(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t)
+\partial_t \psi &\geq e^{-\lambda t} F(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) - \lambda \psi - \left(\frac{2\pi}{L}\right)^2 2 (1-\tangindicator) \frac{1 - (e^{\lambda t} \chordarcprofile')^2}{e^{2\lambda t} \chordarcprofile} \\
+&= e^{-\lambda t} \left[F(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) - \lambda e^{\lambda t} \psi\right] - \left(\frac{2\pi}{L}\right)^2 2 (1-\tangindicator) \frac{1 - (e^{\lambda t} \chordarcprofile')^2}{e^{2\lambda t} \chordarcprofile} \\
+&= e^{-\lambda t} F_{\lambda}(e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) - \left(\frac{2\pi}{L}\right)^2 2 (1-\tangindicator) \frac{1 - (e^{\lambda t} \chordarcprofile')^2}{e^{2\lambda t} \chordarcprofile}
 \end{split}
 \]
 at $(x_0, t_0)$ as claimed.
 
 Now suppose the theorem is false. Then there must be a $\tau \in (0, T)$ such that
 \[
-\inf_{(x, t) \in [0, 2\pi] \times [0,\tau]} \{\chordarcprofile(x, t) - \phi(x, t)\}  < 0.
+\inf_{(x, t) \in [0, 2\pi] \times [0,\tau]} \{\chordarcprofile(x, t) - \varphi(x, t)\}  < 0.
 \]
-Let
+Then letting
 \[
--m = \inf_{(x, t) \in [0, 2\pi] \times [0,\tau]} \{e^{-\lambda t} \chordarcprofile(x, t) - e^{-\lambda t} \phi(x, t)\} < 0
+m = -\inf_{(x, t) \in [0, 2\pi] \times [0,\tau]} \{e^{-\lambda t} \chordarcprofile(x, t) - e^{-\lambda t} \varphi(x, t)\}
 \]
-and choose $(x_0, t_0)$ such that $e^{-\lambda t_0} \chordarcprofile(x_0, t_0) - e^{-\lambda t_0} \phi(x_0, t_0) = -m$. Define
+we have $m > 0$. By compactness we may choose $(x_0, t_0)$ such that $e^{-\lambda t_0} \chordarcprofile(x_0, t_0) - e^{-\lambda t_0} \varphi(x_0, t_0) = -m$. Define
 \[
-\psi = e^{-\lambda t} \phi - m
+\psi = e^{-\lambda t} \varphi - m
 \]
-which is a lower support function for $e^{-\lambda t} \chordarcprofile$ at $(x_0, t_0)$. The viscosity equation \eqref{eq:exponential_viscosity} for $e^{-\lambda t}\chordarcprofile$ then gives,
+which is then a lower support function for $e^{-\lambda t} \chordarcprofile$ at $(x_0, t_0)$. Then also $\varphi - m e^{\lambda t_0}$ is a concave, lower supporting function for $\chordarcprofile$ at $(x_0, t_0)$, hence Lemma \ref{lem:concave_barrier} ensures that $\tangindicator = 1$ and that $x_0$ is a regular point of $\chordarcprofile(\cdot, t_0)$. The viscosity equation \eqref{eq:exponential_viscosity} for $e^{-\lambda t}\chordarcprofile$ then gives,
 \[
-\partial_t \psi \geq e^{-\lambda t} F_{\lambda} (e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) = e^{-\lambda t} F_{\lambda} (\phi'', \phi', \phi - m e^{\lambda t}, x, t)
+\partial_t \psi \geq e^{-\lambda t} F_{\lambda} (e^{\lambda t} \psi'', e^{\lambda t} \psi', e^{\lambda t} \psi, x, t) = e^{-\lambda t} F_{\lambda} (\varphi'', \varphi', \varphi - m e^{\lambda t}, x, t)
 \]
 
-On the other hand, the assumed inequality \eqref{eq:comparison_diff_ineq_leq} for $\phi$ gives,
+On the other hand, the assumed inequality \eqref{eq:comparison_diff_ineq_leq} for $\varphi$ gives,
 \[
-\partial_t \psi = e^{-\lambda t} (\partial_t \phi - \lambda \phi) \leq e^{-\lambda_t}(F(\phi'', \phi', \phi, x, t)  - \lambda \phi) = e^{-\lambda t} F_{\lambda}(\phi'', \phi', \phi, x, t)
+\partial_t \psi = e^{-\lambda t} (\partial_t \varphi - \lambda \varphi) \leq e^{-\lambda_t}(F(\varphi'', \varphi', \varphi, x, t)  - \lambda \varphi) = e^{-\lambda t} F_{\lambda}(\varphi'', \varphi', \varphi, x, t)
 \]
 
 Putting the two previous inequalities together then yields
 \begin{equation}
 \label{eq:F_leq}
-F_{\lambda} (\phi'', \phi', \phi - m e^{\lambda t}, x, t) \leq F_{\lambda}(\phi'', \phi', \phi, x, t)
+F_{\lambda} (\varphi'', \varphi', \varphi - m e^{\lambda t}, x, t) \leq F_{\lambda}(\varphi'', \varphi', \varphi, x, t)
 \end{equation}
 
 But now, from the definition of $F$ we have
@@ -1218,9 +1189,9 @@ Choosing
 \]
 makes $F_{\lambda}$ strictly decreasing in the $y$ variable and hence
 \[
-F_{\lambda} (\phi'', \phi', \phi - m e^{\lambda t}, x, t) > F_{\lambda}(\phi'', \phi', \phi, x, t)
+F_{\lambda} (\varphi'', \varphi', \varphi - m e^{\lambda t}, x, t) > F_{\lambda}(\varphi'', \varphi', \varphi, x, t)
 \]
-since $\phi - m e^{\lambda t} < \phi$. Thus we have a contradiction to \eqref{eq:F_leq} and hence the theorem is true.
+since $\varphi - m e^{\lambda t} < \varphi$. Thus we have a contradiction to \eqref{eq:F_leq} and the theorem is true.
 \end{proof}
 
 
