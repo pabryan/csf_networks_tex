@@ -1111,9 +1111,10 @@ Let $\varphi_0 : [0, 2\pi] \times \RR_{\geq 0} \to \RR$ be a continuous function
 \item $\varphi_0$ is weakly concave in $x$ for each $\tau$ ($\varphi_0'' \leq 0)$,
 \end{itemize}
 and such that
-\[
+\begin{equation}
+\label{eq:comparison_ineq}
 \partial_{\tau} \varphi_0 \leq 4 \varphi_0'' + \frac{L}{4\pi^2} \bar{Q} (\varphi_0 - x \varphi_0') + \frac{L}{2\pi} \Delta Q \varphi_0'.
-\]
+\end{equation}
 If $\varphi_0(x, 0) \leq \chordarcprofile(x, 0)$ for all $x \in [0, 2\pi]$, then $\varphi(x, t) := \varphi_0(x, \tau(t)) \leq \chordarcprofile(x, t)$ for all $x, t$ where $\tau$ satisfies
 \[
 \begin{cases}
@@ -1228,26 +1229,72 @@ Hence the assumed asymptotic behaviour of $\varphi$ along with the inequality $\
 \section{Comparison Functions}
 \label{sec:orgheadline11}
 
-From Theorem \ref{thm:comparison}, we want to find positive, symmetric about $\pi$, concave functions $\varphi_c$ such that
+In this section, we seek suitable functions $\varphi_0$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi_0(x)$ where $\psi_0(x)$ is a self-similar solution to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
 \[
-\partial_t \varphi_c \leq \left(\frac{2\pi}{L}\right)^2 4 \varphi_c'' + \frac{1}{L} \bar{Q} (\varphi_c - x \varphi_c') + \frac{2\pi}{L} \Delta Q \varphi_c'.
+\varphi_0(x, \tau) = e^{\tau} \Phi(e^{-\tau} \psi_0(x))
 \]
-We want that a choice of parameter $c$ gives $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$ - something like $\varphi_c \to 0$ as $c\to\infty$. We also require the asymptotics,
+where $\psi_0$ is a self-similar solution of the Network CSF with a single loop and the same number of nodes as our given solution $\gamma$.
+
+\begin{theorem}
+\label{thm:comparison_function}
+Let
 \[
-\varphi(x, t) = \frac{\sqrt{3}}{2} x - c(t) x^2 + \bigo(x^3) \quad \text{as} \quad x \to 0.
+\Phi_c(u) = 
 \]
+and
+\[
+\varphi_c(x, \tau) = e^{\tau} \Phi_c(e^{-\tau} \psi_0(x))
+\]
+with $\psi_0$ a self-similar solution of the Network CSF with a single loop and $k$ nodes. Then for any solution of the network CSF such that \textbf{what are the conditions?!} there exists a $c$ such that
+\[
+\varphi_c(x, \tau(t)) \leq \chordarcprofile(x, t)
+\]
+for every $x, t$. Moreover,
+\[
+\frac{L}{2\pi} \max_i \{\curvecurv^+(a_i, t) + \curvecurv^-(a_i, t)\} \leq 8 e^{-\tau(t)} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'.
+\]
+\end{theorem}
 
-The question would be how to relate the $v_i$ with $\varphi$ and the curve.
+\begin{proof}
+We have
+\begin{align*}
+\partial_{\tau} \varphi_c &= e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \\
+\varphi_c' &= \psi_0' \Phi_c' \\
+\varphi_c'' &= e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'.
+\end{align*}
+Therefore equation \eqref{eq:comparison_ineq} is satisfied provided
+\[
+e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \leq 4 \left(e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'\right) + \frac{L}{4\pi^2} \bar{Q} (e^{\tau} \Phi_c - x \psi_0' \Phi_c') + \frac{L}{2\pi} \Delta Q \psi_0'\Phi_c'.
+\]
+Rearranging, this is equivalent to
+\[
+\begin{split}
+0 &\leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(4\psi_0'' - \frac{L}{4\pi^2} \bar{Q} x \psi_0' + \frac{L}{2\pi} \Delta Q \psi_0' \right) e^{-\tau} \Phi_c' + e^{-\tau} \psi_0 \Phi_c' - \Phi_c \\
+&= 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(1 - \frac{L}{4\pi^2} \bar{Q}\right) e^{-\tau} \psi_0 \Phi_c' - \Phi_c \\
+&\quad + \left(4\psi_0'' + \frac{L}{4\pi^2} \bar{Q} (\psi_0 - x \psi_0') + \frac{L}{2\pi} \Delta Q \psi_0' \right) e^{-\tau} \Phi_c'.
+\end{split}
+\]
+\end{proof}
 
-\subsection{Comparison for the normalised flow}
-
-Working with the normalised flow instead we have:
-
-$$4f''+\bar{Q}(f-xf')+f'(\Delta Q(p,q))-f_t\geq 0,$$
-
-Here $\bar{Q}=\frac{1}{2\pi}\int k^2 ds-\sum_{m=1}^n \Delta v_m$ and $\Delta Q(p,q)=\frac{1}{2\pi}\int_p^q k^2 ds-\sum_{m=i_p}^{i_q} \Delta v_m$.
-
-\textcolor{red}{Should there also be $1/2\pi$ attached to the $v_m$ terms?}
+\begin{remark}
+In the smooth case \cite{MR2794630}, we have
+\[
+\psi_0 = 2 \sin(x/2).
+\]
+Moreover, \holder's inequality gives,
+\[
+\frac{L}{4\pi^2} \bar{Q} \geq 1, \quad \frac{L}{2\pi} \Delta Q \geq \frac{1}{x} \left(2\arccos(\psi_0'\Phi_c')\right)^2.
+\]
+Then we have
+\[
+4\psi_0'' + \frac{L}{4\pi^2} \bar{Q} (\psi_0 - x \psi_0') + \frac{L}{2\pi} \Delta Q \psi_0' \geq 4\psi_0'' + (\psi_0 - x \psi_0') +  \frac{1}{x} \left(2\arccos(\psi_0'\Phi_c')\right)^2 \psi_0'.
+\]
+Not sure what's happening with the term
+\[
+\left(1 - \frac{L}{4\pi^2} \bar{Q}\right).
+\]
+It seems to have the wrong sign.
+\end{remark}
 
 \subsection{Comparison via \holder's inequality}
 
