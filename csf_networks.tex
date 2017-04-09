@@ -1098,42 +1098,55 @@ and combining with \eqref{eq:time_ineq}, we get
 \]
 \end{proof}
 
-We may now deduce the following comparison theorem:
+We may now deduce the comparison theorem. For this we also make a normalisation of the time variable.
 
 \begin{theorem}
 \label{thm:comparison}
 
-Let $\varphi : [0, 2\pi] \times \RR_{\geq 0} \to \RR$ be a continuous function satisfying:
+Let $\varphi_0 : [0, 2\pi] \times \RR_{\geq 0} \to \RR$ be a continuous function satisfying:
 \begin{itemize}
-\item $\varphi$ is smooth and positive on $(0, 2\pi) \times \RR_{>0}$,
-\item $\varphi$ symmetric about $x = \pi$ for every $t$,
-\item $\varphi(0, t) = \varphi(2\pi, t) = 0$ for every $t$,
-\item $\varphi$ is weakly concave in $x$ for each $t$ ($\varphi'' \leq 0)$.
+\item $\varphi_0$ is smooth and positive on $(0, 2\pi) \times \RR_{>0}$,
+\item $\varphi_0(\cdot, \tau)$ is symmetric about $x = \pi$ for every $\tau$,
+\item $\varphi_0(0, \tau) = \varphi_0(2\pi, \tau) = 0$ for every $\tau$,
+\item $\varphi_0$ is weakly concave in $x$ for each $\tau$ ($\varphi_0'' \leq 0)$,
 \end{itemize}
-
-If
+and such that
 \[
-\partial_t \varphi \leq \left(\frac{2\pi}{L}\right)^2 4 \varphi'' + \frac{1}{L} \bar{Q} (\varphi - x \varphi') + \frac{2\pi}{L} \Delta Q \varphi'.
+\partial_{\tau} \varphi_0 \leq 4 \varphi_0'' + \frac{L}{4\pi^2} \bar{Q} (\varphi_0 - x \varphi_0') + \frac{L}{2\pi} \Delta Q \varphi_0'.
 \]
-and $\varphi(x, 0) \leq \chordarcprofile(x, 0)$ for all $x \in [0, 2\pi]$, then $\varphi(x, t) \leq \chordarcprofile(x, t)$ for all $x, t$.
+If $\varphi_0(x, 0) \leq \chordarcprofile(x, 0)$ for all $x \in [0, 2\pi]$, then $\varphi(x, t) := \varphi_0(x, \tau(t)) \leq \chordarcprofile(x, t)$ for all $x, t$ where $\tau$ satisfies
+\[
+\begin{cases}
+\partial_t \tau &= \left(\frac{2\pi}{L}\right)^2 \\
+\tau(0) &= 0.
+\end{cases}
+\]
 
 If in addition,
 \[
-\varphi(x, t) = \frac{\sqrt{3}}{2} x - c(t) x^2 + \bigo(x^3) \quad \text{as} \quad x \to 0
+\varphi_0(x, \tau) = \frac{\sqrt{3}}{2} x - c(\tau) x^2 + \bigo(x^3) \quad \text{as} \quad x \to 0
 \]
 then
 \[
-\frac{L}{2\pi} \max_i \{\curvecurv^+(a_i, t) + \curvecurv^-(a_i, t)\} \leq 16 c(t).
+\frac{L}{2\pi} \max_i \{\curvecurv^+(a_i, t) + \curvecurv^-(a_i, t)\} \leq 16 c(\tau(t)).
 \]
 for all $t$.
 \end{theorem}
 
+\begin{remark}
+Note that the coefficients $\tfrac{L}{4\pi^2} \bar{Q}$ and $\tfrac{L}{2\pi}\Delta Q$ are scale invariant. Without the change of time parameter $\tau$, we would not obtain a scale invariant equation. The change in time precisely compensates for the lack of uniform time interval among solutions of the flow, providing the desired scale invariant equation.
+\end{remark}
+
 \begin{proof}
+Let $\varphi(x, t) = \varphi_0(x, \tau(t))$. The assumptions on $\varphi_0$ give
+\[
+\partial_t \varphi = \left(\frac{2\pi}{L}\right)^2 \partial_{\tau} \varphi_0 \leq 4 \left(\frac{2\pi}{L}\right)^2 \varphi_0'' + \left(\frac{2\pi}{L}\right)^2 \frac{L}{4\pi^2} \bar{Q} (\varphi_0 - x \varphi_0') + \left(\frac{2\pi}{L}\right)^2 \frac{L}{2\pi} \Delta Q \varphi_0'.
+\]
 For convenience, define
 \[
 F(z, p, y, x, t) = \left(\frac{2\pi}{L}\right)^2 4 z + \frac{1}{L} \bar{Q} (y - x p) + \frac{2\pi}{L} \Delta Q p.
 \]
-so that the assumptions on $\varphi$ give
+so that $\varphi$ satisfies,
 \begin{equation}
 \label{eq:comparison_diff_ineq_leq}
 \partial_t \varphi \leq F(\varphi'', \varphi', \varphi, x, t).
