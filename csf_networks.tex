@@ -1262,15 +1262,15 @@ We have
 \varphi_c' &= \psi_0' \Phi_c' \\
 \varphi_c'' &= e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'.
 \end{align*}
-Therefore equation \eqref{eq:comparison_ineq} is satisfied provided
+Therefore equation \eqref{eq:comparison_ineq} from the Comparison Theorem \ref{thm:comparison} is satisfied provided
 \[
 e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \leq 4 \left(e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'\right) + \frac{L}{4\pi^2} \bar{Q} (e^{\tau} \Phi_c - x \psi_0' \Phi_c') + \frac{L}{2\pi} \Delta Q \psi_0'\Phi_c'.
 \]
 Rearranging, this is equivalent to
 \[
 \begin{split}
-0 &\leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(4\psi_0'' - \frac{L}{4\pi^2} \bar{Q} x \psi_0' + \frac{L}{2\pi} \Delta Q \psi_0' \right) e^{-\tau} \Phi_c' + e^{-\tau} \psi_0 \Phi_c' - \Phi_c \\
-&= 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(1 - \frac{L}{4\pi^2} \bar{Q}\right) e^{-\tau} \psi_0 \Phi_c' - \Phi_c \\
+0 &\leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(4\psi_0'' - \frac{L}{4\pi^2} \bar{Q} x \psi_0' + \frac{L}{2\pi} \Delta Q \psi_0' \right) e^{-\tau} \Phi_c' + e^{-\tau} \psi_0 \Phi_c' + \frac{L}{4\pi^2} \bar{Q} \Phi_c - \Phi_c \\
+&= 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(\frac{L}{4\pi^2} \bar{Q} - 1\right) \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \\
 &\quad + \left(4\psi_0'' + \frac{L}{4\pi^2} \bar{Q} (\psi_0 - x \psi_0') + \frac{L}{2\pi} \Delta Q \psi_0' \right) e^{-\tau} \Phi_c'.
 \end{split}
 \]
