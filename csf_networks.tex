@@ -1273,12 +1273,12 @@ for every $x, t$. Moreover,
 \end{theorem}
 
 \begin{proof}
-Equation \eqref{eq:comparison_ineq} from the Comparison Theorem \ref{thm:comparison} will be satisfied if we can show that $\varphi_c$ is concave and that
+First, we claim that equation \eqref{eq:comparison_ineq} from the Comparison Theorem \ref{thm:comparison} will be satisfied if we can show that $\varphi_c$ satisfies the bulleted conditions of that theorem and that
 \begin{equation}
 \label{eq:self_similar_comparison}
-\partial_t \varphi_c \leq 4 \varphi_c'' + \frac{L}{4\pi^2} \bar{Q}_0 (\varphi_c - x\varphi_c') + \frac{1}{x} \varphi_c' f_0 (\varphi_c')
+\partial_t \varphi_c \leq 4 \varphi_c'' + \frac{L}{4\pi^2} \bar{Q}_0 (\varphi_c - x\varphi_c') + \frac{1}{x} \varphi_c' f_0 (\varphi_c').
 \end{equation}
-since the hypothesies of the theorem give
+To see why the claim holds, observe that the hypotheses of the theorem give
 \[
 \frac{L}{4\pi^2} \bar{Q}_0 (\varphi_c - x\varphi_c') + \frac{1}{x} \varphi_c' f_0 (\varphi_c') \leq \frac{L}{4\pi^2} \bar{Q} (\varphi_c - x\varphi_c') + \frac{L}{2\pi} \Delta Q \varphi_c'
 \]
@@ -1302,24 +1302,24 @@ Rearranging, this is equivalent to
 &\quad + \left(4\psi_0'' + \frac{L}{4\pi^2} \bar{Q}_0 (\psi_0 - x \psi_0') + \frac{1}{x} \psi_0' f_0(\psi_0')\right) e^{-\tau} \Phi_c'.
 \end{split}
 \]
-On the self-similar solution $\psi_0$ satisfies
+The self-similar solution $\psi_0$ satisfies
 \[
 0 = \partial_t \psi_0 \leq 4\psi_0'' + \frac{L}{4\pi^2} \bar{Q}_0 (\psi_0 - x \psi_0') + \frac{1}{x} \psi_0' f_0(\psi_0').
 \]
 Thus it is sufficient to prove
-\begin{equation}
-\label{eq:Phi}
+\[
 0 \leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) + \frac{1}{x} \left(f_0(\Phi_c' \psi_0') - f_0(\psi_0')\right) \psi_0' e^{-\tau} \Phi_c'.
-\end{equation}
+\]
 
-Next, by taking a Taylor expansion around $\psi_0'$ with second order remainder, the concavity of $f_0$ implies the remainder is non-negative and hence
+We make one final estimation: by taking a Taylor expansion around $\psi_0'$ with second order remainder, the concavity of $f_0$ implies the remainder is non-negative and hence
 \[
 f_0(\Phi_c' \psi_0') - f_0(\psi_0') \geq f_0'(\psi_0')(\Phi_c'\psi_0' - \psi_0') = \psi_0' f_0'(\psi_0')(\Phi_c' - 1).
 \]
-Let us also write $u = e^{-\tau} \psi_0$ for the argument to $\Phi_c$ so that equation \eqref{eq:Phi} becomes
-\[
-0 \leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - u \Phi_c'\right) + \frac{1}{x} \psi_0' e^{-\tau} \psi_0' f_0'(\psi_0')(\Phi_c' - 1) \Phi_c'.
-\]
+Let us also write $u = e^{-\tau} \psi_0$ for the argument to $\Phi_c$ so that were finally reduce to
+\begin{equation}
+\label{eq:Phi}
+0 \leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - u \Phi_c'\right) + \frac{1}{x} \psi_0' f_0'(\psi_0')(\Phi_c' - 1) \psi_0' e^{-\tau} \Phi_c'.
+\end{equation}
 \end{proof}
 
 \begin{remark}
@@ -1331,15 +1331,22 @@ and \holder's inequality gives,
 \[
 \frac{L}{4\pi^2} \bar{Q} \geq 1, \quad \frac{L}{2\pi} \Delta Q \geq \frac{4}{x} \arccos^2(\psi_0'\Phi_c').
 \]
-The self-similar solution is the circle, hence the curvature is constant and we have equality in \holder{}'s inequality yeilding,
+The self-similar solution is the circle, hence the curvature is constant and we have equality in \holder{}'s inequality yielding,
 \[
 \frac{L}{4\pi^2} \bar{Q}_0 = 1, \quad \frac{L}{2\pi} \Delta Q_0 = \frac{2\pi}{L} \ell = x = \frac{4}{x} \arccos^2(\psi_0')
 \]
 since $\psi_0'(x) = \cos(x/2)$. Thus $f_0 = 4 \arccos^2$.
 
-In this setting, equation \eqref{eq:Phi} becomes
+In this setting, equation \eqref{eq:self_similar_comparison} becomes
 \[
-0 \leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \frac{1}{x} \left(f_0(\Phi_c' \psi_0') - f_0(\psi_0')\right) \psi_0' e^{-\tau} \Phi_c'.
+\partial_t \varphi_c \leq 4 \varphi_c'' + \varphi_c - x\varphi_c' + \frac{1}{x} \varphi_c' 4\arccos^2(\varphi_c').
+\]
+while equation \eqref{eq:Phi} becomes
+\[
+\begin{split}
+0 &\leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' - \frac{8}{x} \psi_0' \frac{\arccos(\psi_0')}{\sqrt{1 - (\psi_0')^2}} (\Phi_c' - 1) \psi_0' e^{-\tau} \Phi_c'. \\
+&= 4 (e^{-\tau} \cos(x/2))^2 \Phi_c'' - \frac{8}{x} \cos(x/2) \frac{\cos(x/2)}{\sin(x/2)} (\Phi_c' - 1) \cos(x/2) e^{-\tau} \Phi_c'.
+\end{split}
 \]
 \end{remark}
 
