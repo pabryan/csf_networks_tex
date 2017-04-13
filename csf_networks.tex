@@ -1030,7 +1030,7 @@ This is a strictly concave function whose square is not concave. This seems rela
 
 Now we may prove the theorem at the heart of our method. First, let us define,
 \[
-\bar{Q} = \int_{\gamma} \curvecurv^2 ds - \sum_{m=i}^{k} \corneranglespeed_m.
+\bar{Q} = \int_{\gamma} \curvecurv^2 ds - \sum_{m=1}^{k} \corneranglespeed_m.
 \]
 and
 \[
@@ -1236,10 +1236,10 @@ In this section, we seek suitable functions $\varphi_0$ satisfying the hypothese
 
 In what follows we will need the defintions
 \begin{align*}
-\bar{Q}_0 &= \int_{\gamma_0} \kappa^2 ds \\
-\Delta Q_0 (x) &= \int_{p_0}^{q_0} \kappa^2 ds
+\bar{Q}_0 &= \int_{\gamma_0} \kappa^2 ds - \frac{1}{\sqrt{3}} \sum_{m=1}^{k} \kappa_i^+ + \kappa_i^-.\\
+\Delta Q_0 (x) &= \int_{p_0}^{q_0} \kappa^2 ds - \frac{1}{\sqrt{3}} \sum_{m=i}^{j-1} \kappa_i^+ + \kappa_i^-.
 \end{align*}
-where $\gamma_0$ is a self-similar solution and $(p_0, q_0) \in \gamma_0$ are optimal points such that $\ell(p_0, q_0) = \frac{L}{2\pi} x$. Note that $\tfrac{L}{4\pi^2} \bar{Q}_0$ is a fixed, scale invariant number and $\tfrac{L}{2\pi} \Delta Q_0(x)$ is a scale invaraint quantity that may be written in the form
+where $\gamma_0$ is a self-similar solution and $(p_0, q_0) \in \gamma_0$ are optimal points such that $\ell(p_0, q_0) = \frac{L}{2\pi} x$. Note that $\tfrac{L}{4\pi^2} \bar{Q}_0$ is a fixed, scale invariant number depending only on $\gamma_0$ and $\tfrac{L}{2\pi} \Delta Q_0(x)$ is a scale invariant function depending only on $\gamma_0$ that may be written in the form
 \[
 \tfrac{L}{2\pi} \Delta Q_0 (x) = \frac{1}{x} f_0(\psi_0'(x))
 \]
