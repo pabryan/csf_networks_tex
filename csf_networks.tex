@@ -1225,16 +1225,10 @@ For the second part, recall Proposition \ref{prop:asymptotics} states that
 Hence the assumed asymptotic behaviour of $\varphi$ along with the inequality $\varphi(x, t) \leq \chordarcprofile(x, t)$ yields the second part.
 \end{proof}
 
+\section{Self Similar Solutions}
+\label{sec:self_similar}
 
-\section{Comparison Functions}
-\label{sec:orgheadline11}
-
-In this section, we seek suitable functions $\varphi_0$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi_0(x)$ where $\psi_0(x)$ is the profile of a self-similar solution to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
-\[
-\varphi_0(x, \tau) = e^{\tau} \Phi(e^{-\tau} \psi_0(x)).
-\]
-
-In what follows we will need the defintions
+Our comparison functions are constructed from the profile of self-simlar solutions and we collect here the basic facts about such solutions. In what follows we will need the defintions
 \begin{align*}
 \bar{Q}_0 &= \int_{\gamma_0} \kappa^2 ds - \frac{1}{\sqrt{3}} \sum_{m=1}^{k} \kappa_i^+ + \kappa_i^-.\\
 \Delta Q_0 (x) &= \int_{p_0}^{q_0} \kappa^2 ds - \frac{1}{\sqrt{3}} \sum_{m=i}^{j-1} \kappa_i^+ + \kappa_i^-.
@@ -1243,7 +1237,16 @@ where $\gamma_0$ is a self-similar solution and $(p_0, q_0) \in \gamma_0$ are op
 \[
 \tfrac{L}{2\pi} \Delta Q_0 (x) = \frac{1}{x} f_0(\psi_0'(x))
 \]
-for some convex function $f_0$. \textbf{I hope so anyway!}
+for some convex function $f_0$.
+
+
+\section{Comparison Functions}
+\label{sec:orgheadline11}
+
+In this section, we seek suitable functions $\varphi_0$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi_0(x)$ where $\psi_0(x)$ is the profile of a self-similar solution to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
+\[
+\varphi_0(x, \tau) = e^{\tau} \Phi(e^{-\tau} \psi_0(x)).
+\]
 
 \begin{theorem}
 \label{thm:comparison_function}
