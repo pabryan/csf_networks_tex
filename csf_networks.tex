@@ -1317,7 +1317,7 @@ f_0(\Phi_c' \psi_0') - f_0(\psi_0') \geq f_0'(\psi_0')(\Phi_c'\psi_0' - \psi_0')
 \]
 Let us also write $u = e^{-\tau} \psi_0$ for the argument to $\Phi_c$ so that we finally reduce to
 \begin{equation}
-\label{eq:Phi}
+\label{eq:Phi_ode}
 \begin{split}
 0 &\leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \frac{1}{x} \psi_0' f_0'(\psi_0')(\Phi_c' - 1) \psi_0' e^{-\tau} \Phi_c' \\
 &\quad + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - u \Phi_c'\right) \\
@@ -1326,7 +1326,7 @@ Let us also write $u = e^{-\tau} \psi_0$ for the argument to $\Phi_c$ so that we
 \end{split}
 \end{equation}
 
-\textbf{What is needed next (below describes how it works in the smooth case):}
+\textbf{What is needed next (see remark \ref{rem:smooth_case} below for how it works in the smooth case):}
 The concavity of $\Phi_c$ implies $\left(\Phi_c - u \Phi_c'\right) \geq 0$ and so if $\frac{L}{4\pi^2} \bar{Q}_0 \geq 1$, if suffices to show
 \[
 u \Phi_c'' + \frac{1}{4x} \psi_0 f_0'(\psi_0')(\Phi_c' - 1) \Phi_c' \geq 0.
@@ -1341,13 +1341,36 @@ Then concavity of $\Phi$, positivity of $\Phi$ and $\Phi(0) = 0$ also implies,
 \]
 Thus we need
 \[
-\frac{1}{4x} \psi_0 f_0'(\psi_0') \leq -C
+\frac{1}{4x} \psi_0 f_0'(\psi_0') \leq -\alpha
 \]
-for some $C > 0$ which would reduce finally to the ODE,
+for some $\alpha > 0$ which would reduce finally to the ODE,
 \begin{equation}
 \label{eq:comparison_ode}
-u \Phi_c'' - C (\Phi_c' - 1) \Phi_c' \geq 0.
+u \Phi_c'' - \alpha (\Phi_c' - 1) \Phi_c' \geq 0.
 \end{equation}
+
+This is a simple first order ODE for $\Phi_c'$ with solution,
+\[
+\Phi_c'(u) = \frac{1}{1 \pm (cu)^{\alpha}}
+\]
+with $c > 0$. Coupled with the intial condition $\Phi_c(0) = 0$ we then have
+\begin{equation}
+\label{eq:Phi}
+\Phi_c (u) = c \int_0^{u/c} \frac{dv}{1 \pm v^{\alpha}}.
+\end{equation}
+By defining
+\[
+\Phi_0(u) = \int_0^{u} \frac{dv}{1 \pm v^{\alpha}}
+\]
+we have
+\[
+\Phi_c(u) = c \Phi_0(u/c)
+\]
+and
+\[
+\varphi_c(x, \tau) = c e^{\tau} \Phi_0\left(\tfrac{u}{ce^{\tau}}\right).
+\]
+
 We also require that $\Phi_C$ satisfies the asymptotics
 \begin{equation}
 \label{eq:comparison_asymptotics}
@@ -1355,35 +1378,60 @@ We also require that $\Phi_C$ satisfies the asymptotics
 \end{equation}
 for $C_2 \ne 0$ (very important!). Then since the self-simlar solution already has the correct asymptotics,
 \[
-\psi_0(x) = \frac{\sqrt{3}}{2} x + a_1 x^2 + \bigo(x^3)
+\psi_0(x) = \frac{\sqrt{3}}{2} x + a_2 x^2 + \bigo(x^3)
 \]
 we obtain
 \[
 \begin{split}
-\phi_c(x, t) &= e^t \Phi_C (e^{-t} \psi_0(x)) = \frac{\sqrt{3}}{2} x + a_1 x^2 + \frac{3}{4} C_2 e^{-t} x^2 + \bigo(x^3) \\
-& =  \frac{\sqrt{3}}{2} x + (a_1  + \frac{3}{4} C_2 e^{-t}) x^2 + \bigo(x^3)
+\phi_c(x, t) &= e^t \Phi_C (e^{-t} \psi_0(x)) = \frac{\sqrt{3}}{2} x + a_2 x^2 + \frac{3}{4} C_2 e^{-t} x^2 + \bigo(x^3) \\
+& =  \frac{\sqrt{3}}{2} x + (a_2  + \frac{3}{4} C_2 e^{-t}) x^2 + \bigo(x^3)
 \end{split}
 \]
-automatically has the correct first order asymptotics and the second order asymptotics converges exponentially fast to $a_2$, the second order term of of $\psi_0$.
-\end{proof}
+automatically has the correct first order asymptotics and the second order asymptotics converges exponentially fast to $a_2$, the second order term of $\psi_0$.
 
-\begin{remark}
-Note that in the theorem, if we begin with the self-similar solution, we could simply take $\Phi_c = \id$ whence $\Phi_c'' = \Phi_c - u \Phi' = \Phi_c' - 1 = 0$. The the right hand side of equation \eqref{eq:Phi} vanishes and so the inequality is sharp with equality attained on the self-similar solution. The philosophy guiding the estimates is that all estimates should be equalities on the self-simliar solution. Moreover, the choice of $\Phi_c$ has the important properties
+For $\Phi_c$ given in equation \eqref{eq:Phi} we have
+\begin{align*}
+\Phi_c(0) &= 0 \\
+\Phi_c'(0) &= 1 \\
+\Phi_c''(0) &= \mp \left.\frac{\alpha c^{-\alpha} u^{\alpha-1}}{(1 \pm (u/c)^{\alpha})^2}\right|_{u=0} = \begin{cases}
+0, & \alpha > 1 \\
+\mp \tfrac{1}{c}, & \alpha = 1 \\
+\mp \infty, &  0 < \alpha < 1.
+\end{cases}
+\end{align*}
+
+\textbf{So this will not work unless $\alpha=1$!}
+
+Since we require $\Phi_c$ to be concave and $\alpha=1$ we have
 \[
-\lim_{A\to 0} A \Phi_c (A^{-1} u) = 0 \quad, \lim_{A\to \infty} A \Phi_c (A^{-1} u) = u.
+\Phi_c(u) =  \frac{1}{c} \int_0^{cu} \frac{dv}{1 + v} = \frac{1}{c} \ln(1 + cu).
+\]
+with any $c>0$. Then our proposed comparison has exactly the right asymptotics:
+\[
+\varphi_c(x, t) = \frac{\sqrt{3}}{2} x + (a_2 - \frac{3c}{8} e^{-t}) x^2 + \bigo(x^3).
+\]
+
+The function $\Phi_c$ also has the important properties
+\[
+\lim_{c\to 0} \Phi_c (u) = 0, \quad \lim_{c\to \infty} \Phi_c (u) = u.
 \]
 The former limit implies
 \[
-\lim_{t\to-\infty} \varphi_c(x, t) = 0
+\lim_{c\to 0} \varphi_c (x, t) = 0
 \]
 allowing us to make the barrier $\varphi_c$ arbitrarily small for the initial comparison, while the latter limit implies
 \[
-\lim_{t\to \infty} \varphi_c(x, t) = \psi_0(x)
+\lim_{t\to \infty} \varphi_c(x, t) = \lim_{t\to\infty} c e^t \Phi_0(\psi_0(x)/ce^t) = \psi_0(x)
 \]
 so that our barrier limits to the self-similar profile. In this way the barrier interpolates between the fully collapsed situation $\chordarcprofile \equiv 0$, and the self-similar profile forcing anything in between to be attracted to the self-similar profile.
+\end{proof}
+
+\begin{remark}
+ Note that in the theorem, if we begin with the self-similar solution, we could simply take $\Phi_c = \id$ whence $\Phi_c'' = \Phi_c - u \Phi' = \Phi_c' - 1 = 0$. The the right hand side of equation \eqref{eq:Phi_ode} vanishes and so the inequality is sharp with equality attained on the self-similar solution. The philosophy guiding the estimates is that all estimates should be equalities on the self-simliar solution.
 \end{remark}
 
 \begin{remark}
+\label{rem:smooth_case}
 In the smooth case \cite{MR2794630}, we have
 \[
 \psi_0 = 2 \sin(x/2).
@@ -1405,7 +1453,7 @@ In this setting, equation \eqref{eq:self_similar_comparison} becomes
 \[
 \partial_t \varphi_c \leq 4 \varphi_c'' + \varphi_c - x\varphi_c' + \frac{1}{x} \varphi_c' 4\arccos^2(\varphi_c').
 \]
-while equation \eqref{eq:Phi} becomes
+while equation \eqref{eq:Phi_ode} becomes
 \[
 \begin{split}
 0 &\leq 4 e^{-\tau} \frac{(\psi_0')^2}{\psi_0} \left(u \Phi_c'' + \frac{1}{4x} \psi_0 f_0'(\psi_0')(\Phi_c' - 1) \Phi_c'\right) \\
@@ -1425,7 +1473,7 @@ u \Phi_c'' - 2 (\Phi_c' - 1) \Phi_c' &= 0 \\
 \Phi_c(0) &= 0
 \end{cases}
 \]
-for any choice of $c \ne 0$ and so equation \eqref{eq:Phi} becomes an equality for this particular choice.
+for any choice of $c \ne 0$ and so equation \eqref{eq:Phi_ode} becomes an equality for this particular choice.
 
 Moroever we have the asymptotics
 \[
