@@ -45,17 +45,17 @@ class LinearRegularPolygonNetwork:
 ︡96265676-f30e-4cb8-a68a-187f8f26628f︡{"done":true}︡
 ︠97574a80-ccf9-4ad8-bc04-6f74ad9452c4s︠
 # Plot the first 12 regular polygon configurations
-
-p = graphics_array([[LinearRegularPolygonNetwork(4*i + j).plot() for j in range(1,5)] for i in range(3)])
+polygon_skeletons = [LinearRegularPolygonNetwork(j).plot() for j in range(1,13)]
+p = graphics_array(polygon_skeletons, 3, 4)
 p.show(axes=False, aspect_ratio=1, axes_pad=0.1)
 p.save("linearregularpolygonnetwork.png", axes=False, aspect_ratio=1, axes_pad=0.1)
 
-︡fbc3f8da-baed-4487-91d6-2b3b2ab9f7b3︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_ps8Ffv.svg","show":true,"text":null,"uuid":"bf7904ac-b041-4fce-8241-c693c89acaed"},"once":false}︡{"done":true}︡
+︡3878be6e-f2e5-4935-9044-df75f118fe92︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_cS5x5D.svg","show":true,"text":null,"uuid":"e194a5b1-d035-4796-8517-6fd2fa12fe0b"},"once":false}︡{"done":true}︡
 ︠b7f3cdd3-c679-4d57-bbf1-5513d8bcd2db︠
 
 
 ︡0782cfe4-788f-4d51-ad39-3c10773770c1︡
-︠7e12bfed-8e18-478f-92e7-5a835089902c︠
+︠7e12bfed-8e18-478f-92e7-5a835089902cs︠
 # Solve the self-similar network graph equation over an edge of the regular polygon
 from sage.calculus.desolvers import desolve_system_rk4
 
@@ -77,8 +77,9 @@ class SelfSimilarNetwork:
         self.num_nodes = num_nodes
 
         # Desired Values
-        self.xmin = -numerical_approx(pi/self.num_nodes)
-        self.xmax = - self.xmin
+        #self.xmin = -numerical_approx(pi/self.num_nodes)
+        self.xmin = -numerical_approx(sqrt(2))
+        self.xmax = -self.xmin
         
         self.umin = 0.0
         self.umax = 0.0
@@ -108,10 +109,10 @@ class SelfSimilarNetwork:
         self.first_zero()
         return self.vvals[self.i0][1]
 
-︡7a3d19f4-d595-4d9f-a3ad-7f4a808717c0︡
+︡b5493123-9464-4ef5-b863-1fd4c2ddc112︡{"done":true}︡
 ︠4229186c-efbc-4f2a-bc53-b4f44839956cs︠
-SSN = SelfSimilarNetwork(3)
-SSN.solve(1/2)
+SSN = SelfSimilarNetwork(4)
+SSN.solve(u0 = 1/2)
 i0 = SSN.first_zero()
 
 print("xmax %f" % (SSN.xmax))
@@ -125,32 +126,35 @@ uplot = list_plot(SSN.uvals[:i0])
 vplot = list_plot(SSN.vvals[:i0])
 show(uplot)
 show(vplot + plot(SSN.vmax, (x, 0, SSN.uvals[i0][0])))
-︡721395f3-8c47-4a61-945b-8bd02f7952b5︡{"stdout":"xmax 1.047198\n"}︡{"stdout":"xvals 1.040000 1.047198\n"}︡{"stdout":"uvals  0.179086 0.173605\n"}︡{"stdout":"vmax -0.577350\n"}︡{"stdout":"vvals -0.756008 -0.767051\n"}︡{"stdout":"vvals diff -0.178658 -0.189701\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_4_321s.svg","show":true,"text":null,"uuid":"d6dc61ab-a9e1-48c6-bb1c-ea5c7c2b0490"},"once":false}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_zvI9mA.svg","show":true,"text":null,"uuid":"11c7fb96-5323-4038-acfe-313df606c3d2"},"once":false}︡{"done":true}︡
+︡d955842e-a670-4926-af87-d60a05ee5c64︡{"stdout":"xmax 1.414214\n"}︡{"stdout":"xvals 1.230000 1.240000\n"}︡{"stdout":"uvals  0.000357 -0.011670\n"}︡{"stdout":"vmax -0.267949\n"}︡{"stdout":"vvals -1.184758 -1.220962\n"}︡{"stdout":"vvals diff -0.916809 -0.953013\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_lbrX9M.svg","show":true,"text":null,"uuid":"bdf34bc3-94a7-4da2-a634-293259da4793"},"once":false}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_3RdTZw.svg","show":true,"text":null,"uuid":"3facc77b-f553-48ae-9e9e-735b4c993e83"},"once":false}︡{"done":true}︡
 ︠0b8d02f4-6d2d-4b37-a6ac-d3ddad0a13abs︠
-def get_zero(S, u):
-    S.solve(u)
-    return S.tangent_at_zero() - S.vmax
-
-SSN = SelfSimilarNetwork(2)
-
-a = 0
-b = 1
-
-krange = range(2,6)
+krange = range(2,7)
 uparams = []
+vvals_at_zero = []
 uvals_list = []
 
 for k in krange:
     SSN = SelfSimilarNetwork(k)
+    if k <= 6:
+        a = 0
+        b = 1
+    else:
+        a = -1
+        b = 0
 
+    #print("*******")
+    #print("number of nodes %d" % SSN.num_nodes)
+    SSN.solve(a)
+    za = SSN.tangent_at_zero() - SSN.vmax
+    SSN.solve(b)
+    zb = SSN.tangent_at_zero() - SSN.vmax
     # Bisect method to find parameter u with correct crossing tangent
     for j in range(20):
         c = a + (b-a)/2
-        za = get_zero(S = SSN, u = a)
-        zb = get_zero(S = SSN, u = b)
-        zc = get_zero(S = SSN, u = c)
         SSN.solve(c)
+        zc = SSN.tangent_at_zero() - SSN.vmax
         uvals = SSN.uvals[:SSN.i0]
+        vval_at_zero = SSN.tangent_at_zero()
         
         #print("f(%f) = %f" % (a, za))
         #print("f(%f) = %f" % (b, zb))
@@ -159,32 +163,46 @@ for k in krange:
         if zc == 0.0: break
         if sign(zc) == sign(za):
             a = c
+            za = zc
         else:
             b = c
+            zb = zc
 
     uparams += [c]
+    vvals_at_zero += [vval_at_zero]
     uvals_list += [uvals]
 
 krange
 uparams
 len(uvals_list)
-︡258f242a-fa2d-495c-a27b-e9777f837345︡{"stdout":"[2, 3, 4, 5]\n"}︡{"stdout":"[633997/1048576, 664794038271/1099511627776, 697087073475100671/1152921504606846976, 730948775156227162243071/1208925819614629174706176]\n"}︡{"stdout":"4\n"}︡{"done":true}︡
-︠77b0eec2-208a-4b9e-b3a1-d06e40cf9f45s︠
+︡b0b2fd79-224d-4def-88e0-c18416a7992b︡{"stdout":"[2, 3, 4, 5, 6]\n"}︡{"stdout":"[633997/1048576, 304911/1048576, 151225/1048576, 60791/1048576, 1/1048576]\n"}︡{"stdout":"5\n"}︡{"done":true}︡
+︠4ef71c52-097c-497a-a01f-a50a28b292c1s︠
+print("u0")
+[numerical_approx(u) for u in uparams]
+print("desired vmax")
+[numerical_approx(-sqrt(cos((pi/(6*k))*(6 - k))^(-2) - 1)) for k in krange]
+print("obtainted vmax")
+[numerical_approx(v) for v in vvals_at_zero]
+print("vmax error")
+vector([numerical_approx(-sqrt(cos((pi/(6*k))*(6 - k))^(-2) - 1)) for k in krange]) - vector([numerical_approx(v) for v in vvals_at_zero])
+print("xmax")
+[numerical_approx(u[-1][0]) for u in uvals_list]
+︡4de4a5b9-c35d-4990-a35f-a2d2034bebad︡{"stdout":"u0\n"}︡{"stdout":"[0.604626655578613, 0.290785789489746, 0.144219398498535, 0.0579748153686523, 9.53674316406250e-7]\n"}︡{"stdout":"desired vmax\n"}︡{"stdout":"[-1.73205080756888, -0.577350269189626, -0.267949192431123, -0.105104235265677, 0.000000000000000]\n"}︡{"stdout":"obtainted vmax\n"}︡{"stdout":"[-1.73205899287460, -0.577350608528481, -0.267949436779020, -0.105105782488805, -1.72104484172971e-6]\n"}︡{"stdout":"vmax error\n"}︡{"stdout":"(8.18530572188614e-6, 3.39338855348537e-7, 2.44347896583008e-7, 1.54722312828426e-6, 1.72104484172971e-6)\n"}︡{"stdout":"xmax\n"}︡{"stdout":"[1.19000000000000, 1.28000000000000, 1.30000000000000, 1.30000000000000, 1.30000000000000]\n"}︡{"done":true}︡
+︠e1a372fc-8b57-4f64-beb5-2c31e088b94fs︠
 uplots = []
 
-for uvals in uvals_list[0:2]:
+for uvals in uvals_list:
     reflected_uvals = list(reversed([[-uvals[i][0], uvals[i][1]] for i in range(1,len(uvals))]))
     full_uvals = reflected_uvals + uvals
 
-    uplots += [list_plot(full_uvals, plotjoined=True)]
-    #show(uplot, axes=False, aspect_ratio=1)
+    uplots += [list_plot(full_uvals, plotjoined=True) + plot(0, (full_uvals[0][0], full_uvals[-1][0]), color="black")]
 
-g = graphics_array(uplots)
-show(g)
+g = graphics_array(uplots, nrows=3, ncols=4)
+show(g, aspect_ratio=1, axes=False)
 
 #s = spline(full_uvals)
 #plot(s, (reflected_uvals[0][0], uvals[-1][0]), axes=False, aspect_ratio=1)
-︡b78bf3cc-b2fa-40a9-a632-91e8d8dc1961︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_GthZ49.svg","show":true,"text":null,"uuid":"aca1e20a-62fa-4fdd-85bf-9bc9711bbda1"},"once":false}︡{"done":true}︡
+︡7674cce3-6e94-4f9f-a8e2-b2eb986b8e32︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_W5WAWi.svg","show":true,"text":null,"uuid":"397e2d81-4134-4aad-a819-0f1e3f1bc299"},"once":false}︡{"done":true}︡
 ︠8e34ae99-9e61-4bc9-9c61-7345fe9be18c︠
 
 
