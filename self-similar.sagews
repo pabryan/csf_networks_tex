@@ -46,7 +46,7 @@ class LinearRegularPolygonNetwork:
         
         return p
 
-︡3dd75c7c-e3ad-4b71-b28d-1513b476d98e︡{"done":true}︡
+︡4a3b9465-3dce-4599-8669-8e15198b32bf︡{"done":true}︡
 ︠97574a80-ccf9-4ad8-bc04-6f74ad9452c4s︠
 # Plot the first 12 regular polygon configurations
 polygon_skeletons = [LinearRegularPolygonNetwork(j).plot() for j in range(1,13)]
@@ -54,7 +54,7 @@ p = graphics_array(polygon_skeletons, 3, 4)
 p.show(axes=False, aspect_ratio=1, axes_pad=0.1)
 p.save("linearregularpolygonnetwork.png", axes=False, aspect_ratio=1, axes_pad=0.1)
 
-︡cfe16ba7-0ee2-4a35-a74d-0738007e79e9︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_PFkSzJ.svg","show":true,"text":null,"uuid":"aaafdb18-0343-47a9-b71c-834a4b4b90e5"},"once":false}︡{"done":true}︡
+︡cac10e14-41be-4ef1-a8bc-1f4dd719ab85︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/5345/tmp_teHxMb.svg","show":true,"text":null,"uuid":"16943391-e484-4a48-9992-e7a8518e2043"},"once":false}︡{"done":true}︡
 ︠b7f3cdd3-c679-4d57-bbf1-5513d8bcd2db︠
 
 
@@ -113,7 +113,7 @@ class SelfSimilarNetwork:
         self.first_zero()
         return self.vvals[self.i0][1]
 
-︡b5493123-9464-4ef5-b863-1fd4c2ddc112︡{"done":true}︡
+︡e0284b3f-9ec8-4855-972b-c1fc0be43dcc︡{"done":true}︡
 ︠4229186c-efbc-4f2a-bc53-b4f44839956cs︠
 SSN = SelfSimilarNetwork(7)
 SSN.solve(u0 = 1/2)
@@ -169,7 +169,7 @@ def get_selfsimlar_graph(k):
 
     return SSN
 
-︡545e78a6-357a-4d49-812c-defc42c40950︡{"done":true}︡
+︡3b126770-13dc-42ad-bb09-d8ef1647a43b︡{"done":true}︡
 ︠a08dd68b-170e-40a7-9679-6b2325e37d74s︠
 krange = range(2,7)
 uparams = []
@@ -214,7 +214,7 @@ show(g, aspect_ratio=1, axes=False)
 #plot(s, (reflected_uvals[0][0], uvals[-1][0]), axes=False, aspect_ratio=1)
 ︡f1cf56d7-1836-485c-b7d8-e25ede5d2676︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_9kE3YV.svg","show":true,"text":null,"uuid":"9c328ed7-7cb2-48fd-b29b-455721e1a024"},"once":false}︡{"done":true}︡
 ︠8e34ae99-9e61-4bc9-9c61-7345fe9be18cs︠
-k = 3
+k = 2
 
 L = LinearRegularPolygonNetwork(k)
 
@@ -222,17 +222,17 @@ SSN = get_selfsimlar_graph(k)
 uvals = SSN.uvals[:SSN.i0]
 reflected_uvals = list(reversed([[-uvals[i][0], uvals[i][1]] for i in range(1,len(uvals))]))
 full_uvals = reflected_uvals + uvals
-︡c0e6e26b-eb4c-4247-8eea-01e9497cee8e︡{"done":true}︡
+
+︡cbfa5f17-7209-4f1f-b75c-0573f1c09306︡{"done":true}︡
 ︠7e582e25-3145-4013-90ee-9256e876eb75s︠
 p = L.plot()
 
 scale = (1/2)/full_uvals[-1][0]
-shifted_uvals = [[scale * u[0], u[1]] for u in full_uvals]
+shifted_uvals = [[scale * u[0], scale * u[1]] for u in full_uvals]
 s = spline(shifted_uvals)
 
 x1 = L.nodes[0]
 x2 = L.nodes[1]
-n = (vector(x1) + vector(x2)).normalized()
 
 def e1(x, x1, x2, n):
     return (1/2 + x) * x1[0] + (1/2 - x) * x2[0] + s(x) * n[0]
@@ -243,14 +243,21 @@ def e2(x, x1, x2, n):
 for i in range(0, L.num_nodes):
     x1 = L.nodes[i]
     x2 = L.nodes[(i+1) % L.num_nodes]
-    n = (vector(x1) + vector(x2)).normalized()
+    
+    if L.num_nodes == 2:
+        if i == 0:
+            n = vector([1, 0])
+        else:
+            n = vector([-1, 0])
+    else:
+        n = (vector(x1) + vector(x2)).normalized()
 
     f1 = lambda x: e1(x, x1=x1, x2=x2, n=n)
     f2 = lambda x: e2(x, x1=x1, x2=x2, n=n)
     p += parametric_plot((f1, f2), (x, -1/2, 1/2))
 
 p.show(axes=False, aspect_ratio=1)
-︡da009d4d-8125-4eae-b5c1-680316d03c25︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15927/tmp_KAlCGj.svg","show":true,"text":null,"uuid":"8c3a45bc-fb81-4555-bacc-bc0e99c53a57"},"once":false}︡{"done":true}︡
+︡def976ce-9d6d-4e47-b0e4-e72340cbad6d︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/5345/tmp_FOWw_q.svg","show":true,"text":null,"uuid":"277d2ff0-eebc-4265-9ac6-ab7eca296a63"},"once":false}︡{"done":true}︡
 ︠ddae1359-6b81-49a6-9ba5-0dbc4e3e0d09︠
 
 
