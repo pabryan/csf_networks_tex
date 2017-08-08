@@ -46,7 +46,7 @@ class LinearRegularPolygonNetwork:
         
         return p
 
-︡190716d7-c85a-4b79-8bbc-6f7e93a777ec︡{"done":true}︡
+︡1512591e-ed3b-46da-b677-c6b255b81688︡{"done":true}︡
 ︠97574a80-ccf9-4ad8-bc04-6f74ad9452c4︠
 # Plot the first 12 regular polygon configurations
 polygon_skeletons = [LinearRegularPolygonNetwork(j).plot() for j in range(1,13)]
@@ -115,7 +115,7 @@ class SelfSimilarNetworkGraph:
         return self.vvals[self.i0][1]
 
 
-︡bf8b8801-09cb-4296-a9dd-3d65fb5be806︡{"done":true}︡
+︡5b5c3092-52e3-4fa8-8afb-8430427f0cd4︡{"done":true}︡
 ︠1bec8832-e274-43ee-82b6-a621d0280c2as︠
 # Solve the self-similar network equation over an edge of the regular polygon in polar coords
 from sage.calculus.desolvers import desolve_system_rk4
@@ -164,8 +164,54 @@ class SelfSimilarNetworkPolar:
         
         self.tangmin = self.rpmin/sqrt(self.rmin^2 + self.rpmin^2)
         self.tangmax = self.rpmax/sqrt(self.rmax^2 + self.rpmax^2)
-︡32af16ba-a904-4a84-917d-e747e2314d54︡{"done":true}︡
+︡b98bb1d0-3aa0-46bc-868b-134702f75056︡{"done":true}︡
 ︠94a3d089-986e-4f0f-93d3-fe724910e283s︠
+# Solve the self-similar network equation over an edge of the regular polygon in polar coords
+from sage.calculus.desolvers import desolve_system_rk4
+
+(theta, r, s) = var('theta, r, phi')
+
+class SelfSimilarNetworkPolarAngular:
+    'Self similar network'
+    
+    # RHS
+    def __init__(self, num_nodes):
+        # The ODE
+        self.de_phi = r^2 - 1
+        self.de_r = r * cot(phi)
+        
+        # Number of nodes
+        self.num_nodes = num_nodes
+
+        # Desired Values
+        self.thetamin = 0.0
+        self.thetamax = numerical_approx(pi)
+        
+        self.bdrymin = -numerical_approx(cos((pi/(6*self.num_nodes))*(6 - self.num_nodes)))
+        self.bdrymax = -self.bdrymin
+
+        # Initial Conditions
+        self.theta0 = numerical_approx(pi/2)
+        
+    def solve(self, r0, phi0=numerical_approx(pi/2)):
+        # The Solution
+        self.soln = desolve_system_rk4([self.de_phi, self.de_r], [phi, r], ics=[self.theta0, phi0, r0], ivar=theta, end_points=[self.thetamin, self.thetamax], step=0.01)
+        self.phivals = [[i,j] for i,j,k in self.soln]
+        self.rvals = [[i,k] for i,j,k in self.soln]
+        
+        self.complexvals = [p[1] * exp(I * p[0]) for p in self.rvals]
+        self.graphvals = [[p.real(), p.imag()] for p in self.complexvals]
+
+        self.rmin = self.rvals[0][1]
+        self.rmax = self.rvals[-1][1]
+        
+        self.phimin = self.phivals[0][1]
+        self.phimax = self.phivals[-1][1]
+        
+        self.tangmin = cos(self.phimin)
+        self.tangmax = cos(self.phimax)
+︡0e38234f-127a-407f-b736-aae36b1dfb3f︡{"done":true}︡
+︠5fa11c0d-ee5f-4f60-8b59-f2fffb4529c2s︠
 SSN = SelfSimilarNetworkPolar(2)
 SSN.solve(r0 = 0.6, rp0 = 0)
 
@@ -176,9 +222,24 @@ SSN.bdrymin
 SSN.bdrymax
 
 p = list_plot(SSN.graphvals)
+#p = list_plot(SSN.rvals)
 p.show(aspect_ratio=1)
 
-︡d9a9bbdb-9b54-4d71-8ca0-ee9cedb7d9af︡{"stdout":"-0.5157987203678848\n"}︡{"stdout":"0.5155048363646103\n"}︡{"stdout":"-0.500000000000000\n"}︡{"stdout":"0.500000000000000\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15383/tmp_6xT9Ad.svg","show":true,"text":null,"uuid":"aaee8dbc-fe7d-4025-b643-ac21eb9fabbc"},"once":false}︡{"done":true}︡
+︡598fca49-fe58-45dd-aaca-e17b2e5320e1︡{"stdout":"-0.5157987203678848\n"}︡{"stdout":"0.5155048363646103\n"}︡{"stdout":"-0.500000000000000\n"}︡{"stdout":"0.500000000000000\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/5570/tmp_6b1v9G.svg","show":true,"text":null,"uuid":"16f2359b-a3ef-448c-9fdb-bac4f2e3c03c"},"once":false}︡{"done":true}︡
+︠d96cd31a-fb1a-43e3-8c6c-0257439f3be5s︠
+SSN = SelfSimilarNetworkPolarAngular(2)
+SSN.solve(r0 = 0.6, phi0 = numerical_approx(pi/2))
+
+SSN.tangmin
+SSN.tangmax
+
+SSN.bdrymin
+SSN.bdrymax
+
+p = list_plot(SSN.graphvals)
+#p = list_plot(SSN.rvals)
+p.show(aspect_ratio=1)
+︡a6475a88-ce67-4fb0-9953-9f5b9b644c03︡{"stdout":"-0.5157987202824535\n"}︡{"stdout":"0.51550483627928\n"}︡{"stdout":"-0.500000000000000\n"}︡{"stdout":"0.500000000000000\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/5570/tmp_7OkGct.svg","show":true,"text":null,"uuid":"a2897439-f4ed-4800-911c-0158e831128e"},"once":false}
 ︠f57a3f4c-dc0e-47d4-b5fa-628cf06cec71s︠
 
         
@@ -199,23 +260,32 @@ vplot = list_plot(SSN.vvals[:i0])
 show(uplot)
 show(vplot + plot(SSN.vmax, (x, 0, SSN.uvals[i0][0])))
 ︡959f0833-df00-4585-b850-eb2f36d7cb62︡{"stdout":"u(0) 0.500000\n"}︡{"stdout":"xmax 1.414214\n"}︡{"stdout":"xvals 1.230000 1.240000\n"}︡{"stdout":"uvals  0.000357 -0.011670\n"}︡{"stdout":"vmax -0.074940\n"}︡{"stdout":"vvals -1.184758 -1.220962\n"}︡{"stdout":"vvals diff -1.109818 -1.146022\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15383/tmp_Ikf_N1.svg","show":true,"text":null,"uuid":"48a6b26e-9e0d-4c86-bb92-ad13f4bf662e"},"once":false}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/15383/tmp_5JzTiu.svg","show":true,"text":null,"uuid":"d88f3395-78e1-44bd-8000-2ca4fc45e841"},"once":false}︡{"done":true}︡
-︠0b8d02f4-6d2d-4b37-a6ac-d3ddad0a13abs︠
-def get_selfsimlar_polar(k, v0=0.0):
+︠3b733e05-3af7-49e7-a268-44ae86af0677s︠
+def get_selfsimlar_polar(k, psi0=0.0):
     tol = 10^(-12)
-    SSN = SelfSimilarNetworkPolar(k)
+    #SSN = SelfSimilarNetworkPolar(k)
+    SSN = SelfSimilarNetworkPolarAngular(k)
     a = 10^(-8)
     b = 1
 
-    SSN.solve(a, v0)
+    rp0 = a * sqrt(cos(psi0)^(-2) - 1)
+    #SSN.solve(r0 = a, rp0 = rp0)
+    SSN.solve(r0 = a, phi0 = arccot(rp0/a))
     za = SSN.tangmin - SSN.bdrymin
-    SSN.solve(b, v0)
+    
+    rp0 = b * sqrt(cos(psi0)^(-2) - 1)
+    #SSN.solve(r0 = b, rp0 = rp0)
+    SSN.solve(r0 = b, phi0 = arccot(rp0/b))
     zb = SSN.tangmin - SSN.bdrymin
 
     #print("Boundary min: %f" % SSN.bdrymin)
     # Bisect method to find parameter with correct crossing tangent
     for j in range(20):
         c = a + (b-a)/2
-        SSN.solve(c, v0)
+
+        rp0 = c * sqrt(cos(psi0)^(-2) - 1)
+        #SSN.solve(r0 = c, rp0 = rp0)
+        SSN.solve(r0 = c, phi0 = arccot(rp0/c))
         zc = SSN.tangmin - SSN.bdrymin
 
         #print("-------------------")
@@ -235,7 +305,7 @@ def get_selfsimlar_polar(k, v0=0.0):
 
     SSN.graphvals = list(reversed([u for u in SSN.graphvals]))
     return SSN
-︡65d082a0-dd3b-433b-8e66-a344aed3e8a5︡{"done":true}︡
+︡066b9305-0f3a-479d-b889-2e030e403b7c︡{"done":true}︡
 ︠c8fb0c50-e647-4025-a3de-0120e754cfecs︠
 def get_selfsimlar_graph(k, v0=0.0):
     SSN = SelfSimilarNetworkGraph(k)
@@ -270,25 +340,40 @@ def get_selfsimlar_graph(k, v0=0.0):
 
     SSN.graphvals = list(reversed([[-u[0], u[1]] for u in SSN.uvals[1:SSN.i0]])) + SSN.uvals[:SSN.i0]
     return SSN
-︡f65e651e-1ea6-4d8e-9054-e1ac2d0453b0︡{"done":true}︡
+︡9ce5deaf-9f9e-4d97-b608-deddf72a0da0︡{"done":true}︡
 ︠413e79d5-18ea-453d-ab4c-951f37ede926s︠
-SSNp = get_selfsimlar_polar(5)
+psi0 = numerical_approx(0)
+SSNp = get_selfsimlar_polar(2, psi0)
 sp = spline(SSNp.graphvals)
-SSNg = get_selfsimlar_graph(5)
-sg = spline(SSNg.graphvals)
-︡31ffd7be-4991-437f-8552-899b017a16fa︡{"done":true}︡
+#SSNg = get_selfsimlar_graph(5)
+#sg = spline(SSNg.graphvals)
+︡e059dcc9-33f5-4963-9b2b-0ded54836283︡{"done":true}︡
 ︠6bdea955-e961-46cc-964b-b6e3cb56bb13s︠
 #p = list_plot(SSNp.graphvals)
 #p += list_plot(SSNg.uvals[:SSNg.i0], color="red")
 
+print("Min Tangent")
 SSNp.bdrymin
 SSNp.tangmin
 
-p = plot(sp, (SSNp.graphvals[0][0], SSNp.graphvals[-1][0]), color="red", linestyle="dotted")
-p += plot(sg, (SSNg.graphvals[0][0], SSNg.graphvals[-1][0]), linestyle="dashed")
+print("Max Tangent")
+SSNp.bdrymax
+SSNp.tangmax
+
+print("Graph End Points")
+SSNp.graphvals[0][0]
+SSNp.graphvals[-1][0]
+
+print("Theta End Points")
+SSNp.rvals[0][0]
+SSNp.rvals[-1][0]
+
+p = plot(sp, (SSNp.graphvals[0][0], SSNp.graphvals[-1][0]))
+p += line((SSNp.graphvals[0], SSNp.graphvals[-1]))
+#p += plot(sg, (SSNg.graphvals[0][0], SSNg.graphvals[-1][0]), linestyle="dashed")
 
 p.show(aspect_ratio=1, axes=False)
-︡72aa78cb-faa1-475e-bc00-2f49b6daa19b︡{"stdout":"-0.994521895368273\n"}︡{"stdout":"-0.9945217650569987\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/17189/tmp_Ij_XWi.svg","show":true,"text":null,"uuid":"d0430e8d-d1eb-4ad8-804c-dfc4b4789171"},"once":false}︡{"done":true}︡
+︡0024963a-689d-436b-ba99-29882890b0cc︡{"stdout":"Min Tangent\n"}︡{"stdout":"-0.500000000000000\n"}︡{"stdout":"-0.49999896814508266\n"}︡{"stdout":"Max Tangent\n"}︡{"stdout":"0.500000000000000\n"}︡{"stdout":"0.49970916425368206\n"}︡{"stdout":"Graph End Points\n"}︡{"stdout":"-1.191988754937561\n"}︡{"stdout":"1.1914406880026402\n"}︡{"stdout":"Theta End Points\n"}︡{"stdout":"0.000796326794900049\n"}︡{"stdout":"3.14159265358979\n"}︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/5570/tmp_BscnpP.svg","show":true,"text":null,"uuid":"62b47004-10f8-47af-82f2-fdf1661058ce"},"once":false}︡{"done":true}︡
 ︠a08dd68b-170e-40a7-9679-6b2325e37d74s︠
 krange = range(2,3)
 uparams = []
@@ -392,13 +477,13 @@ class RegularPolygonSelfSimilar:
         
         return(self.p)
 
-︡b99b8e81-d604-497a-b707-ccbb7e27776d︡{"done":true}︡
+︡b3d42aa5-7938-4ff8-9174-6f3adff8d0e0︡{"done":true}︡
 ︠9618fca3-8be4-4dac-822b-61d230818e85s︠
 RSSN = RegularPolygonSelfSimilar(5)
 
 p = RSSN.plot()
 p.show(axes=False, aspect_ratio=1)
-︡9ce8f208-0efb-449c-970f-498b81a91512︡
+︡0c30e4ae-0b47-460f-ac20-d26498cd98e4︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/23910/tmp_T4_jxM.svg","show":true,"text":null,"uuid":"c863f3e3-cc39-4438-b039-7c9d5694c9ec"},"once":false}︡{"done":true}︡
 ︠5936c33b-1071-4f59-a3d4-540da813cbfds︠
 self_sims = [RegularPolygonSelfSimilar(j).plot() for j in range(2,13)]
 p = graphics_array(self_sims, 3, 4)
@@ -406,6 +491,9 @@ p.show(axes=False, aspect_ratio=1, axes_pad=0.1)
 p.save("selfsimilarregularpolygonnetwork_noskeleton.png", axes=False, aspect_ratio=1, axes_pad=0.1)
 ︡6f2ea3f3-4921-4eab-be1c-b576b3933e7b︡{"file":{"filename":"/projects/746c2d02-fba9-41f7-86c8-dbce79185bad/.sage/temp/compute7-us/17189/tmp_C1HkEQ.svg","show":true,"text":null,"uuid":"8dd2d6c3-4287-4470-a3b8-88cc0c107f32"},"once":false}︡{"done":true}︡
 ︠d89d0638-a1d5-4db3-a9cc-138171af56e0︠
+T = SelfSimilarNetworkGraph
+︡9b87a8fe-1722-4d46-b272-ace984cce3a8︡
+︠56031906-7fb2-48a9-9cc8-562b93807081s︠
 T = SelfSimilarNetworkGraph(2)
 T.xmax = 2 * sqrt(2)
 
@@ -445,7 +533,7 @@ for j in range(10):
         print("Got b")
         b = c
         zb = zc
-︡085151d6-aec1-4664-976c-f9ec4648c27e︡{"stdout":"a: 0.000000, tangent: -1.732059 error 999999999998.267944\n"}︡{"stdout":"b: -1.558846, tangent: -109286397557763007220432684315370126835712.000000 error -109286397557763007220432684315370126835712.000000\n"}︡{"stdout":"-------------------"}︡{"stdout":"\na: 0.000000, tangent: -1.732059 error 999999999998.267944\nb: -1.558846, tangent: -109286397557763007220432684315370126835712.000000 error -109286397557763007220432684315370126835712.000000\nc: -0.779423, tangent: -1073555.105290 error 999998926444.894653\nGot a\n-------------------"}︡{"stdout":"\na: -0.779423, tangent: -1073555.105290 error 999998926444.894653\nb: -1.558846, tangent: -109286397557763007220432684315370126835712.000000 error -109286397557763007220432684315370126835712.000000\nc: -1.169134, tangent: -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000 error -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000\nGot b\n-------------------"}︡{"stdout":"\na: -0.779423, tangent: -1073555.105290 error 999998926444.894653\nb: -1.169134, tangent: -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000 error -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000\nc: -0.974279, tangent: -91065.387799 error 999999908934.612183\nGot a\n-------------------"}︡{"stdout":"\na: -0.974279, tangent: -91065.387799 error 999999908934.612183\nb: -1.169134, tangent: -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000 error -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000\nc: -1.071706, tangent: -91014715.263067 error 999908985284.736938\nGot a\n-------------------"}︡{"stdout":"\na: -1.071706, tangent: -91014715.263067 error 999908985284.736938\nb: -1.169134, tangent: -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000 error -27560584494295499255399650930664117439083164885500995658661480684585513648128.000000\nc: -1.120420, tangent: -240907514363420997917609307841962813379357704192.000000 error -240907514363420997917609307841962813379357704192.000000\nGot b\n-------------------"}︡{"stdout":"\na: -1.071706, tangent: -91014715.263067 error 999908985284.736938\nb: -1.120420, tangent: -240907514363420997917609307841962813379357704192.000000 error -240907514363420997917609307841962813379357704192.000000\nc: -1.096063, tangent: -2166339093678090.000000 error -2165339093678090.000000\nGot b\n-------------------"}︡{"stdout":"\na: -1.071706, tangent: -91014715.263067 error 999908985284.736938\nb: -1.096063, tangent: -2166339093678090.000000 error -2165339093678090.000000\nc: -1.083885, tangent: -3416824531502070.000000 error -3415824531502070.000000\nGot b\n-------------------"}︡{"stdout":"\na: -1.071706, tangent: -91014715.263067 error 999908985284.736938\nb: -1.083885, tangent: -3416824531502070.000000 error -3415824531502070.000000\nc: -1.077796, tangent: -75530241914645700841324937216.000000 error -75530241914645700841324937216.000000\nGot b\n-------------------"}︡{"stdout":"\na: -1.071706, tangent: -91014715.263067 error 999908985284.736938\nb: -1.077796, tangent: -75530241914645700841324937216.000000 error -75530241914645700841324937216.000000\nc: -1.074751, tangent: -358990889440.072021 error 641009110559.927979\nGot a\n-------------------"}︡{"stdout":"\na: -1.074751, tangent: -358990889440.072021 error 641009110559.927979\nb: -1.077796, tangent: -75530241914645700841324937216.000000 error -75530241914645700841324937216.000000\nc: -1.076273, tangent: -856994345535794048.000000 error -856993345535794048.000000\nGot b\n"}︡{"done":true}︡
+︡7d6d6fb1-3ec6-42c5-9c06-93816bfb2a04︡{"stdout":"Control-C pressed.  Interrupting Maxima. Please wait a few seconds..."}︡{"stdout":"\n"}︡{"stderr":"Error in lines 6-6\n"}︡{"stderr":"Traceback (most recent call last):\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/smc_sagews/sage_server.py\", line 995, in execute\n    exec compile(block+'\\n', '', 'single') in namespace, locals\n  File \"\", line 1, in <module>\n  File \"\", line 11, in get_selfsimlar_graph\n  File \"\", line 17, in solve\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/calculus/desolvers.py\", line 1339, in desolve_system_rk4\n    sol_2=maxima(cmd).sage()\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/interfaces/interface.py\", line 245, in __call__\n    return cls(self, x, name=name)\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/interfaces/maxima.py\", line 1160, in __init__\n    ExpectElement.__init__(self, parent, value, is_name=False, name=None)\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/interfaces/expect.py\", line 1383, in __init__\n    self._name = parent._create(value, name=name)\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/interfaces/interface.py\", line 435, in _create\n    self.set(name, value)\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/interfaces/maxima.py\", line 1005, in set\n    self._eval_line(cmd)\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/interfaces/maxima.py\", line 794, in _eval_line\n    self._expect_expr(self._display_prompt)\n  File \"/projects/sage/sage-7.6/local/lib/python2.7/site-packages/sage/interfaces/maxima.py\", line 749, in _expect_expr\n    raise KeyboardInterrupt(msg)\nKeyboardInterrupt\n"}︡{"done":true}︡
 ︠a626dc04-fb83-4489-8819-8ac132ae9332s︠
 S.vmax - S.tangent_at_zero()
 T.tangent_at_zero()
