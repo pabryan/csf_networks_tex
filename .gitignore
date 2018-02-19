@@ -1,0 +1,13 @@
+*~
+*.blg
+*.bbl
+*-blx.bib
+*.run.xml
+*.aux
+*.log
+*.fls
+csf_networks.pdf
+*.dep
+*.fdb_latexmk
+*.out
+auto/
