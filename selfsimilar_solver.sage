@@ -20,8 +20,8 @@ class SelfSimilarNetworkGraph:
 
         # Desired Values
         #self.xmin = -numerical_approx(pi/self.num_nodes)
-        self.xmin = -numerical_approx(sqrt(2))
-        self.xmax = -self.xmin
+        self.xmin_bound = -numerical_approx(sqrt(2))
+        self.xmax_bound = -self.xmin_bound
         
         self.umin = 0.0
         self.umax = 0.0
@@ -35,7 +35,7 @@ class SelfSimilarNetworkGraph:
         
     def solve(self, u0, v0=0.0):
         # The Solution
-        self.soln = desolve_system_rk4([self.de1, self.de2], [u, v], ics=[self.x0, u0, v0], ivar=x, end_points=self.xmax, step=0.01)
+        self.soln = desolve_system_rk4([self.de1, self.de2], [u, v], ics=[self.x0, u0, v0], ivar=x, end_points=self.xmax_bound, step=0.01)
         self.uvals = [[i,j] for i,j,k in self.soln]
         self.vvals = [[i,k] for i,j,k in self.soln]
         
@@ -212,13 +212,7 @@ def get_selfsimlar_graph(k, v0=0.0):
         c = a + (b-a)/2
         SSN.solve(c, v0)
         zc = SSN.tangent_at_zero() - SSN.vmax
-        #uvals = SSN.uvals[:SSN.i0]
-        #vval_at_zero = SSN.tangent_at_zero()
         
-        #print("f(%f) = %f" % (a, za))
-        #print("f(%f) = %f" % (b, zb))
-        #print("f(%f) = %f" % (c, zc))
-        #print("----")
         if zc == 0.0: break
         if sign(zc) == sign(za):
             a = c
@@ -227,7 +221,32 @@ def get_selfsimlar_graph(k, v0=0.0):
             b = c
             zb = zc
 
+    SSN.allvals = list(reversed([[-u[0], u[1]] for u in SSN.uvals[1:-1]])) + SSN.uvals[0:-1]
     SSN.graphvals = list(reversed([[-u[0], u[1]] for u in SSN.uvals[1:SSN.i0]])) + SSN.uvals[:SSN.i0]
+    
+    from scipy.misc import derivative as sp_derivative
+    from scipy import integrate as sp_integrate
+
+    SSN.xmin = SSN.graphvals[0][0]
+    SSN.xmax = SSN.graphvals[-1][0]
+    SSN.dx = (SSN.xmax-SSN.xmin)/1000
+        
+    SSN.u = spline(SSN.allvals)
+    SSN.up = lambda x: sp_derivative(SSN.u, x, SSN.dx)
+    SSN.upp = lambda x: sp_derivative(SSN.u, x, SSN.dx, 2)
+
+    SSN.ds = lambda x: sqrt(1 + SSN.up(x)^2)
+    SSN.d = lambda x: 2 * SSN.u(x)
+    SSN.l = lambda x: 2 * (sp_integrate.quad(SSN.ds, SSN.xmin+SSN.dx, x))[0]
+    SSN.linv = lambda y: find_root(lambda x: SSN.l(x) - y, SSN.xmin + SSN.dx, SSN.xmax - SSN.dx)
+    SSN.L = SSN.l(SSN.xmax-SSN.dx)
+    SSN.kappa = lambda x: -SSN.upp(x)/(SSN.ds(x)^3)
+    SSN.delv = (2/sqrt(3)) * SSN.kappa(SSN.xmin+SSN.dx)
+    SSN.intk = lambda x: 2 * (sp_integrate.quad(lambda y: SSN.kappa(y)^2 * SSN.ds(y), SSN.xmin+SSN.dx, x))[0]
+
+    SSN.q = lambda x: SSN.intk(x) - SSN.delv
+    SSN.Q = SSN.intk(SSN.xmax-SSN.dx) - 2*SSN.delv
+        
     return SSN
 
 class RegularPolygonSelfSimilar:
