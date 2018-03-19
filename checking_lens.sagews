@@ -2,14 +2,24 @@
 load('linear_polygon_network.sage')
 load("selfsimilar_solver.sage")
 load("lens_network.sage")
+︡75ea559b-5fe0-451b-ab18-3859ffad0c9e︡{"done":true}︡
+︠836f0051-d3af-4264-8edf-932e8d1dfcdbs︠
 
 RSSN = RegularPolygonSelfSimilar(2)
 SSN = RSSN.SSN
 
-xmin = SSN.graphvals[0][0]
-xmax = SSN.graphvals[-1][0]
-u = spline(SSN.graphvals)
+vals = SSN.allvals[1:-1]
+
+xmin = vals[0][0]
+xmax = vals[-1][0]
+u = spline(vals)
 N = LensNetwork(u, xmin, xmax)
+
+numerical_approx(N.Q)
+numerical_approx(N.L)
+numerical_approx(N.L * N.Q)
+graphics_array([N.plot()])
+N.plotquantity(N.kappa)
 
 scale = 5
 xmin_scaled = scale * xmin
@@ -17,16 +27,12 @@ xmax_scaled = scale * xmax
 u_scaled = lambda x: scale * u(x/scale)
 N_scaled = LensNetwork(u_scaled, xmin_scaled, xmax_scaled)
 
-numerical_approx(N.Q)
-numerical_approx(N.L)
-numerical_approx(N.L * N.Q)
-graphics_array([N.plot()])
-
 numerical_approx(N_scaled.Q)
 numerical_approx(N_scaled.L)
 numerical_approx(N_scaled.L * N_scaled.Q)
 graphics_array([N_scaled.plot()])
-︡c5f523d3-4295-4e7b-aeb9-e4f1958a0e30︡{"stderr":"/ext/sage/sage-8.1/local/lib/python2.7/site-packages/scipy/integrate/quadpack.py:364: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.\n  If increasing the limit yields no improvement it is advised to analyze \n  the integrand in order to determine the difficulties.  If the position of a \n  local difficulty can be determined (singularity, discontinuity) one will \n  probably gain from splitting up the interval and calling the integrator \n  on the subranges.  Perhaps a special-purpose integrator should be used.\n  warnings.warn(msg, IntegrationWarning)\n"}︡{"stdout":"2.41999922615305\n"}︡{"stdout":"5.53938218530998\n"}︡{"stdout":"13.4053006018162\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/5870/tmp_DVwBDC.svg","show":true,"text":null,"uuid":"364c5e83-3b82-4bc7-922a-eae33f045487"},"once":false}︡{"stdout":"0.483999845227192\n"}︡{"stdout":"27.6969109265497\n"}︡{"stdout":"13.4053006017214\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/5870/tmp_2eVZT0.svg","show":true,"text":null,"uuid":"d54e9784-2c91-46cd-a375-f569d6d5ca96"},"once":false}︡{"done":true}︡
+N_scaled.plotquantity(N_scaled.kappa)
+︡566a5072-5169-4a3a-a034-bce745656dd9︡{"stdout":"5.74403669638896\n"}︡{"stdout":"7.30918583551573\n"}︡{"stdout":"41.9842316599288\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/5870/tmp_tNTuAg.svg","show":true,"text":null,"uuid":"cb675530-c08a-4267-acd8-3ff39feeffc4"},"once":false}︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/5870/tmp_PhhsT6.svg","show":true,"text":null,"uuid":"938767ac-04f4-4131-a753-4ad0bd1bbee1"},"once":false}︡{"stdout":"NaN + NaN*I\n"}︡{"stdout":"36.5459291775792\n"}︡{"stdout":"NaN + NaN*I\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/5870/tmp_6YKHQU.svg","show":true,"text":null,"uuid":"55c1d5c6-23bf-4a6f-8662-11107116b237"},"once":false}︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/5870/tmp_mrdVc2.svg","show":true,"text":null,"uuid":"53459e4b-54f7-4476-b598-094a50629e12"},"once":false}︡{"done":true}︡
 ︠68c121f7-fc69-4f91-b81d-a9b32a999a99s︠
 # Computed arcs of circle lens network
 r = 2
