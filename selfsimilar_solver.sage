@@ -246,7 +246,9 @@ def get_selfsimlar_graph(k, v0=0.0):
 
     SSN.q = lambda x: SSN.intk(x) - SSN.delv
     SSN.Q = SSN.intk(SSN.xmax-SSN.dx) - 2*SSN.delv
-        
+
+    SSN.Z = lambda x: (1/SSN.L) * SSN.d(SSN.linv(x * SSN.L))
+
     return SSN
 
 class RegularPolygonSelfSimilar:
