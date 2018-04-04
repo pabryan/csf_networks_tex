@@ -1473,6 +1473,44 @@ Let \(\gamma_0\) be a self-similar solution with chord-arc profile $\psi_0$. The
 
 \end{proof}
 
+{\color{blue}
+We had computed that
+$$\chordarcprofile ^{ss}(x)=2 \langle \gamma^{ss}\left(\frac{x}{2}\right), e\rangle,$$
+where $e$ is a fixed vector (for the 2 nodes we take $e_2$) and $\gamma^{ss}$ is parametrised respect to arc-length, with length 2 at a node.
+
+We work now in the 2 nodes case (although I think this is general)
+We pick a parametrisation in terms of the support fuction. Namely, we fix $\theta$ that corresponds with the angle that the normal forms with the $e_2$ vector. Then we have that the normal along the upper half of the curve is given by $\nor=(\cos \theta, \sin \theta)$ for $\theta \in [-\frac{\pi}{3}, \frac{\pi}{3}]$ (respectively, the tangent $\tang(\theta)=(\sin \theta, -\cos \theta)$) and the curve can be written as
+(here we have to check the sign conventions and note that $v$ depends on the parametrization, that's why I denote it by $\tilde{v}$)
+$$\gamma^{ss}(\theta)= k(\theta) \nor +\tilde{v}(\theta) \tang.$$
+The coefficient of $\nor$  comes from the characterisation of self-similarity $k=\langle \gamma^{ss}\left(x\right), \nor\rangle$ and it is independent of the parametrisation. To compute $\tilde{v}$, we take derivative respect to $\theta$ and obtain 
+$$\gamma_\theta^{ss}(\theta)= k_\theta \nor - k \tang+\tilde{v}_\theta \tang+v \nor.$$
+Taking dot product with the normal we obtain $v=-k_\theta$.
+
+For simplicity, we will denote 
+$\chordarcprofile ^{ss}(\theta)=2 \langle \gamma^{ss}\left(\theta\right), e\rangle$.
+Then we have for 2 nodes that
+$$\chordarcprofile ^{ss}(\theta)=2(k\sin \theta-k_\theta \cos \theta)=-2(k \cos \theta)_\theta.$$
+
+Note that $$\chordarcprofile ^{ss}_{xx}=\frac{k}{2}\langle \nor, e\rangle=\frac{k}{2}\sin \theta$$
+Hence, if this was constant, we would have that $k=-K\csc \theta$
+
+Note as well that from the characterisation of self-similarity
+$$k_x=-k\langle \gamma^{ss}\left(x\right), \tang\rangle=kk_\theta.$$
+Hence, $$\frac{d\theta}{dx}=k.$$
+
+On the other hand
+$$\gamma_\theta^{ss}(\theta)=( -k_{\theta \theta}- k) \tang,$$
+Hence
+$$\frac{dx}{d\theta}=k_{\theta \theta}+k, \hbox{ and }$$
+$$ k(k_{\theta \theta}+k)=1$$
+Replacing the expression that we obtained for $k$ we have
+$$k(k_{\theta \theta}+k)=\frac{1+\sin \theta}{\sin^4 \theta}\ne 1.$$
+We conclude it cannot be constant. 
+
+One more remark is that the equation for $k$ has a first integral which implies
+$k_\theta^2+k^2=\ln k^2+C$. From the parametrisation of $\gamma$  we have that $|\gamma|^2=
+k_\theta^2+k^2$ and we obtain that $k=Ce^{|\gamma|^2}$. This expression can be found also in the work of Abresch-Langer
+}
 \section{Comparison Functions}
 \label{sec:orgheadline11}
 
