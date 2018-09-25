@@ -173,7 +173,7 @@ Finally, let us define the corner tangential speed difference,
 
 Let us assume that the loop \(\gamma_t\) is parametrised by \((u, t) \in [0, 2\pi] \times [0, T)\). Throughout we denote by \(s\) the arc length parameter so that
 \[
-\partial_s = \frac{1}{\|\gamma_t'|} \partial_u, \quad ds = \|\gamma_t'\| du
+\partial_s = \frac{1}{\abs{\gamma_t'}} \partial_u, \quad ds = \abs{\gamma_t'} du
 \]
 where primes denote differentiation with respect to \(u\).
 
@@ -183,8 +183,8 @@ The evolution of geometric quantities under the Curve Shortening Flow is the sam
 \label{lem:basic_evolution}
 The following evolution equations hold:
 \begin{enumerate}
-\item \([\partial_s, \partial_t] = -(\partial_s \tangspeed - \curvecurv^2) \partial_s\)
 \item \(\pd[ds]{t} = (\partial_s \tangspeed - \curvecurv^2) ds\)
+\item \([\partial_t, \partial_s] = -(\partial_s \tangspeed - \curvecurv^2) \partial_s\)
 \item \(\pd[\tang]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \nor\)
 \item \(\pd[\nor]{t} = (\partial_s \curvecurv + \tangspeed\curvecurv) \tang\)
 \item \(\pd[\curvecurv]{t} = \partial_s^2 \curvecurv + \curvecurv^3 + \tangspeed \partial_s \curvecurv\).
@@ -237,7 +237,7 @@ Let \((p,q) \in \gamma_t^{\ast}\) be smooth points. Then,
 \partial_t d_t(p, q) &= -\curvecurv_q \ip{\nor_q}{w} + \curvecurv_p \ip{\nor_p}{w} + \tangspeed_q \ip{\tang_q}{w} - \tangspeed_p \ip{\tang_p}{w}, \\
 \partial_t \ell_t(p, q) &= - \int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) - \sum_{m=i}^{j-1} \corneranglespeed_m \\
 \intertext{and}
-\partial_t L &= - \int_{\gamma} \curvecurv^2 ds + \sum_{m=i}^{k} \corneranglespeed_m.
+\partial_t L &= - \int_{\gamma} \curvecurv^2 ds - \sum_{m=i}^{k} \corneranglespeed_m.
 \end{align*}
 \end{lemma}
 
@@ -258,7 +258,7 @@ Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 &= -\int_p^q \curvecurv^2 ds + \tangspeed_i^- - \tangspeed(p) + \sum_{m=i+1}^{j-1} \tangspeed_m^- - \tangspeed_{m-1}^+ + \tangspeed(q) - \tangspeed_{j-1}^+ \\
 &= -\int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) + \sum_{m=i}^{j-1} \tangspeed_m^- - \tangspeed_m^+.
 \end{align*}
-The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\), while the evolution of \(L\) follows by taking \(p=a_0\), \(q=a_k\).
+The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\), while the evolution of \(L\) follows by taking \(p=a_0=a_k=q\).
 \end{proof}
 
 \begin{remark}
@@ -271,7 +271,7 @@ It's also worth remarking that the evolution of the extrinsic distance does not 
 \label{lem:dtA}
 The enclosed area evolves by,
 \[
-\partial_t \area = - \left(2 - \tfrac{k}{3}\right)\pi + \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
+\partial_t \area = - \left(2 - \tfrac{k}{3}\right)\pi - \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
 \]
 \end{lemma}
 
@@ -307,11 +307,11 @@ Integrating we obtain,
 \begin{equation}
 \label{eq:dtA_prelim}
 \begin{split}
-\partial_t \area &= -\int_{\gamma} \curvecurv ds + \frac{1}{2} \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} \\
-&= - \left(2 - \tfrac{k}{3}\right)\pi + \frac{1}{2} \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-},
+\partial_t \area &= -\int_{\gamma} \curvecurv ds + \frac{1}{2} \sum_{i=1}^k \ip{\gamma(a_i)}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} - \ip{\gamma(a_{i-1})}{\curvecurv_{i-1}^+ \tang_{i-1}^+ + \tangspeed_{i-1}^+ \nor_{i-1}^+} \\
+&= - \left(2 - \tfrac{k}{3}\right)\pi + \frac{1}{2} \sum_{i=1}^k \ip{\gamma(a_i)}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} - \ip{\gamma(a_i)}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+},
 \end{split}
 \end{equation}
-since the turning angle at each node is \(\theta_i = \arccos \ip{\tang^+}{\tang^-} = \tfrac{\pi}{3}\).
+since the turning angle at each node is \(\theta_i = \arccos \ip{\tang^+}{\tang^-} = \tfrac{\pi}{3}\) and since the sum is taken modulo \(k\).
 
 As to the sum, the compatibility conditions,
 \[
@@ -319,14 +319,18 @@ As to the sum, the compatibility conditions,
 \]
 give
 \[
-\ip{\gamma}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} = 2\ip{\gamma}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
+\tangspeed_i^+ \nor_i^+ = \curvecurv_i^+ \tang_i^+ -\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-.
+\]
+Therefore,
+\[
+\ip{\gamma(a_i)}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma(a_i)}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} = 2\ip{\gamma(a_i)}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
 \]
 Substituting into equation \eqref{eq:dtA_prelim} gives the result.
 \end{proof}
 
 \begin{remark}
 \begin{enumerate}
-\item The sum on the right hand side of the evolution of \(\area\) will generally not vanish. In certain symmetric cases, such as the convex, symmetric, lens shaped networks studied in \cite{MR2763716}, the symmetry does in fact cause the terms to cancel. In that situation, there are two nodes \(a_1, a_2\) and \(\curvecurv^{\pm}_1 = \curvecurv^{\mp}_2\). Such symmetries, being invariance under ambient isometry, are of course preserved along the flow. The presence of the nodes is still felt in these cases through \(\partial_t \area = -(2- \tfrac{k}{3})\pi\) (as opposed to \(\partial_t \area = - 2\pi\) in the smooth case) but only the number of nodes \(k\), is relevant.
+\item The sum on the right hand side of the evolution of \(\area\) will generally not vanish. In certain symmetric cases, such as the convex, symmetric, lens shaped networks studied in \cite{MR2763716}, the symmetry does in fact cause the terms to cancel. In that situation, there are two nodes \(a_1, a_2\) and the curvatures \(\curvecurv^{\pm}_1 = \curvecurv^{\pm}_2 = \kappa\) are all equal. Such symmetries, being invariance under ambient isometry, are of course preserved along the flow. The presence of the nodes is still felt in these cases through \(\partial_t \area = -(2- \tfrac{k}{3})\pi\) (as opposed to \(\partial_t \area = - 2\pi\) in the smooth case) but only the number of nodes \(k\), is relevant.
 
 \item From the term, \(-(2- \tfrac{k}{3})\pi\) in \(\partial_t \area\), we see that increasing the number of nodes tends to slow the contraction. In fact, it is quite possible (especially for \(k > 6\)) that \(\partial_t \area > 0\), whence \(\gamma\) expands. Compare with the smooth curve shortening flow where \(\partial_t \area = - 2\pi < 0\).
 
