@@ -271,7 +271,7 @@ It's also worth remarking that the evolution of the extrinsic distance does not 
 \label{lem:dtA}
 The enclosed area evolves by,
 \[
-\partial_t \area = - \left(2 - \tfrac{k}{3}\right)\pi - \sum_{i=1}^k \ip{\gamma}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
+\partial_t \area = - \left(2 - \tfrac{k}{3}\right)\pi.
 \]
 \end{lemma}
 
@@ -308,24 +308,39 @@ Integrating we obtain,
 \label{eq:dtA_prelim}
 \begin{split}
 \partial_t \area &= -\int_{\gamma} \curvecurv ds + \frac{1}{2} \sum_{i=1}^k \ip{\gamma(a_i)}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} - \ip{\gamma(a_{i-1})}{\curvecurv_{i-1}^+ \tang_{i-1}^+ + \tangspeed_{i-1}^+ \nor_{i-1}^+} \\
-&= - \left(2 - \tfrac{k}{3}\right)\pi + \frac{1}{2} \sum_{i=1}^k \ip{\gamma(a_i)}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} - \ip{\gamma(a_i)}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+},
+&= - \left(2 - \tfrac{k}{3}\right)\pi - \frac{1}{2} \sum_{i=1}^k \ip{\gamma(a_i)}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+ - \curvecurv_i^- \tang_i^- - \tangspeed_i^- \nor_i^-},
 \end{split}
 \end{equation}
 since the turning angle at each node is \(\theta_i = \arccos \ip{\tang^+}{\tang^-} = \tfrac{\pi}{3}\) and since the sum is taken modulo \(k\).
 
-As to the sum, the compatibility conditions,
+As to the sum, recall the compatibility conditions
 \[
--\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+ = -\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^- \tag{\ref{eq:speedcompatability} revisited}
+\ip{\tang^+_i}{\tang^-_i} = \ip{\nor^+_i}{\nor^-_i} = \frac{1}{2} \tag{\ref{eq:triplecondition} revisited}
 \]
-give
+gave rise to
 \[
-\tangspeed_i^+ \nor_i^+ = \curvecurv_i^+ \tang_i^+ -\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-.
+\ip{-\tang^+_i}{\nor^-_i} = \ip{\tang^-_i}{\nor^+_i} = \frac{\sqrt{3}}{2} \tag{\ref{eq:triplerelations} revisited}.
 \]
-Therefore,
+Then we have
 \[
-\ip{\gamma(a_i)}{\curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+} - \ip{\gamma(a_i)}{\curvecurv_i^- \tang_i^- + \tangspeed_i^- \nor_i^-} = 2\ip{\gamma(a_i)}{\curvecurv_i^+ \tang_i^+ - \curvecurv_i^- \tang_i^-}.
+\tang^-_i = \frac{1}{2} \tang^+_i + \frac{\sqrt{3}}{2} \nor^+_i, \quad \nor^-_i = -\frac{\sqrt{3}}{2} \tang^+_i + \frac{1}{2} \nor^+_i
 \]
-Substituting into equation \eqref{eq:dtA_prelim} gives the result.
+and
+\[
+\tangspeed_i^+ = \frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+, \quad \tangspeed_i^- = -\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^- \tag{\ref{eq:tangspeedcurvture} revisited}.
+\]
+
+Therefore
+\[
+\begin{split}
+& \curvecurv_i^+ \tang_i^+ + \tangspeed_i^+ \nor_i^+ - \curvecurv_i^- \tang_i^- - \tangspeed_i^- \nor_i^- \\
+&\quad = \curvecurv_i^+ \tang_i^+ + \left(\frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+\right) \nor_i^+ \\
+&\quad\quad - \curvecurv_i^- \left(\frac{1}{2} \tang^+_i + \frac{\sqrt{3}}{2} \nor^+_i\right) - \left(-\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^-\right)\left(-\frac{\sqrt{3}}{2} \tang^+_i + \frac{1}{2} \nor^+_i\right) \\
+&\quad = \left(\curvecurv_i^+ - \frac{1}{2} \curvecurv_i^- - \curvecurv_i^+ + \frac{1}{2}\curvecurv_i^-\right) \tang^+_i + \left(\frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+ - \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{\sqrt{3}} \curvecurv_i^+ - \frac{1}{2\sqrt{3}} \curvecurv_i^-\right) \nor^+_i \\
+&\quad = 0.
+\end{split}
+\]
+Thus the sum in equation \eqref{eq:dtA_prelim} vanishes giving the result.
 \end{proof}
 
 \begin{remark}
