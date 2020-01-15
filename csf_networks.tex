@@ -1,5 +1,5 @@
 % Created 2016-06-29 Wed 20:00
-\documentclass[11pt]{amsart}
+\documentclass[12pt]{amsart}
 \usepackage[all]{pabmacros}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -177,7 +177,7 @@ Let us assume that the loop \(\gamma_t\) is parametrised by \((u, t) \in [0, 2\p
 \]
 where primes denote differentiation with respect to \(u\).
 
-The evolution of geometric quantities under the Curve Shortening Flow is the same for networks as in the smooth case. This is immediate for any pointwise quantities, and we record the required equations in a lemma for later convenience.
+The evolution of pointwise geometric quantities under the Curve Shortening Flow is the same for networks as in the smooth case. This is immediate for any pointwise quantities, and we record the required equations in a lemma for later convenience.
 
 \begin{lemma}
 \label{lem:basic_evolution}
@@ -227,7 +227,18 @@ w(p, q) = \frac{\gamma(q) - \gamma(p)}{d(p,q)},
 \end{equation}
 the unit vector pointing from \(p\) to \(q\).
 
-Later we will only require the evolution of the extrinsic and intrinsic distances at smooth points.
+Later we will only require the evolution of the extrinsic and intrinsic distances at smooth points. For this we make some further definitions
+
+\begin{equation}
+\label{eq:Q}
+\bar{Q} = \int_{\gamma} \curvecurv^2 ds - \frac{1}{\sqrt{3}} \sum_{m=1}^{k} \curvecurv_m^+ + \curvecurv_m^-
+\end{equation}
+and
+\begin{equation}
+\label{eq:delQ}
+\Delta Q(p, q) = \int_p^q \curvecurv^2 ds - \sum_{m=i}^{j-1} \curvecurv_m^+ + \curvecurv_m^-
+\end{equation}
+where the sum is taken over the nodes between \(p\) and \(q\) in the chosen orientation.
 
 \begin{lemma}
 \label{lem:distance_evolution}
@@ -235,9 +246,8 @@ Later we will only require the evolution of the extrinsic and intrinsic distance
 Let \((p,q) \in \gamma_t^{\ast}\) be smooth points. Then,
 \begin{align*}
 \partial_t d_t(p, q) &= -\curvecurv_q \ip{\nor_q}{w} + \curvecurv_p \ip{\nor_p}{w} + \tangspeed_q \ip{\tang_q}{w} - \tangspeed_p \ip{\tang_p}{w}, \\
-\partial_t \ell_t(p, q) &= - \int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) - \sum_{m=i}^{j-1} \corneranglespeed_m \\
-\intertext{and}
-\partial_t L &= - \int_{\gamma} \curvecurv^2 ds - \sum_{m=i}^{k} \corneranglespeed_m.
+\partial_t \ell_t(p, q) &= -\Delta Q (p, q) + \tangspeed(q) - \tangspeed(p) \\
+\partial_t L &= -\bar{Q}.
 \end{align*}
 \end{lemma}
 
@@ -258,7 +268,7 @@ Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 &= -\int_p^q \curvecurv^2 ds + \tangspeed_i^- - \tangspeed(p) + \sum_{m=i+1}^{j-1} \tangspeed_m^- - \tangspeed_{m-1}^+ + \tangspeed(q) - \tangspeed_{j-1}^+ \\
 &= -\int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) + \sum_{m=i}^{j-1} \tangspeed_m^- - \tangspeed_m^+.
 \end{align*}
-The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\), while the evolution of \(L\) follows by taking \(p=a_0=a_k=q\).
+The evolution of \(\ell\) follows immediately from the definition of \(\corneranglespeed\) in equation \eqref{eq:cornerspeed}, while the evolution of \(L\) follows by taking \(p=a_0=a_k=q\).
 \end{proof}
 
 \begin{remark}
@@ -352,50 +362,6 @@ Thus the sum in equation \eqref{eq:dtA_prelim} vanishes giving the result.
 \end{enumerate}
 \end{remark}
 
-\textcolor{red}{HERE ARE THE EXTRA COMPUTATIONS}
-\begin{lemma}
-Assume that the arcs $L_i$ have bounded length and let
-$L_T$ be the
-total length of the network $N_t$ (i.e.
- the length of the loop plus the length of $L_i$). Then 
-  $$\partial_t L_T=-\int_{N_t}k^2 ds.$$
-
-
-\begin{proof}
-As before we have that
-$$\partial_t L_T=-\int_{N_t}k^2 ds+\sum_i \Delta v_i + v_{L_i}(1)-v_{L_i}(0).$$
-
-If the point at the boundary is fixed we have that $v_{L_i}(1)=0$. 
-Then the claim follows from showing that 
-$\Delta v_i-v_{L_i}(0)=0$.
-
-From \eqref{eq:speedcompatability}
-we have that
-\begin{align*}
-\tangspeed_i^+ &= \ip{-\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^-}{\tang_i^+} = \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{2} \tangspeed_i^- \\
-\tangspeed_i^- &= \ip{-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+}{\tang_i^-} = - \frac{\sqrt{3}}{2} \curvecurv_i^+ + \frac{1}{2} \tangspeed_i^+
-\\
-\tangspeed_i^+ &= \ip{-\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}}{\tang_i^+} = \frac{\sqrt{3}}{2} \curvecurv_{L_i} - \frac{1}{2} \tangspeed_{L_i}\\
-\tangspeed_i^- &= \ip{-\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}}{\tang_i^-} =  \frac{\sqrt{3}}{2} \curvecurv_{L_i} + \frac{1}{2} \tangspeed_{L_i}\\
-\tangspeed_{L_i} &= \ip{-\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^-}{\tang_{L_i}} = - \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{2} \tangspeed_i^-\\
-\tangspeed_{L_i} &= \ip{-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+}{\tang_{L_i}} = - \frac{\sqrt{3}}{2} \curvecurv_i^+ - \frac{1}{2} \tangspeed_i^+.
-\end{align*}
-
-Then taking $2(\tangspeed_i^--
-\tangspeed_i^+-\tangspeed_{L_i})$
-from the right hand side (and being careful with the signs of the other side) we get the desired result.
-
-\end{proof}
-\end{lemma}
-\begin{remark}
-If for $p=\gamma(x,t)$ and $q=\gamma(y,t)$ we define the function 
-$$\tilde{\ell}=\ell(p,q)+\sum_{\{i:x\leq a_i <y\}}|L_i|,$$
-and $\ell$ is the distance oriented in some direction, then
-$$\partial_t\tilde{\ell}(p,q)=-\int_p^qk^2- \sum_{\{i:x\leq a_i <y\}}\int_{L_i} k^2$$
-
-
-This function is not continuous in $p$ and $q$ as one of them approaches a node, but it can be made lower or upper semi-continuous and there is a theory of viscosity solutions for such class of functions. The function is not symmetric respect to the half of the total distance either.
-\end{remark}
 \section{Self Similar Solutions}
 \label{sec:self_similar}
 
@@ -410,21 +376,15 @@ A solution, \(\sigma\) of the network curve shortening flow is self-similar if t
 \end{defn}
 Since the network curve shortening flow is invariant under ambient isometry, we can and will assume that \(x_0 = (0, 0)\) is the origin.
 
-A rather useful notion we introduce here is that of the \emph{skeleton} of a network.
-
 \begin{defn}
 \label{defn:skeleton}
 Let \(\gamma\) be the loop of network with one loop and nodes \(\{x_1, \cdots, x_k\}\). The \emph{skeleton} of \(\gamma\) is the network \(\skel{\gamma}\) with nodes \(\{x_1, \cdots, x_k\}\), a loop formed by the edges \(e_i = \overline{x_ix_{i+1}}\) and unbounded lines tangent to \(L_i\) the unbounded curve for \(\gamma\) at the node \(x_i\).
 \end{defn}
 
-\begin{remark}
-The skeleton of \(\gamma\) will not in general satisfy the triple condition. Neither need it be embedded! Nevertheless, the skeleton of \(\gamma\) is always homotopic to \(\gamma\) where we insist that homotopies of networks map nodes homeomorphically to nodes with respect to the discrete topology on the nodes.
-\end{remark}
-
 We are particularly interested in those networks with skeleton a regular polygon.
 
 \begin{defn}
-A network with one loop is call \emph{regular polygonal} if it's skeleton is a regular polygon.
+A network with one loop is call \emph{regular polygonal} if its skeleton is a regular polygon.
 \end{defn}
 
 The skeletons of various regular polygonal networks along with the triple condition highlighted are show in figure \ref{fg:regularpolygon}.
@@ -455,18 +415,9 @@ Some of the self similar regular polygonal networks are shown in \ref{fg:selfsim
 \label{fg:selfsimilarregularpolygon}
 \end{figure}
 
-Let us now give a fairly explicit description of the the regular polygonal self-similar network, \(\sigma_k\). First, it is symmetric under the cyclic group \(C_k\) of rotations generated by the rotation of angle \(2\pi/k\) and symmetric under reflection across a line of symmetry bisecting an edge of the skeleton's regular polygon (and therefore all such lines of symmetry by the rotation invariance). That is, \(\sigma_k\) is invariant under the Dihedral group \(D_k\). Thus by the rotation invariance, each arc \(\gamma_i\) joining \(x_i\) to \(x_{i+1}\) is congruent to every other arc \(\gamma_j\) by a rotation of angle \(2\pi \ell/k\) where \(\ell = j - i\). Thus we may speak of \emph{the} arc of a regular polygonal self-similar network. This arc is an arc of an Abresch-Langer curve (see \cite{MR845704,MR2931330}). It may be written as a normal graph over the edge \(e_i\), symmetric about the mid-point of \(e_i\) by the reflection invariance.
+The self similar solution is invariant under the Dihedral group \(D_k\). That is, it is invariant under the cyclic group \(C_k\) of rotations generated by the rotation of angle \(2\pi/k\) and symmetric under reflection across the perpendicular bisector of an edge. Each arc \(\gamma_i\) joining \(x_i\) to \(x_{i+1}\) is congruent to every other arc \(\gamma_j\) by a rotation of angle \(2\pi \ell/k\) where \(\ell = j - i\). Thus we may speak of \emph{the} arc of a regular polygonal self-similar network. This arc is an arc of an Abresch-Langer curve (see \cite{MR845704,MR2931330}). It may be written as a normal graph over the edge \(e_i\), symmetric about the mid-point of \(e_i\) by the reflection invariance. For \(0 \leq k < 6\), the arc has strictly positive curvature with respect to the outer unit normal, for \(k = 6\) the arc \(e_i\) is equal to the edge \(e_i\), and for \(k > 6\) the arc \(\gamma_i\) has strictly negative curvature with respect to the outer unit normal.
 
-For \(0 \leq k < 6\), the arc has strictly positive curvature with respect to the outer unit normal, for \(k = 6\) the arc \(e_i\) is equal to the edge \(e_i\), and for \(k > 6\) the arc \(\gamma_i\) has strictly negative curvature with respect to the outer unit normal.
-
-We write the quantities from \eqref{eq:Q} and \eqref{eq:delQ} as
-\begin{align*}
-\bar{Q}_0 &= \int_{\gamma_0} \kappa^2 ds - \frac{1}{\sqrt{3}} \sum_{m=1}^{k} \kappa_i^+ + \kappa_i^-.\\
-\Delta Q_0 (x) &= \int_{p_0}^{q_0} \kappa^2 ds - \frac{1}{\sqrt{3}} \sum_{m=i}^{j-1} \kappa_i^+ + \kappa_i^-.
-\end{align*}
-where $(p_0, q_0)$ are optimal points such that $\ell(p_0, q_0) = \frac{L}{2\pi} x$. Note that $\tfrac{L}{4\pi^2} \bar{Q}_0$ is a fixed, scale invariant number depending only on $\sigma$ and $\tfrac{L}{2\pi} \Delta Q_0(x)$ is a scale invariant function depending only on $\sigma$.
-
-To be concrete, let us parametrise \(e_i = \overline{x_i x_{i+1}}\) over \([-1/2, 1/2]\) by
+The self similar solution may obtained as the solution of an ODE. To be concrete, let us parametrise \(e_i = \overline{x_i x_{i+1}}\) over \([-1/2, 1/2]\) by
 \[
 x \in [-1/2, 1/2] \mapsto \left(\frac{1}{2} + x\right) x_i + \left(\frac{1}{2} - x\right) x_{i+1}.
 \]
@@ -488,105 +439,7 @@ u(-1/2) &= u(1/2) = 0 \\
 u'(-1/2) &= -u'(1/2) = \pm \sqrt{\cos^{-2} \left(\frac{\pi}{k}(6 - k)\right) - 1}.
 \end{cases}
 \end{equation}
-where we have \(+\) when \(k \leq 6\) and we have \(-\) for \(k \geq 6\). Note that \(u\) is necessarily symmetric about \(x = 0\): \(u(-x) = u(x)\).
-
-Although the existence of regular polygonal self-similar networks is known, we give of a proof of existence here explicitly based on the graphs \(u\) solving \eqref{eq:self_similar_graph}. Note that for \(k = 0\), we obtain the circle as proven in \cite{MR845704}, for \(k = 1\) we obtain the Brakke spoon as obtained in \cite{}, for \(k = 2\), we obtain the Lens shaped network as obtained in \cite{MR2763716}. More generally, for all \(k > 0\), we obtain those solutions obtained \cite{MR2340176}.
-
-\begin{lemma}
-For each \(k = 0, 1, 2, \cdots\), there exists a homothetic solution of the network curve shortening flow with \(k\) nodes whose skeleton is the regular polygon of \(k\) nodes and that is symmetric under the Dihedral group, $D_k$ of symmetries of it's regular polygon skeleton. For \(0 \leq k < 6\), the solution is shrinking, for \(k = 6\) it is static, while for \(k > 6\) it is expanding.
-\end{lemma}
-
-\begin{proof}
-For \(k = 0\), we appeal to \cite{MR845704}. For \(k = 1\), there is only one node and the proof is different. Thus we prove the cases \(k \geq 2\).
-
-\textbf{Ref for Brakke spoon?}
-
-We solve \eqref{eq:self_similar_graph} but in order to deal with the term \(\bar{Q}_0\) we choose \(\lambda_0\) such that scaling by \(\lambda_0\) gives \(\bar{Q}_0\). The interval \([-1/2, 1/2]\) also scales by (the a priori unknown) \(\lambda_0\) and so what we prove is in fact, that exists an \(\bar{x} > 0\) such that there is a solution of the boundary value problem
-\begin{equation}
-\label{eq:self_similar_graph_scaled}
-\begin{cases}
-u'' &= (xu' - u)(1 + (u')^2) \\
-u(-\bar{x}) &= u(\bar{x}) = 0 \\
-u'(-\bar{x}) &= -u'(\bar{x}) = \pm \sqrt{\cos^{-2} \left(\frac{\pi}{k}(6 - k)\right) - 1}.
-\end{cases}
-\end{equation}
-
-Note that the differential equation \(u'' = (xu' - u)(1 + (u')^2)\) and the boundary condition \(u(-\bar{x}) = u(\bar{x}) = 0\) are invariant under \(u \mapsto -u\) while the boundary condition on \(u'\) changes sign. Hence for \(k > 6\), making the change \(u \mapsto -u\) we may take \(+\) in the boundary condition for \(u'\).
-
-For \(k = 6\), the boundary condition for \(u'\) is zero, so \(u \equiv 0\). That is, the solution is skeleton itself.
-
-To prove \eqref{eq:self_similar_graph_scaled} for \(k \geq 2\), \(k \ne 6\) we employ the method of \cite[Proposition 5.1]{MR2763716} to show that there exists a \(h \in (0, 1)\) such that the solution of the initial value problem
-\begin{equation}
-\label{eq:self_similar_graph_ivp}
-\begin{cases}
-u'' &= (xu' - u)(1 + (u')^2) \\
-u(0) &= h \\
-u'(0) &= 0
-\end{cases}
-\end{equation}
-solves \eqref{eq:self_similar_graph_scaled}.
-
-Now, let \(u_h\) be the solution of \eqref{eq:self_similar_graph_ivp} and define
-\[
-w = x u_h' - u_h.
-\]
-Then,
-\[
-w' = x u_h'' = x (1 + (u_h')^2) w, \quad w(0) = -h
-\]
-and hence
-\[
-w(x) = -h \exp\left(\int_0^x y(1 + u'(y)^2) dy\right) \leq -h,
-\]
-the inequality because the argument to \(\exp\) is non-negative and with strict inequality whenever \(x \ne 0\).
-
-Then writing \(v_h = u_h'\) we have
-\[
-v_h' = w (1 + v_h^2) \leq -h, \quad v_h(0) = 0
-\]
-and hence
-\[
-v_h \leq -h x
-\]
-with strict inequality for \(x \ne 0\).
-
-Now using \(u_h' = v_h \leq -h x\) and \(u_h(0) = h\) we obtain
-\[
-u_h \leq h \left(1 - \frac{x^2}{2}\right).
-\]
-In particular, we have
-\[
-u_h(0) = h > 0, \quad u_h' \leq 0, \quad u_h(\sqrt{2}) < 0.
-\]
-Then provided \(u_h'\) stays bounded away from \(-\infty\), while \(u_h \geq 0\), the solution extends up to \(x_h \in (0, \sqrt{2})\) such that \(u_h(x_h) = 0\). Since \(u_h' < 0\), for \(x \ne 0\), \(x_h\) is the unique zero of \(x_h\) on \([x, \infty)\). Note also that
-\[
-u_h'' = v_h' \leq -h < 0
-\]
-so that \(u_h\) is strictly concave.
-
-What remains now is to show that there is a \(h_0 \in (0, 1)\) such that \(u_{h_0}\) exists on \([0, x_h]\) and that
-\[
-u_{h_0}'(x_{h_0}) = v_k := -\sqrt{\cos^{-2} \left(\frac{\pi}{k}(6 - k)\right) - 1}.
-\]
-This is identical to \cite[Proposition 5.1]{MR2763716}.
-
-For completeness, we include the argument. Let
-\[
-\mathcal{S} = \left\{h \in (0, 1) : |u_h'| < |v_k| \text{ on } [0, x_h]\right\}.
-\]
-
-Let \(H = \sup \mathcal{S}\). If we can show that \(\mathcal{S}\) is non-empty and open, and \(H < 1\), then necessarily \(H \notin \mathcal{S}\) so that \(|u_H'(x_H)| \geq v_k\), while \(|u_h'(x_h)| < |v_k|\) for \(h \in \mathcal{S}\). Thus by continuous dependence of \(x_h\) and \(u_h'(x_h)\) on \(h\) we find, upon noting that \(v_k < 0\) \(u_h' < 0\) for \(x > 0\), that there must be a \(h_0 \in (0, 1)\) such that \(u_{h_0}'(x_h) = v_k\) and indeed the solution exists on \([0, x_0]\).
-
-That \(\mathcal{S}\) is non-empty follows since \(u_0 \equiv 0\) which is defined on all \(\RR\) and satisfies \(|u_0'| \equiv 0\). Continuous dependence on the parameter \(h\) ensures the existence of \(\epsilon > 0\) so that for \(0 < h \epsilon\) we have \(|u_h'| < |v_k|\) on \([0, \sqrt{2}] \supsetneq [0, x_h]\). Thus \(\mathcal{S}\) contains \((0, \epsilon)\) and is not empty.
-
-Next, if \(\tilde{h} \in \mathcal{S}\), then \(|u_{\tilde{h}}'| < |v_k|\) on \([0, x_{\tilde{h}}]\) and \(u_{\tilde{h}}\) extends past \(x_{\tilde{h}}\) by a positive amount maintaining \(|u_{\tilde{h}}'| \leq |v_k|\). Continuous dependence of \(u_h'\) gives a non-empty open neighbourhood of \(\tilde{h}\) on which \(|u_h'| < |v_k|\) on an interval \([0, x_{\tilde{h}} + \epsilon]\) with \(\epsilon > 0\). Continuous dependence of \(x_h\) gives a non-empty open neighbourhood of \(\tilde{h}\) for which \(x_h \in [0, x_{\tilde{h}} + \epsilon]\). Intersecting these neighbourhoods gives a neighbourhood of \(\tilde{h}\) contained in \(\mathcal{S}\) and hence \(\mathcal{S}\) is open.
-
-Finally, observe that
-\[
-u_1(x) = \sqrt{1 - x^2}, x \in [0, 1)
-\]
-solves the initial value problem \eqref{eq:self_similar_graph_ivp} with \(h = 1\) and satisfies \(\lim_{x\to 1} u_1'(x) = -\infty\). Let \(x_1 \in (0, 1)\) be such that \(|u_1'(x_1)| = 2|v_k| > |v_k|\). Note that \(u_1(x_1) > 0\). One more, continuous dependence provides an \(\epsilon > 0\) such that for all \(h \in (1 - \epsilon, 1]\), the solution \(u_h\) exists and is positive on \([0, x_1]\), with \(\max_{x \in [0, x1]} |u_h'(x)| > |v_k|\). Thus \(\mathcal{S}\) is disjoint from \((1- \epsilon, 1]\) and hence \(H < 1\).
-\end{proof}
+where we have \(+\) when \(k \leq 6\) and we have \(-\) for \(k \geq 6\). Note that \(u\) is necessarily symmetric about \(x = 0\): \(u(-x) = u(x)\). The existence and uniqueness of self similar networks invariant under \(D_k\) may be found in \cite{MR2340176}.
 
 \section{The Chord-Arc Profile}
 \label{sec:orgheadline10}
@@ -685,7 +538,7 @@ The main techniques we employ in this paper to understand the chord/arc-profile 
 
 Recall that \(w\) defined in equation \eqref{eq:w} denotes the unit vector pointing from \(\gamma(p)\) to \(\gamma(q)\). Let us also write $\omega_p$ and $\omega_q$ for the $1$-forms dual to the unit tangent vectors $\tang_p$ and $\tang_q$ at $p$ and $q$ respectively.
 
-The derivation is quite standard these days, but we give the full details here to be complete. Recall from Definition \ref{defn:dist} that the extrinsic distance is defined to be,
+The derivation is quite standard but we give the full details here to be complete. Recall from Definition \ref{defn:dist} that the extrinsic distance is defined to be,
 \[
 d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|.
 \]
@@ -1226,27 +1079,6 @@ This is a strictly concave function whose square is not concave. This seems rela
 \section{Viscosity Equation For Networks Evolving By Curve Shortening}
 \label{sec:viscosity_csf}
 
-Now we may prove the theorem at the heart of our method. First, let us define,
-\begin{equation}
-\label{eq:Q}
-\bar{Q} = \int_{\gamma} \curvecurv^2 ds - \frac{1}{\sqrt{3}} \sum_{m=1}^{k} \curvecurv_m^+ + \curvecurv_m^-
-\end{equation}
-and
-\begin{equation}
-\label{eq:delQ}
-\Delta Q(p_0, q_0) = \int_p^q \curvecurv^2 ds - \sum_{m=i}^{j-1} \curvecurv_m^+ + \curvecurv_m^-
-\end{equation}
-
-Then Lemma \ref{lem:distance_evolution} may be rewritten,
-\begin{equation}
-\label{eq:distance_evolution_q}
-\begin{split}
-\partial_t d_t(p, q) &= -\curvecurv_q \ip{\nor_q}{w} + \curvecurv_p \ip{\nor_p}{w} + \tangspeed_q \ip{\tang_q}{w} - \tangspeed_p \ip{\tang_p}{w}, \\
-\partial_t \ell_t(p, q) &= -\Delta Q(p_0, q_0) + \tangspeed_{q_0} - \tangspeed_{p_0} \\
-\partial_t L &= -\bar{Q}
-\end{split}
-\end{equation}
-
 \begin{theorem}
 \label{thm:csf_viscosity}
 
@@ -1272,7 +1104,7 @@ for $t \leq t_0$. Therefore,
 - \frac{2\pi d}{L} \frac{\partial_t L}{L} + \frac{2\pi}{L} \partial_t d \leq \partial_t \phi - \phi' \frac{2\pi \ell}{L} \frac{\partial_t L}{L} +\phi' \frac{2\pi}{L} \partial_t l.
 \]
 
-Substituting \eqref{eq:distance_evolution_q} gives,
+Substituting the evolution equations from Lemma \ref{lem:distance_evolution} gives,
 \begin{equation}
 \label{eq:time_ineq}
 \begin{split}
@@ -1282,7 +1114,7 @@ Substituting \eqref{eq:distance_evolution_q} gives,
 &= \frac{2\pi}{L} \left[-\curvecurv_{q_0} \ip{\nor_{q_0}}{w} + \curvecurv_{p_0} \ip{\nor_{p_0}}{w}\right] + \left(\phi - x \phi'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \phi' \Delta Q
 \end{split}
 \end{equation}
-where we applied Theorem \ref{thm:barrier} giving $\phi' = \ip{\tang_{q_0}}{w} = \ip{\tang_{p_0}}{w}$.
+where we also applied Theorem \ref{thm:barrier} giving $\phi' = \ip{\tang_{q_0}}{w} = \ip{\tang_{p_0}}{w}$.
 
 On the other hand, at $t_0$, $x \mapsto \phi(x, t_0)$ is a lower supporting function for $x \mapsto \chordarcprofile(x, t_0)$ and hence,
 \begin{equation}
@@ -1684,129 +1516,6 @@ so that our barrier limits to the self-similar profile. In this way the barrier 
 \begin{remark}
  Note that in the theorem, if we begin with the self-similar solution, we could simply take $\Phi_c = \id$ whence $\Phi_c'' = \Phi_c - u \Phi' = \Phi_c' - 1 = 0$. The the right hand side of equation \eqref{eq:Phi_ode} vanishes and so the inequality is sharp with equality attained on the self-similar solution. The philosophy guiding the estimates is that all estimates should be equalities on the self-simliar solution.
 \end{remark}
-
-\begin{remark}
-\label{rem:smooth_case}
-In the smooth case \cite{MR2794630}, we have
-\[
-\psi_0 = 2 \sin(x/2).
-\]
-and \holder's inequality gives,
-\[
-\frac{L}{4\pi^2} \bar{Q} \geq 1, \quad \frac{L}{2\pi} \Delta Q \geq \frac{4}{x} \arccos^2(\psi_0'\Phi_c').
-\]
-The self-similar solution is the circle, hence the curvature is constant and we have equality in \holder{}'s inequality yielding,
-\[
-\frac{L}{4\pi^2} \bar{Q}_0 = 1, \quad \frac{L}{2\pi} \Delta Q_0 = \frac{2\pi}{L} \ell = x = \frac{4}{x} \arccos^2(\psi_0')
-\]
-since $\psi_0'(x) = \cos(x/2)$. Thus $f_0 = 4 \arccos^2$ and
-\[
-\frac{1}{4x} \psi_0 f_0'(\psi_0') = - \frac{1}{4x} 2 \sin(x/2) \frac{8\arccos(\cos(x/2))}{\sqrt{1 - \cos^2(x/2)}} = - \frac{1}{4x} 2 \sin(x/2) \frac{8x}{2\sin(x/2)} = -2
-\]
-
-In this setting, equation \eqref{eq:self_similar_comparison} becomes
-\[
-\partial_t \varphi_c \leq 4 \varphi_c'' + \varphi_c - x\varphi_c' + \frac{1}{x} \varphi_c' 4\arccos^2(\varphi_c').
-\]
-while equation \eqref{eq:Phi_ode} becomes
-\[
-\begin{split}
-0 &\leq 4 e^{-\tau} \frac{(\psi_0')^2}{\psi_0} \left(u \Phi_c'' + \frac{1}{4x} \psi_0 f_0'(\psi_0')(\Phi_c' - 1) \Phi_c'\right) \\
-&= 4 e^{-\tau} \frac{(\psi_0')^2}{\psi_0} \left(u \Phi_c'' - 2 (\Phi_c' - 1) \Phi_c'\right)
-\end{split}
-\]
-and we obtain an ODE inequality for $\Phi$.
-
-The comparison function chosen in \cite{MR2794630},
-\[
-\Phi_c (u) = 2 c \arctan(u/2c)
-\]
-solves
-\[
-\begin{cases}
-u \Phi_c'' - 2 (\Phi_c' - 1) \Phi_c' &= 0 \\
-\Phi_c(0) &= 0
-\end{cases}
-\]
-for any choice of $c \ne 0$ and so equation \eqref{eq:Phi_ode} becomes an equality for this particular choice.
-
-Moroever we have the asymptotics
-\[
-\Phi_c(u) = u + C_3 u^3 + \bigo(u^4)
-\]
-which automatically gives $\phi_c(x, t) = e^t \Phi_c (e^{-t} \psi_0(x))$ the correct asymptotics noting that in the smooth case, the profile has the asymptotics
-\[
-\chordarcprofile(x) = x + C_3 x^3 + \bigo(x^4)
-\]
-with the third order term exponentially decaying to the third order term of the self similar profile.
-\end{remark}
-
-\subsection{Comparison via \holder's inequality}
-
-Suppose  $\varphi$ satisfies the bulleted assumptions of the Comparison Theorem \ref{thm:comparison}, but satisfies the differential inequality,
-\[
-\begin{split}
-\partial_t \phi &\leq \left(\frac{2\pi}{L}\right)^2 \left(4 \phi'' + \frac{4}{x} \phi' \left(\arccos(\phi') - \tfrac{k(p,q)\pi}{6}\right)^2\right) + \left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2 \left(\phi - x \phi'\right) \\
-&\quad - \frac{1}{L} (\phi - x\phi') \bar{V} - \frac{2\pi}{L} \phi' \Delta V (p,q).
-\end{split}
-\]
-where $k(p_0, q_0)$ denotes the number of nodes between $p_0$ and $q_0$,
-\[
-\bar{V} = \sum_{i=1}^k \Delta v_i,
-\]
-and
-\[
-\Delta V (p_0, q_0) = \sum_{i = i_{p_0}}^{i_{q_0}} \Delta v_i
-\]
-where $i_{p_0}$ denotes the first node after $p_0$ and $i_{q_0}$ denotes the last node before $q_0$. Then we can apply the Comparison Theorem \ref{thm:comparison} as follows:
-
-First we estimate $\bar{Q}$ and $\Delta Q$. \holder's inequality and the theorem of turning tangents implies that
-\[
-\frac{1}{L} \int_{\gamma} \curvecurv^2 ds \geq \left(\frac{1}{L}\int_{\gamma} \curvecurv ds\right)^2 = \left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2
-\]
-from the triple condition \eqref{eq:triplecondition} giving exterior angles of $\pi/3$ at each vertex. Similarly,
-\[
-\begin{split}
-\int_{\gamma} \curvecurv^2 ds &\geq \frac{1}{\ell} \left(\int_{p_0}^{q_0} \curvecurv ds\right)^2 = \frac{2\pi}{L} \frac{1}{x} \left(2\theta - \tfrac{k(p,q)\pi}{3}\right)^2 \\
-&= \frac{2\pi}{L} \frac{1}{x} \left(2\arccos(\phi') - \tfrac{k(p,q)\pi}{3}\right)^2
-\end{split}
-\]
-where $\cos \theta = \ip{w}{\tang_{p_0}} = \ip{w}{\tang_{q_0}}$ so that $\cos 2 \theta = \ip{\tang_{p_0}}{\tang_{q_0}}$.
-
-Now concavity of $\phi$ implies $\phi' > 0$ and $(\phi - x \phi')' = -x\phi'' \geq 0$ which along with $(\phi - x\phi) (0) = 0$ implies $\phi -x \phi \geq 0$. Therefore,
-\[
-\begin{split}
-(\phi - x\phi') \left[\left(\frac{(2 - \tfrac{k}{3})\pi}{L}\right)^2 - \frac{1}{L} \bar{V}\right] &\leq (\phi - x\phi') \left[\frac{1}{L} \int_{\gamma} \curvecurv^2 ds - \frac{1}{L} \bar{V}\right] \\
-&= (\phi - x\phi') \frac{1}{L} \bar{Q}
-\end{split}
-\]
-and
-\[
-\begin{split}
-\left(\frac{2\pi}{L}\right)^2 \frac{4}{x} \phi' \left(\arccos(\phi') - \tfrac{k(p,q)\pi}{6}\right)^2 - \frac{2\pi}{L} \phi' \Delta V (p,q) &\leq \frac{2\pi}{L} \phi' \int_{\gamma} \curvecurv^2 ds - \frac{2\pi}{L} \phi' \Delta V (p,q) \\
-&= \phi' \frac{2\pi}{L} \Delta Q.
-\end{split}
-\]
-
-Thus we obtain,
-\[
-\partial_t \phi \leq F(\phi'', \phi', \phi, x, t)
-\]
-as required by the comparison theorem.
-{\color{red} Note that the equation above has two solutions (from the equation is clear that at $u=0$ we have $\Phi_c'(0)=0$ or $\Phi_c'(0)=1$. The second solution is 
-$$\Phi_c(x)=\ln\left(\frac{1+cx}{\sqrt{1-c^2x^2}}\right).$$}
-
-{\color{blue}Are you referring to equation \eqref{eq:comparison_ode}? Note that we need $\Phi_c(0) = 0$ and $\Phi_c'(0) = 1$ for the asymptotics.}
-
-\subsection{Comparison via substitution of self-similar solutions}
-
-Here we make a substitution $y = \varphi_0 (x)$, $\tau = e^t$ where $\varphi_0$ is a self-similar solution of the flow. Then we have to compute what we get and hope some comparison of the curvature integrals helps. In the smooth case, it all works well becuase the self-similar solution has constant curvature so achieves equality in \holder{} which also gives an $\arccos$ term that fits nicely with the self-similar profile which is just $\sin(x/2)$. So perhaps here we should first substitute the self-simlar solution and then see what comes up. This should be checked for the smooth case first to see that it all works okay there.
-\section{Estimates on $\bar{Q}$ and $\Delta Q$}
-Here we want to specify the function $f$.
-
-From the previous section we have explicit expressions for $\bar{Q}_0$ and $\Delta Q_0$. For the self similar profile is possible to compute $\int_p^q \curvecurv^2$ as follows
-
-
 
 \section{Convergence}
 \label{sec:orgheadline12}
