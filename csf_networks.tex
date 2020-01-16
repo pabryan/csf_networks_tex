@@ -449,6 +449,32 @@ u'(-1/2) &= -u'(1/2) = \pm \sqrt{\cos^{-2} \left(\frac{\pi}{k}(6 - k)\right) - 1
 \end{equation}
 where we have \(+\) when \(k \leq 6\) and we have \(-\) for \(k \geq 6\). Note that \(u\) is necessarily symmetric about \(x = 0\): \(u(-x) = u(x)\). The existence and uniqueness of self similar networks invariant under \(D_k\) may be found in \cite{MR2340176}.
 
+\section{Graphical Dihedrally Symmetric Networks}
+
+\begin{theorem}
+\label{thm:dihedral_graphs}
+
+Let \(\network = (\gamma, L)\) be a network with a single loop \(\gamma\) with \(k\) nodes. Suppose that
+\begin{enumerate}
+\item The initial skeleton is a regular polygon with \(k\) nodes,
+\item the initial loop is given by graphs over the edges of the skeleton,
+\item the initial loop is invariant under the dihedral group \(D_k\),
+\item the unbounded lines \(L = \{L_i\}\) are all straight lines.
+\end{enumerate}
+
+Then under the network curve shortening flow, \(\gamma\) collapses to the centre of it's skeleton in finite time. Rescaling to keep the length of the loop constant, the rescaled loop converges to the unique self-similar, dihedrally symmetric loop.
+\end{theorem}
+
+The proof reduces to the results in \cite{MR2794911} for curve shortening flow meeting a line with prescribed angles.
+
+\begin{proof}
+The flow preserves the \(D_k\)-symmetry and the unbounded curves remain straight lines. Since the skeleton of the flow is a regular polygon with internal angle \(\tfrac{k-2}{k} \pi\), by the triple condition each arc joining the nodes \(a_i, a_{i+1}\) meets the edge \(e_i = \overline{a_i a_{i+1}}\) at both end points at the fixed angle \(\theta = \tfrac{\pi}{k}(6 - k)\). The arcs joining the nodes \(a_i, a_{i+1}\) are by assumption, graphs over the edge. The dihedral symmetry implies these graphs are symmetric about the mid-point of the edge and that all arcs are congruent via the rotations of \(D_k\).
+
+Let \(\gamma_i\) be the solution of the curve shortening flow meeting a line with prescribed angle \(\theta\) at the end points and starting at the initial graph over the edge \(e_i\). Then by \cite{MR2794911}, the arc collapses to a point and after rescaling to fix length, converges smoothly to the unique self similar graph.
+
+By uniqueness of curve shortening flow, each arc between the nodes \(a_i, a_{i+1}\) of the loop \(\gamma_t\) equals \(\gamma_i\) as a graph over the evolving edge \(e_i\).  Hence, \(\gamma_i\) collapses to a point in finite time with the nodes \(a_i, a_{i+1}\) collapsing to this point. Thus each edge \(e_i\) collapses to the same point so that the length of \(e_i\) goes to zero at the final time hence the skeleton has collapsed to a point, which by symmetry is the centre of the skeleton. After rescaling, each arc \(\gamma_i\) smoothly converges to the self-similar arc, hence the loop converges smoothly (away from the nodes) to the self-similar solution.
+\end{proof}
+
 \section{The Chord-Arc Profile}
 \label{sec:orgheadline10}
 
