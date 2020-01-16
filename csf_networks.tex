@@ -191,6 +191,9 @@ The following evolution equations hold:
 \end{enumerate}
 \end{lemma}
 
+\subsection{Intrinsic and Extrinsic Distance}
+\label{subsec:dl}
+
 Let us now state the definitions we use for intrinsic and extrinsic distances. Note in particular, the intrinsic distance we use is oriented which is for convenience and makes for slightly cleaner exposition later.
 
 \begin{defn}
@@ -275,7 +278,12 @@ The evolution of \(\ell\) follows immediately from the definition of \(\corneran
 Unlike the smooth case, it is a-priori possible that length actually increases under the network flow. See also the remark below following Lemma \ref{lem:dtA}.
 \end{remark}
 
-It's also worth remarking that the evolution of the extrinsic distance does not feel the presence of the nodes, while the intrinsic length, being forced to traverse the nodes does. Next we compute the evolution of enclosed area, which by Stokes' theorem may be computed as an integral along \(\gamma\) and hence also feels the presence of the nodes.
+It's also worth remarking that the evolution of the extrinsic distance does not feel the presence of the nodes, while the intrinsic length, being forced to traverse the nodes does.
+
+\subsection{Area}
+\label{subsec:A}
+
+Next we compute the evolution of enclosed area, which by Stokes' theorem may be computed as an integral along \(\gamma\) and hence also feels the presence of the nodes.
 
 \begin{lemma}
 \label{lem:dtA}
@@ -1413,7 +1421,6 @@ Let us also write $u = e^{-\tau} \psi_0$ for the argument to $\Phi_c$ so that we
 \end{split}
 \end{equation}
 
-\textbf{What is needed next (see remark \ref{rem:smooth_case} below for how it works in the smooth case):}
 The concavity of $\Phi_c$ implies $\left(\Phi_c - u \Phi_c'\right) \geq 0$ and so if $\frac{L}{4\pi^2} \bar{Q}_0 \geq 1$, if suffices to show
 \[
 u \Phi_c'' + \frac{1}{4x} \psi_0 f_0'(\psi_0')(\Phi_c' - 1) \Phi_c' \geq 0.
@@ -1519,4 +1526,9 @@ so that our barrier limits to the self-similar profile. In this way the barrier 
 
 \section{Convergence}
 \label{sec:orgheadline12}
+
+\section*{}
+
+\printbibliography
+
 \end{document}
