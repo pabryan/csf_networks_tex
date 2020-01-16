@@ -1033,7 +1033,74 @@ Thus \(\varphi' = \cos \theta\) and,
 Rearranging gives the proof.
 \end{proof}
 
-\section{Convex Networks}
+\subsection{Self-similar Profiles}
+
+In this section we describe the profile for self similar solutions on the skeletons fixed in Section \ref{sec:self_similar}. Note that to cover half of the length of the network we need to cross $\frac{n}{2}$ nodes. At those points the profile will be continuous, but not differentiable.
+
+We start by giving a more accurate description of the self-similar profile $\sqrt{1-st}\gamma_0(x)$ at time $t=\frac{1}{2}$. We assume that $\gamma_0$ is parametrized according to its arc-length, then the equation satisfied by $\gamma_0$ is
+\begin{equation} -\gamma_0= v \tang- \curvecurv \nor= v \gamma_0'+\gamma_0''.
+\label{eq:self-similar curve}
+\end{equation}
+
+From this equation we have that
+$$v=- \ip{\gamma_0}{\gamma_0'}.$$
+Equivalently,
+
+$$v'=-1+\curvecurv\ip{\gamma_0}{\nor} =-1+\curvecurv^2.$$
+Integrating this expression between $p_0$ and $q_0$ we obtain
+
+\begin{align*}
+v(q_0)-v(p_0)=& - l+\Delta Q_0,\\
+\bar{Q}_0=&L_0,
+\end{align*}
+where $L_0$ is the length of the given self-similar solutions.
+
+Some further remarks about the self-similar solution:
+
+\begin{enumerate}
+\item The enclosed area is given
+$$\area=\frac{1}{2}\int \ip{\gamma}{\nor}=\frac{1}{2}\int \curvecurv=\frac{1}{2}\left(2\pi-\frac{k}{3}\right).$$
+\item If this curve minimizes length for that given area, it should compare with a piece of a circle satisfying the correct angular condition (I am not sure how to argue this yet). Not sure this bound is useful in anyway.
+\end{enumerate}
+
+
+We fix a vector $v$ and show that $\psi_0(x)=2\ip{\gamma_0\left(\frac{x}{2}\right)}{v}$ satisfies the equation for chord-arc profiles:
+
+\begin{align*}
+\psi_0'= &\ip{\gamma_0'\left(\frac{x}{2}\right)}{v},\\
+\psi_0''= &\frac{1}{2}\ip{\gamma_0''\left(\frac{x}{2}\right)}{v}.
+\end{align*}
+We also note that these curves are convex, hence $\tangindicator=1$.
+
+From Equation \eqref{eq:self-similar curve} we have
+$$4\psi_0''=-\psi_0-2v\left(\frac{x}{2}\right) \psi_0'. $$
+Using the definition of $v$ we have
+$$4\psi_0''=-\psi_0-\left(2\frac{x}{2}-2\Delta Q(\frac{x}{2})\right) \psi_0'. $$
+
+Recalling that $\bar{Q}{L}=1$ and the symmetry we have the desired equation. 
+
+
+The vector $v$ is chosen such that the boundary condition is met at $x=0$.
+
+{\color{red} need to describe how we pass through nodes and when it jumps, but is should be when we go through half of each curve. Note that if we are jumping 2 nodes (and have at most 5 sides, then jumping 3 nodes is like jumping 2 on the other side (so there should be more symmetries. }
+
+We do it carefully for $n=2,3,4,5, 6$ faces (we need to check if this idea works in the expanding case)
+
+For a self-similar solution solution, \(\sigma\), let us write \(\psi\) for the chord arc-profile of \(\sigma\).
+
+\begin{lemma}
+Let \(\gamma_0\) be a self-similar solution with chord-arc profile $\psi_0$. Then there exists a convex function $f_0$ such that
+\[
+\tfrac{L}{2\pi} \Delta Q_0 (x) = \frac{1}{x} f_0(\psi_0'(x)).
+\]
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+
+\subsection{Convex Profiles}
 
 We now consider the implications of the variational formulae and differential inequalities in the case of convex networks. These are rather more well behaved than general networks, and serve as a model case. In particular, the chord-arc profile is concave. We also deduce some properties for general networks at optimal points that behave similar to the convex case, in particular relating local concavity of the profile to convex-like behaviour at corresponding optimal points. The analysis, particularly of the second variation affords control of the topology of optimal points (through the indicator functions) essential to the comparison arguments later.
 
@@ -1110,8 +1177,11 @@ Compare the above with similar results obtained in \cite{MR1674097}, pertaining 
 This is a strictly concave function whose square is not concave. This seems related to the fact that the local behaviour of the chord/arc-profile is determined by the \emph{square} of the curvature, $\curvecurv^2$ as opposed to the isoperimetric profile of a surface or convex body in the plane, which is locally determined by the curvature (Gauss curvature for compact surfaces and boundary mean curvature for convex bodies in Euclidean space).
 \end{remark}
 
-\section{Viscosity Equation For Networks Evolving By Curve Shortening}
-\label{sec:viscosity_csf}
+\section{Comparison Theorem}
+\label{sec:comparison}
+
+\subsection{Viscosity Equation}
+\label{subsec:viscosity}
 
 \begin{theorem}
 \label{thm:csf_viscosity}
@@ -1164,6 +1234,9 @@ and combining with \eqref{eq:time_ineq}, we get
 \partial_t \phi \geq \left(\frac{2\pi}{L}\right)^2 \left(4 \phi'' - 2 (1-\tangindicator) \frac{1 - (\phi')^2}{\phi}\right) + \left(\phi - x \phi'\right) \frac{1}{L} \bar{Q} + \frac{2\pi}{L} \phi' \Delta Q.
 \]
 \end{proof}
+
+\subsection{Comparison Theorem}
+\label{subsec:comparison}
 
 We may now deduce the comparison theorem. For this we also make a normalisation of the time variable.
 
@@ -1292,76 +1365,7 @@ For the second part, recall Proposition \ref{prop:asymptotics} states that
 Hence the assumed asymptotic behaviour of $\varphi$ along with the inequality $\varphi(x, t) \leq \chordarcprofile(x, t)$ yields the second part.
 \end{proof}
 
-\section{Self-similar Profiles}
-
-In this section we describe the profile for self similar solutions on the skeletons fixed in Section \ref{sec:self_similar}. Note that to cover half of the length of the network we need to cross $\frac{n}{2}$ nodes. At those points the profile will be continuous, but not differentiable.
-
-We start by giving a more accurate description of the self-similar profile $\sqrt{1-st}\gamma_0(x)$ at time $t=\frac{1}{2}$. We assume that $\gamma_0$ is parametrized according to its arc-length, then the equation satisfied by $\gamma_0$ is
-\begin{equation} -\gamma_0= v \tang- \curvecurv \nor= v \gamma_0'+\gamma_0''.
-\label{eq:self-similar curve}
-\end{equation}
-
-From this equation we have that
-$$v=- \ip{\gamma_0}{\gamma_0'}.$$
-Equivalently,
-
-$$v'=-1+\curvecurv\ip{\gamma_0}{\nor} =-1+\curvecurv^2.$$
-Integrating this expression between $p_0$ and $q_0$ we obtain
-
-\begin{align*}
-v(q_0)-v(p_0)=& - l+\Delta Q_0,\\
-\bar{Q}_0=&L_0,
-\end{align*}
-where $L_0$ is the length of the given self-similar solutions.
-
-Some further remarks about the self-similar solution:
-
-\begin{enumerate}
-\item The enclosed area is given
-$$\area=\frac{1}{2}\int \ip{\gamma}{\nor}=\frac{1}{2}\int \curvecurv=\frac{1}{2}\left(2\pi-\frac{k}{3}\right).$$
-\item If this curve minimizes length for that given area, it should compare with a piece of a circle satisfying the correct angular condition (I am not sure how to argue this yet). Not sure this bound is useful in anyway.
-\end{enumerate}
-
-
-We fix a vector $v$ and show that $\psi_0(x)=2\ip{\gamma_0\left(\frac{x}{2}\right)}{v}$ satisfies the equation for chord-arc profiles:
-
-\begin{align*}
-\psi_0'= &\ip{\gamma_0'\left(\frac{x}{2}\right)}{v},\\
-\psi_0''= &\frac{1}{2}\ip{\gamma_0''\left(\frac{x}{2}\right)}{v}.
-\end{align*}
-We also note that these curves are convex, hence $\tangindicator=1$.
-
-From Equation \eqref{eq:self-similar curve} we have
-$$4\psi_0''=-\psi_0-2v\left(\frac{x}{2}\right) \psi_0'. $$
-Using the definition of $v$ we have
-$$4\psi_0''=-\psi_0-\left(2\frac{x}{2}-2\Delta Q(\frac{x}{2})\right) \psi_0'. $$
-
-Recalling that $\bar{Q}{L}=1$ and the symmetry we have the desired equation. 
-
-
-The vector $v$ is chosen such that the boundary condition is met at $x=0$.
-
-{\color{red} need to describe how we pass through nodes and when it jumps, but is should be when we go through half of each curve. Note that if we are jumping 2 nodes (and have at most 5 sides, then jumping 3 nodes is like jumping 2 on the other side (so there should be more symmetries. }
-
-We do it carefully for $n=2,3,4,5, 6$ faces (we need to check if this idea works in the expanding case)
-
-For a self-similar solution solution, \(\sigma\), let us write \(\psi\) for the chord arc-profile of \(\sigma\).
-
-\begin{lemma}
-Let \(\gamma_0\) be a self-similar solution with chord-arc profile $\psi_0$. Then there exists a convex function $f_0$ such that
-\[
-\tfrac{L}{2\pi} \Delta Q_0 (x) = \frac{1}{x} f_0(\psi_0'(x)).
-\]
-\end{lemma}
-
-\begin{proof}
-
-\end{proof}
-
-\section{Comparison Functions}
-\label{sec:orgheadline11}
-
-In this section, we seek suitable functions $\varphi_0$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi_0(x)$ where $\psi_0(x)$ is the profile of a self-similar solution to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
+Now we seek suitable functions $\varphi_0$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi_0(x)$ where $\psi_0(x)$ is the profile of a self-similar solution to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
 \[
 \varphi_0(x, \tau) = e^{\tau} \Phi(e^{-\tau} \psi_0(x)).
 \]
